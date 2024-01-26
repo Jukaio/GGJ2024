@@ -16,3 +16,6 @@ mono_crash.*.json
 
 #macshit
 .DS_Store
+
+#Builds
+builds/*
