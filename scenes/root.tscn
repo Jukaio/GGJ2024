@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://bg1ins523sejc"]
+
+[ext_resource type="Texture2D" uid="uid://b5o7afta3jpr1" path="res://assets/ui/frame1.png" id="1_etq8s"]
+[ext_resource type="FontFile" uid="uid://b087ap32fb2o3" path="res://assets/fonts/m6x11.ttf" id="2_k4s0w"]
+[ext_resource type="PackedScene" uid="uid://ceyygefch11tl" path="res://assets/prefabs/pixel_button.tscn" id="3_khgny"]
+
+[sub_resource type="Theme" id="Theme_8lgeb"]
+Label/colors/font_color = Color(0, 0, 0, 1)
+Label/fonts/font = ExtResource("2_k4s0w")
+
+[node name="Root" type="Node2D"]
+
+[node name="UICanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Popup" type="Control" parent="UICanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 133.0
+offset_bottom = 102.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="UICanvasLayer/Popup"]
+texture_filter = 1
+layout_mode = 0
+offset_right = 133.0
+offset_bottom = 100.0
+texture = ExtResource("1_etq8s")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="Label" type="Label" parent="UICanvasLayer/Popup"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 124.0
+offset_bottom = 33.0
+theme = SubResource("Theme_8lgeb")
+text = "Test"
+
+[node name="YesNoContainer" type="Control" parent="UICanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="YesButton" parent="UICanvasLayer/YesNoContainer" instance=ExtResource("3_khgny")]
+
+[node name="NoButton" parent="UICanvasLayer/YesNoContainer" instance=ExtResource("3_khgny")]
+offset_left = 45.0
+offset_top = 2.0
+offset_right = 85.0
+offset_bottom = 42.0
