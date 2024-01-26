@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cubybm7hb7w03"]
+
+[ext_resource type="Texture2D" uid="uid://b42oja3kdtcws" path="res://graphics/gameplay/mushroom1_4frames.png" id="1_kqcoc"]
+[ext_resource type="Script" path="res://scripts/plant.gd" id="2_4rbs3"]
+
+[node name="MushroomSprite" type="Sprite2D"]
+texture = ExtResource("1_kqcoc")
+hframes = 4
+script = ExtResource("2_4rbs3")
+GrowthState = 2

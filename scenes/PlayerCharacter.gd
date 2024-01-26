@@ -84,11 +84,13 @@ func GetFourAxisDirection(delta):
 		MoveAction.DOWN:
 			direction += Vector2.DOWN
 	direction = direction.normalized()
+	return direction
 	
 func GetEightAxisDirection(delta):
 	var direction = Vector2.ZERO
 	# TODO: Implement eight axis!
 	direction = direction.normalized()
+	return direction
 
 func ProcessIdle(delta):
 	var angle = rad_to_deg(atan2(lookDirection.y, lookDirection.x));
