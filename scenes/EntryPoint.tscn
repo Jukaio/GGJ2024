@@ -1,13 +1,38 @@
-[gd_scene load_steps=4 format=3 uid="uid://c1h6bgnucataf"]
+[gd_scene load_steps=11 format=3 uid="uid://c1h6bgnucataf"]
 
 [ext_resource type="PackedScene" uid="uid://oednu38gbmwd" path="res://prefabs/ground_tile_map.tscn" id="1_3jk2w"]
 [ext_resource type="PackedScene" uid="uid://cubybm7hb7w03" path="res://prefabs/mushroom_sprite.tscn" id="2_0qnjt"]
+[ext_resource type="Texture2D" uid="uid://csnficd1k2yb1" path="res://sprites/Mushroom.png" id="2_dqxue"]
 [ext_resource type="PackedScene" uid="uid://cucwiwl6qyqsg" path="res://prefabs/PlayerCharacter.tscn" id="2_ejxp2"]
+[ext_resource type="Script" path="res://scripts/UI.gd" id="4_5vutq"]
+[ext_resource type="FontFile" uid="uid://cyescrgav85ig" path="res://fonts/AsepriteFont.ttf" id="4_vwj4e"]
+[ext_resource type="Texture2D" uid="uid://44r1ndryegis" path="res://graphics/ui/frame1.png" id="4_x5krr"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lpgvw"]
+texture = ExtResource("2_dqxue")
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_wp1i0"]
+sources/1 = SubResource("TileSetAtlasSource_lpgvw")
+
+[sub_resource type="Theme" id="Theme_0kubg"]
+default_font_size = 64
+Label/fonts/font = ExtResource("4_vwj4e")
 
 [node name="EntryPoint" type="Node2D"]
 y_sort_enabled = true
 
 [node name="GroundTileMap" parent="." instance=ExtResource("1_3jk2w")]
+
+[node name="SeedTileMap" type="TileMap" parent="."]
+z_index = 1
+tile_set = SubResource("TileSet_wp1i0")
+format = 2
 
 [node name="MushroomSprite" parent="." instance=ExtResource("2_0qnjt")]
 position = Vector2(38, -51)
@@ -24,10 +49,81 @@ position = Vector2(77, -51)
 GrowthState = 0
 TimeForStateIncrease = 1.0
 
-[node name="PlayerCharacter" parent="." node_paths=PackedStringArray("fieldMap") instance=ExtResource("2_ejxp2")]
+[node name="PlayerCharacter" parent="." node_paths=PackedStringArray("fieldMap", "seedMap") instance=ExtResource("2_ejxp2")]
 z_index = 10
 texture_filter = 1
 fieldMap = NodePath("../GroundTileMap")
+seedMap = NodePath("../SeedTileMap")
 
 [node name="MainCamera2D" type="Camera2D" parent="."]
 position = Vector2(2.08165e-12, 2.08165e-12)
+
+[node name="UICanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("4_5vutq")
+
+[node name="MainMenu" type="Control" parent="UICanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelNinePatchRect" type="NinePatchRect" parent="UICanvasLayer/MainMenu"]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 21.0
+offset_right = 444.0
+offset_bottom = 74.0
+texture = ExtResource("4_x5krr")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="GameTitle" type="Label" parent="UICanvasLayer/MainMenu/PanelNinePatchRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -190.0
+offset_top = -31.0
+offset_right = 190.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_0kubg")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.462745, 0.462745, 0.462745, 1)
+text = "Datadriven Mushrooms"
+
+[node name="StartNinePatchRect" type="NinePatchRect" parent="UICanvasLayer/MainMenu"]
+layout_mode = 0
+offset_left = 102.0
+offset_top = 101.0
+offset_right = 393.0
+offset_bottom = 160.0
+texture = ExtResource("4_x5krr")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="StartLabel" type="Label" parent="UICanvasLayer/MainMenu/StartNinePatchRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -136.5
+offset_top = 14.0
+offset_right = 136.5
+offset_bottom = 52.0
+grow_horizontal = 2
+theme = SubResource("Theme_0kubg")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.462745, 0.462745, 0.462745, 1)
+theme_override_font_sizes/font_size = 32
+text = "Press Enter to start"
+horizontal_alignment = 1

@@ -21,16 +21,22 @@ func hoe(tileMap: TileMap):
 	var idx = tileMap.local_to_map(target_position)
 	var current_cell = tileMap.get_cell_atlas_coords(0, idx)
 	
-	tileMap.set_cell(0, idx, 0, Vector2i(2, 0))
+	tileMap.set_cell(0, idx, 1, Vector2i(0, 0))
 	
 	on_hoe(target_position)
 		
-func is_valid_to_hoe(tileMap: TileMap):
-	var target_position = player_character.position + (player_character.lookDirection * hoeLength)
-	var idx = tileMap.local_to_map(target_position)
-	var current_cell = tileMap.get_cell_atlas_coords(0, idx)
+func is_valid_to_hoe():
+	var seedMap = player_character.seedMap
+	var fieldMap = player_character.fieldMap
 	
-	return current_cell ==  Vector2i(4, 0)
+	var target_position = player_character.position + (player_character.lookDirection * hoeLength)
+	var idx = fieldMap.local_to_map(target_position)
+	var current_field_cell = fieldMap.get_cell_atlas_coords(0, idx)
+	
+	idx = seedMap.local_to_map(target_position)
+	var current_seed_cell = seedMap.get_cell_atlas_coords(0, idx)
+	
+	return current_field_cell ==  Vector2i(4, 0) && current_seed_cell != Vector2i(0, 0)
 		
 func highlight(tileMap: TileMap):
 	var target_position = player_character.position + (player_character.lookDirection * hoeLength)
@@ -42,20 +48,21 @@ func highlight(tileMap: TileMap):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var tileMap = player_character.fieldMap
+	var seedMap = player_character.seedMap
+	var fieldMap = player_character.fieldMap
 	var animator = player_character.animator
 	
 	var was_hoeing = is_hoeing
 	is_hoeing = animator.oneShotAnimationSlot != null
 
-	if is_hoeing || tileMap == null || !is_valid_to_hoe(tileMap):
+	if is_hoeing || seedMap == null || fieldMap == null || !is_valid_to_hoe():
 		highlightNode.visible = false
 		return
 	
 	if !is_hoeing && was_hoeing:
-		hoe(tileMap)
+		hoe(seedMap)
 		
-	highlight(tileMap)
+	highlight(seedMap)
 	
 	
 	if Input.is_action_just_pressed("interact"):

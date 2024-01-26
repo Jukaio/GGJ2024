@@ -9,6 +9,7 @@ enum MoveAction { DOWN, UP, LEFT, RIGHT }
 
 @export var speed: float = 90.0
 @export var fieldMap: TileMap
+@export var seedMap: TileMap
 
 var lookDirection: Vector2 = Vector2.DOWN
 
