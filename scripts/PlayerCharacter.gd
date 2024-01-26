@@ -5,15 +5,18 @@ extends Node2D
 enum MoveAction { DOWN, UP, LEFT, RIGHT }
 
 @export var speed: float = 90.0
+@export var fieldMap: TileMap
 
 var lookDirection: Vector2 = Vector2.DOWN
 
 var movementInput: Array[MoveAction]
 
 var animator: SpriteAnimator
+var hoeTool: HoeTool
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	animator = get_node("SpriteAnimator");
+	animator = get_node("SpriteAnimator")
+	hoeTool = get_node("HoeTool")
 
 func PushMovementAction(action: MoveAction):
 	if movementInput.find(action) == -1:
