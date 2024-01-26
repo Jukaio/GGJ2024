@@ -79,6 +79,10 @@ func _process(delta):
 	if Input.is_action_just_released("down"):
 		PopMovementAction(MoveAction.DOWN)
 		
+	if !animator.IsOneShotDone():
+		return
+	
+		
 	var dir =  GetEightAxisDirection(delta) if get_use_eight_way() else GetFourAxisDirection(delta)
 	if dir.is_zero_approx() or movementInput.is_empty():
 		ProcessIdle(delta)
@@ -130,6 +134,17 @@ func GetEightAxisDirection(delta):
 	
 	direction = direction.normalized()
 	return direction
+
+func get_look_direction():
+	var angle = rad_to_deg(atan2(lookDirection.y, lookDirection.x));
+	if angle > -45.0 && angle < 45.0:
+		return MoveAction.RIGHT
+	elif angle >= 45.0 && angle < 135.0:
+		return MoveAction.DOWN
+	elif angle <= -45.0 && angle > -135.0:
+		return MoveAction.UP
+	else:
+		return MoveAction.LEFT
 
 func ProcessIdle(delta):
 	var angle = rad_to_deg(atan2(lookDirection.y, lookDirection.x));

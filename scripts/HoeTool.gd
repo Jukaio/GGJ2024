@@ -4,6 +4,7 @@ extends Node2D
 
 @export var hoeLength: float = 8.0
 @export var highlightNode: Node2D
+@export var hoeTime: float = 1.0
 
 var player_character: PlayerCharacter
 
@@ -11,7 +12,7 @@ var player_character: PlayerCharacter
 func _ready():
 	player_character = get_parent() as PlayerCharacter
 
-func on_hue(at: Vector2):
+func on_hoe(at: Vector2):
 	# fill out with sound, VFX, and RUTA FUCK FOPT FG
 	pass
 
@@ -22,7 +23,7 @@ func hoe(tileMap: TileMap):
 	
 	tileMap.set_cell(0, idx, 0, Vector2i(2, 0))
 	
-	on_hue(target_position)
+	on_hoe(target_position)
 		
 func is_valid_to_hoe(tileMap: TileMap):
 	var target_position = player_character.position + (player_character.lookDirection * hoeLength)
@@ -53,4 +54,18 @@ func _process(delta):
 	highlight(tileMap)
 	
 	if Input.is_action_just_pressed("interact"):
+		var animator = player_character.animator
+		var direction = player_character.get_look_direction()
+		match direction:
+			PlayerCharacter.MoveAction.RIGHT:
+				animator.PlayByName("HoeRight")
+			PlayerCharacter.MoveAction.LEFT:
+				animator.PlayByName("HoeLeft")
+			PlayerCharacter.MoveAction.UP:
+				animator.PlayByName("HoeUp")
+			PlayerCharacter.MoveAction.DOWN:
+				animator.PlayByName("HoeDown")
+				
+		animator.oneShotAnimationSlot.frameTime = hoeTime / animator.oneShotAnimationSlot.total_frames()
+		
 		hoe(tileMap)
