@@ -1,13 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://dm0r5dncexgsc"]
+[gd_scene load_steps=3 format=3 uid="uid://8c36kt37honb"]
 
 [ext_resource type="PackedScene" uid="uid://cucwiwl6qyqsg" path="res://prefabs/PlayerCharacter.tscn" id="1_18ko4"]
-[ext_resource type="PackedScene" uid="uid://b5e8wgsfn7e81" path="res://prefabs/FieldTilemap.tscn" id="2_otx1c"]
-[ext_resource type="Script" path="res://prefabs/FieldTilemap.gd" id="3_sx058"]
+[ext_resource type="TileSet" uid="uid://4feilimrxep2" path="res://prefabs/ground_tileset.tres" id="2_lp5ct"]
 
 [node name="TestbedDavid" type="Node2D"]
 
 [node name="PlayerCharacter" parent="." node_paths=PackedStringArray("fieldMap") instance=ExtResource("1_18ko4")]
-fieldMap = NodePath("../FieldTilemap")
+z_index = 10
+fieldMap = NodePath("../TileMap")
 
-[node name="FieldTilemap" parent="." instance=ExtResource("2_otx1c")]
-script = ExtResource("3_sx058")
+[node name="TileMap" type="TileMap" parent="."]
+z_index = -10
+tile_set = ExtResource("2_lp5ct")
+format = 2
+layer_0/tile_data = PackedInt32Array(65538, 262144, 0, 131074, 262144, 0, 196610, 262144, 0, 196611, 262144, 0, 262147, 262144, 0, 327683, 262144, 0, 327684, 262144, 0, 327685, 262144, 0, 262149, 262144, 0, 196613, 262144, 0, 131077, 262144, 0, 65541, 262144, 0, 65540, 262144, 0, 65539, 262144, 0, 196609, 262144, 0, 262145, 262144, 0, 327681, 262144, 0, 131073, 262144, 0, 65537, 262144, 0)

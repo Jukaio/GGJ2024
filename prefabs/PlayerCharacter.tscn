@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cucwiwl6qyqsg"]
+[gd_scene load_steps=8 format=3 uid="uid://cucwiwl6qyqsg"]
 
 [ext_resource type="Script" path="res://scripts/PlayerCharacter.gd" id="1_h7gas"]
 [ext_resource type="Script" path="res://scripts/SpriteAnimator.gd" id="2_xyurh"]
@@ -6,11 +6,13 @@
 [ext_resource type="Script" path="res://scripts/SpriteAnimation.gd" id="4_ui6xa"]
 [ext_resource type="Texture2D" uid="uid://b3xgilsgrdjk" path="res://textures/runAnimation.png" id="5_jgofv"]
 [ext_resource type="Script" path="res://scripts/HoeTool.gd" id="6_pa2yi"]
+[ext_resource type="Texture2D" uid="uid://1e8q8j1i1lfx" path="res://sprites/Tileset.png" id="7_or57d"]
 
 [node name="PlayerCharacter" type="Node2D"]
 script = ExtResource("1_h7gas")
 
 [node name="SpriteAnimator" type="Node2D" parent="."]
+position = Vector2(0, -8)
 script = ExtResource("2_xyurh")
 
 [node name="IdleDown" type="Sprite2D" parent="SpriteAnimator"]
@@ -69,5 +71,15 @@ region_enabled = true
 region_rect = Rect2(0, 72, 144, 24)
 script = ExtResource("4_ui6xa")
 
-[node name="HoeTool" type="Node2D" parent="."]
+[node name="HoeTool" type="Node2D" parent="." node_paths=PackedStringArray("highlightNode")]
 script = ExtResource("6_pa2yi")
+highlightNode = NodePath("Highlight")
+
+[node name="Highlight" type="Node2D" parent="HoeTool"]
+z_index = -1
+
+[node name="Sprite2D" type="Sprite2D" parent="HoeTool/Highlight"]
+z_index = -1
+texture = ExtResource("7_or57d")
+region_enabled = true
+region_rect = Rect2(32, 0, 16, 16)
