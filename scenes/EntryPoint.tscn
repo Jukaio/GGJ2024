@@ -31,9 +31,10 @@ position = Vector2(77, -51)
 GrowthState = 0
 TimeForStateIncrease = 1.0
 
-[node name="PlayerCharacter" parent="." instance=ExtResource("2_ejxp2")]
+[node name="PlayerCharacter" parent="." node_paths=PackedStringArray("fieldMap") instance=ExtResource("2_ejxp2")]
 z_index = 10
 texture_filter = 1
+fieldMap = NodePath("../GroundTileMap")
 
 [node name="MainCamera2D" type="Camera2D" parent="."]
 position = Vector2(2.08165e-12, 2.08165e-12)
