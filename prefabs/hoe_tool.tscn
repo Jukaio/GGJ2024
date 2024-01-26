@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://d4kb2elj223eq"]
 
 [ext_resource type="Script" path="res://scripts/HoeTool.gd" id="1_t5nen"]
-[ext_resource type="Texture2D" uid="uid://1e8q8j1i1lfx" path="res://sprites/Tileset.png" id="2_ftm4v"]
+[ext_resource type="Texture2D" uid="uid://csnficd1k2yb1" path="res://sprites/Mushroom.png" id="2_6mr46"]
 
 [node name="HoeTool" type="Node2D" node_paths=PackedStringArray("highlightNode")]
 script = ExtResource("1_t5nen")
@@ -12,6 +12,6 @@ z_index = -1
 
 [node name="Sprite2D" type="Sprite2D" parent="Highlight"]
 z_index = -1
-texture = ExtResource("2_ftm4v")
+texture = ExtResource("2_6mr46")
 region_enabled = true
-region_rect = Rect2(32, 0, 16, 16)
+region_rect = Rect2(16, 0, 16, 16)
