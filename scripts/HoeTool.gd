@@ -7,7 +7,7 @@ extends Node2D
 @export var hoeTime: float = 1.0
 
 var player_character: PlayerCharacter
-
+var is_hoeing: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	player_character = get_parent() as PlayerCharacter
@@ -42,19 +42,23 @@ func highlight(tileMap: TileMap):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var tileMap = player_character.fieldMap;
-	if tileMap == null:
+	var tileMap = player_character.fieldMap
+	var animator = player_character.animator
+	
+	var was_hoeing = is_hoeing
+	is_hoeing = animator.oneShotAnimationSlot != null
+
+	if is_hoeing || tileMap == null || !is_valid_to_hoe(tileMap):
 		highlightNode.visible = false
 		return
 	
-	if !is_valid_to_hoe(tileMap):
-		highlightNode.visible = false
-		return
+	if !is_hoeing && was_hoeing:
+		hoe(tileMap)
 		
 	highlight(tileMap)
 	
+	
 	if Input.is_action_just_pressed("interact"):
-		var animator = player_character.animator
 		var direction = player_character.get_look_direction()
 		match direction:
 			PlayerCharacter.MoveAction.RIGHT:
@@ -67,5 +71,3 @@ func _process(delta):
 				animator.PlayByName("HoeDown")
 				
 		animator.oneShotAnimationSlot.frameTime = hoeTime / animator.oneShotAnimationSlot.total_frames()
-		
-		hoe(tileMap)

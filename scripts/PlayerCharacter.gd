@@ -4,10 +4,15 @@ extends Node2D
 
 enum MoveAction { DOWN, UP, LEFT, RIGHT }
 
+@onready var Collider : CollisionShape2D = $Area2D/CollisionShape2D
+@onready var DirectionArea : Area2D = $Area2D
+
 @export var speed: float = 90.0
 @export var fieldMap: TileMap
 
 var lookDirection: Vector2 = Vector2.DOWN
+
+var isColliding = false
 
 var movementInput: Array[MoveAction]
 
@@ -89,8 +94,18 @@ func _process(delta):
 	else:
 		ProcessMovement(delta, dir)
 	
-func ProcessMovement(delta, dir): 
-	lookDirection = dir
+func ProcessMovement(delta, dir):
+	
+	var tmpLookDirection = lookDirection
+	lookDirection = GetFourAxisDirection(delta)
+	
+	if tmpLookDirection != lookDirection:
+		DirectionArea.position = lookDirection.normalized() * DirectionArea.position
+		isColliding = false
+	# TODO: implement eight-axis 
+	
+	if isColliding:
+		return
 	
 	var angle = rad_to_deg(atan2(lookDirection.y, lookDirection.x));
 	if angle > -45.0 && angle < 45.0:
@@ -156,3 +171,10 @@ func ProcessIdle(delta):
 		animator.ActivateByName("IdleUp")
 	else:
 		animator.ActivateByName("IdleLeft")
+
+
+func _on_area_2d_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
+	print("collision with shape")
+	isColliding = true
+	
+	pass # Replace with function body.

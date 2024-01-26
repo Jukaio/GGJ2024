@@ -4,12 +4,19 @@ class_name Plant extends Sprite2D
 @export var TimeForStateIncrease : float
 @export var MushroomTypeStartIndex : int
 
+@onready var Collider : CollisionShape2D = $Area2D/CollisionShape2D
+
 var timer = 0.0
 
 func set_growth_state(state: int):
 	
 	self.frame = (MushroomTypeStartIndex * 4) + state
-	print("set frame: " + str(self.frame))
+	
+	if GrowthState == 0:
+		Collider.disabled = true
+	else:
+		Collider.disabled = false
+	
 	GrowthState = state
 
 func inc_growth_state():
