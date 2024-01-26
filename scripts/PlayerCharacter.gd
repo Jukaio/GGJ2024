@@ -19,6 +19,31 @@ var movementInput: Array[MoveAction]
 var animator: SpriteAnimator
 var hoeTool: HoeTool
 # Called when the node enters the scene tree for the first time.
+
+static var g_use_eight_way : bool = false
+static var g_use_eight_way_inited : bool = false
+static var g_always_random : bool = true
+
+func get_use_eight_way():
+	if g_use_eight_way_inited:
+		return g_use_eight_way
+	
+	var config = ConfigFile.new()
+	var file_path = "user://persistent_data.cfg"
+	var error = config.load(file_path)
+	
+	if error != OK or g_always_random:
+		g_use_eight_way = RandomNumberGenerator.new().randi_range(0,1) == 1
+		config.set_value("Settings", "use_eight_way", g_use_eight_way)
+		config.save(file_path)
+		
+	else:
+		var default = RandomNumberGenerator.new().randi_range(0,1) == 1
+		g_use_eight_way = config.get_value("Settings", "use_eight_way", default)
+		
+	g_use_eight_way_inited = true
+	return g_use_eight_way
+
 func _ready():
 	animator = get_node("SpriteAnimator")
 	hoeTool = get_node("HoeTool")
@@ -59,12 +84,13 @@ func _process(delta):
 	if Input.is_action_just_released("down"):
 		PopMovementAction(MoveAction.DOWN)
 		
-	if !movementInput.is_empty():
-		ProcessMovement(delta)
-	else:
+	var dir =  GetEightAxisDirection(delta) if get_use_eight_way() else GetFourAxisDirection(delta)
+	if dir.is_zero_approx() or movementInput.is_empty():
 		ProcessIdle(delta)
+	else:
+		ProcessMovement(delta, dir)
 	
-func ProcessMovement(delta):
+func ProcessMovement(delta, dir):
 	
 	var tmpLookDirection = lookDirection
 	lookDirection = GetFourAxisDirection(delta)
@@ -86,6 +112,7 @@ func ProcessMovement(delta):
 		animator.ActivateByName("MoveUp")
 	else:
 		animator.ActivateByName("MoveLeft")
+	
 	position += lookDirection * speed * delta
 
 func GetFourAxisDirection(delta):
@@ -105,7 +132,17 @@ func GetFourAxisDirection(delta):
 	
 func GetEightAxisDirection(delta):
 	var direction = Vector2.ZERO
-	# TODO: Implement eight axis!
+	for action in movementInput:
+		match action:
+			MoveAction.LEFT:
+				direction += Vector2.LEFT
+			MoveAction.RIGHT:
+				direction += Vector2.RIGHT
+			MoveAction.UP:
+				direction += Vector2.UP
+			MoveAction.DOWN:
+				direction += Vector2.DOWN
+	
 	direction = direction.normalized()
 	return direction
 

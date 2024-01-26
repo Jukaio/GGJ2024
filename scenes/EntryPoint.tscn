@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://oednu38gbmwd" path="res://prefabs/ground_tile_map.tscn" id="1_3jk2w"]
 [ext_resource type="PackedScene" uid="uid://cubybm7hb7w03" path="res://prefabs/mushroom_sprite.tscn" id="2_0qnjt"]
-[ext_resource type="PackedScene" uid="uid://mj12dn0vac7q" path="res://prefabs/PlayerCharacter.tscn" id="2_ejxp2"]
+[ext_resource type="PackedScene" uid="uid://cucwiwl6qyqsg" path="res://prefabs/PlayerCharacter.tscn" id="2_ejxp2"]
 
 [node name="EntryPoint" type="Node2D"]
 y_sort_enabled = true
