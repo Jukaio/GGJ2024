@@ -1,10 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://cubybm7hb7w03"]
 
-[ext_resource type="Texture2D" uid="uid://b42oja3kdtcws" path="res://graphics/gameplay/mushroom1_4frames.png" id="1_kqcoc"]
+[ext_resource type="Texture2D" uid="uid://csnficd1k2yb1" path="res://sprites/Mushroom.png" id="1_ujb00"]
 [ext_resource type="Script" path="res://scripts/plant.gd" id="2_4rbs3"]
 
 [node name="MushroomSprite" type="Sprite2D"]
-texture = ExtResource("1_kqcoc")
+texture = ExtResource("1_ujb00")
 hframes = 4
+vframes = 6
+frame = 4
 script = ExtResource("2_4rbs3")
 GrowthState = 2
+MushroomTypeStartIndex = 1

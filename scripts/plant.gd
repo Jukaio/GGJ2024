@@ -2,11 +2,14 @@ class_name Plant extends Sprite2D
 
 @export var GrowthState : int
 @export var TimeForStateIncrease : float
+@export var MushroomTypeStartIndex : int
 
 var timer = 0.0
 
 func set_growth_state(state: int):
-	self.frame = state
+	
+	self.frame = (MushroomTypeStartIndex * 4) + state
+	print("set frame: " + str(self.frame))
 	GrowthState = state
 
 func inc_growth_state():
