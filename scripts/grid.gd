@@ -15,9 +15,7 @@ var growth_timer = 0.0
 var plant_data = []
 
 func get_plant_at(row: int, col: int):
-	
 	return plant_data[row][col]
-	
 	
 
 func _ready():

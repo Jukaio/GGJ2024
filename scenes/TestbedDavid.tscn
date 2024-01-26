@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dm0r5dncexgsc"]
+
+[ext_resource type="PackedScene" uid="uid://cucwiwl6qyqsg" path="res://prefabs/PlayerCharacter.tscn" id="1_18ko4"]
+[ext_resource type="PackedScene" uid="uid://b5e8wgsfn7e81" path="res://prefabs/FieldTilemap.tscn" id="2_otx1c"]
+
+[node name="TestbedDavid" type="Node2D"]
+
+[node name="PlayerCharacter" parent="." instance=ExtResource("1_18ko4")]
+
+[node name="FieldTilemap" parent="." instance=ExtResource("2_otx1c")]
