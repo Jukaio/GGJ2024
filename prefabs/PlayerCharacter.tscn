@@ -1,21 +1,21 @@
 [gd_scene load_steps=7 format=3 uid="uid://cucwiwl6qyqsg"]
 
-[ext_resource type="Script" path="res://scripts/PlayerCharacter.gd" id="1_h7gas"]
-[ext_resource type="PackedScene" uid="uid://bjssjw418p1ic" path="res://prefabs/PlayerSpriteAnimator.tscn" id="2_x0r5y"]
+[ext_resource type="Script" path="res://scripts/player_character.gd" id="1_47rnw"]
+[ext_resource type="PackedScene" uid="uid://bjssjw418p1ic" path="res://prefabs/player_sprite_animator.tscn" id="2_x0r5y"]
+[ext_resource type="Script" path="res://scripts/hoe_tool.gd" id="3_jtqd4"]
 [ext_resource type="PackedScene" uid="uid://cubybm7hb7w03" path="res://prefabs/mushroom_sprite.tscn" id="5_r4y1g"]
-[ext_resource type="Script" path="res://scripts/HoeTool.gd" id="6_pa2yi"]
 [ext_resource type="Texture2D" uid="uid://csnficd1k2yb1" path="res://sprites/Mushroom.png" id="8_vh3lx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0bjyx"]
 size = Vector2(10, 18)
 
 [node name="PlayerCharacter" type="Node2D"]
-script = ExtResource("1_h7gas")
+script = ExtResource("1_47rnw")
 
 [node name="PlayerSpriteAnimator" parent="." instance=ExtResource("2_x0r5y")]
 
 [node name="HoeTool" type="Node2D" parent="." node_paths=PackedStringArray("highlightNode")]
-script = ExtResource("6_pa2yi")
+script = ExtResource("3_jtqd4")
 highlightNode = NodePath("Highlight")
 
 [node name="Highlight" type="Node2D" parent="HoeTool"]

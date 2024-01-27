@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://vw5o7scyix3h"]
 
 [ext_resource type="Texture2D" uid="uid://cx8jjkupb08hf" path="res://examples/mock_background.png" id="2_7pgrc"]
-[ext_resource type="Script" path="res://scripts/CropsGrid.gd" id="3_m63ap"]
+[ext_resource type="Script" path="res://scripts/crops_grid.gd" id="3_m63ap"]
 
 [node name="InitialScene" type="Node2D"]
 
