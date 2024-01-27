@@ -23,8 +23,8 @@ var state : ShopKeeperState = ShopKeeperState.SHOP_CLOSED
 func _ready():
 	
 	shopSlot1.set_shop_item(0, 100)
-	shopSlot2.set_shop_item(0, 300)
-	shopSlot3.set_shop_item(0, 450)
+	shopSlot2.set_shop_item(1, 300)
+	shopSlot3.set_shop_item(2, 450)
 	
 	shopSlot1.visible = false
 	shopSlot2.visible = false
