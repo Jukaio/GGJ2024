@@ -6,6 +6,11 @@ class_name ShopKeeperCharacter extends Node2D
 @export var TimeForOpenShop : float
 @export var TimeForClosedShop : float
 
+@onready var shopSlot1 : ShopPurchaseSlot = $PurchaseSlot1
+@onready var shopSlot2 : ShopPurchaseSlot = $PurchaseSlot2
+@onready var shopSlot3 : ShopPurchaseSlot = $PurchaseSlot3
+
+
 @onready var animator : SpriteAnimator = $SpriteAnimator
 
 enum ShopKeeperState { ENTERING, SHOP_OPEN, EXITING, SHOP_CLOSED }
@@ -16,6 +21,16 @@ var state : ShopKeeperState = ShopKeeperState.SHOP_CLOSED
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
+	shopSlot1.set_shop_item(0, 100)
+	shopSlot2.set_shop_item(0, 300)
+	shopSlot3.set_shop_item(0, 450)
+	
+	shopSlot1.visible = false
+	shopSlot2.visible = false
+	shopSlot3.visible = false
+
+	
 	pass # Replace with function body.
 
 
@@ -43,6 +58,10 @@ func process_state_machine(delta):
 				state = ShopKeeperState.SHOP_OPEN
 				timeElapsed = 0
 				dir = Vector2.DOWN
+				
+				shopSlot1.visible = true
+				shopSlot2.visible = true
+				shopSlot3.visible = true
 		
 		ShopKeeperState.SHOP_OPEN:
 			process_idle(Vector2.DOWN, delta)
@@ -50,6 +69,11 @@ func process_state_machine(delta):
 			if timeElapsed > TimeForOpenShop:
 				state = ShopKeeperState.EXITING
 				timeElapsed = 0
+				
+				shopSlot1.visible = false
+				shopSlot2.visible = false
+				shopSlot3.visible = false
+		
 				
 		ShopKeeperState.EXITING:
 			if position != StartPos:
