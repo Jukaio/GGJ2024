@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c1h6bgnucataf"]
+[gd_scene load_steps=12 format=3 uid="uid://c1h6bgnucataf"]
 
 [ext_resource type="PackedScene" uid="uid://oednu38gbmwd" path="res://prefabs/ground_tile_map.tscn" id="1_3jk2w"]
 [ext_resource type="Texture2D" uid="uid://csnficd1k2yb1" path="res://sprites/Mushroom.png" id="2_dqxue"]
@@ -7,6 +7,7 @@
 [ext_resource type="FontFile" uid="uid://cyescrgav85ig" path="res://fonts/AsepriteFont.ttf" id="4_vwj4e"]
 [ext_resource type="Texture2D" uid="uid://44r1ndryegis" path="res://graphics/ui/frame1.png" id="4_x5krr"]
 [ext_resource type="Script" path="res://scripts/CropsGrid.gd" id="7_ha7gq"]
+[ext_resource type="PackedScene" uid="uid://bjssjw418p1ic" path="res://prefabs/sprite_animator.tscn" id="8_dvj13"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lpgvw"]
 texture = ExtResource("2_dqxue")
@@ -118,3 +119,8 @@ horizontal_alignment = 1
 [node name="CropsGrid" type="Node2D" parent="."]
 position = Vector2(40, -40)
 script = ExtResource("7_ha7gq")
+
+[node name="ShopCharacter" type="Node2D" parent="."]
+position = Vector2(-135, -101)
+
+[node name="SpriteAnimator" parent="ShopCharacter" instance=ExtResource("8_dvj13")]
