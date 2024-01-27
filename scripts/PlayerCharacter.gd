@@ -1,14 +1,15 @@
 class_name PlayerCharacter
-
 extends Node2D
 
 enum MoveAction { DOWN, UP, LEFT, RIGHT }
 
 @onready var Collider : CollisionShape2D = $Area2D/CollisionShape2D
 @onready var DirectionArea : Area2D = $Area2D
+@onready var PickedUpMushroom : Plant = $PickingUpSprite/MushroomSprite
 
 @export var speed: float = 90.0
 @export var fieldMap: TileMap
+@export var cropsGrid: CropsGrid
 @export var seedMap: TileMap
 
 var lookDirection: Vector2 = Vector2.DOWN
@@ -22,8 +23,8 @@ var hoeTool: HoeTool
 # Called when the node enters the scene tree for the first time.
 
 static var g_use_eight_way : bool = false
-static var g_use_eight_way_inited : bool = false
-static var g_always_random : bool = true
+static var g_use_eight_way_inited : bool = true
+static var g_always_random : bool = false
 
 func get_use_eight_way():
 	if g_use_eight_way_inited:
@@ -48,6 +49,8 @@ func get_use_eight_way():
 func _ready():
 	animator = get_node("SpriteAnimator")
 	hoeTool = get_node("HoeTool")
+	PickedUpMushroom.visible = false
+
 
 func PushMovementAction(action: MoveAction):
 	if movementInput.find(action) == -1:
@@ -85,6 +88,12 @@ func _process(delta):
 	if Input.is_action_just_released("down"):
 		PopMovementAction(MoveAction.DOWN)
 		
+	if Input.is_action_just_pressed("interact"):
+		var result = hoeTool.interact()
+		
+		if result == 1:
+			HoeTool
+		
 	if !animator.IsOneShotDone():
 		return
 	
@@ -103,7 +112,6 @@ func ProcessMovement(delta, dir):
 	if tmpLookDirection != lookDirection:
 		DirectionArea.position = lookDirection.normalized() * DirectionArea.position
 		isColliding = false
-	# TODO: implement eight-axis 
 	
 	if isColliding:
 		return
@@ -122,7 +130,11 @@ func ProcessMovement(delta, dir):
 
 func GetFourAxisDirection(delta):
 	var direction = Vector2.ZERO
+	if movementInput.is_empty():
+		return direction
+	
 	var moveAction = movementInput.back()
+
 	match moveAction:
 		MoveAction.LEFT:
 			direction += Vector2.LEFT
@@ -175,7 +187,12 @@ func ProcessIdle(delta):
 
 
 func _on_area_2d_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
-	print("collision with shape")
 	isColliding = true
+
+
+func _on_hoe_tool_plant_picked_up(plant):
 	
-	pass # Replace with function body.
+	print("player picked up plant: " + plant.name)
+	
+	PickedUpMushroom.visible = true
+	
