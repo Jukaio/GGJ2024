@@ -10,8 +10,7 @@ enum MoveAction { DOWN, UP, LEFT, RIGHT }
 @export var speed: float = 90.0
 @export var fieldMap: TileMap
 @export var cropsGrid: CropsGrid
-
-var collidedMushroom = null
+@export var seedMap: TileMap
 
 var lookDirection: Vector2 = Vector2.DOWN
 
@@ -108,7 +107,7 @@ func _process(delta):
 func ProcessMovement(delta, dir):
 	
 	var tmpLookDirection = lookDirection
-	lookDirection = GetFourAxisDirection(delta)
+	lookDirection = dir
 	
 	if tmpLookDirection != lookDirection:
 		DirectionArea.position = lookDirection.normalized() * DirectionArea.position
@@ -186,11 +185,7 @@ func ProcessIdle(delta):
 
 
 func _on_area_2d_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
-	#if area.get_parent() is Plant:
-	#	collidedMushroom = area.get_parent() as Plant
-	
 	isColliding = true
-
 
 
 func _on_hoe_tool_plant_picked_up(plant):
