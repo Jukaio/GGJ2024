@@ -2,6 +2,11 @@ class_name HoeTool
 
 extends Node2D
 
+var hoeSound = preload("res://sounds/Hoe.wav")
+var liftSound = preload("res://sounds/Lift.wav")
+
+var audioPlayer : AudioStreamPlayer = null
+
 @export var hoeLength: float = 8.0
 @export var highlightNode: Node2D
 @export var hoeTime: float = 1.0
@@ -17,10 +22,17 @@ var is_hoeing: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	player_character = get_parent() as PlayerCharacter
+	
+	audioPlayer = get_tree().get_root().get_node("EntryPoint/AudioStreamPlayer")
+	
+	assert(audioPlayer != null, "audioPlayer is null")
+	
 
 func on_hoe(at: Vector2):
-	# fill out with sound, VFX, and RUTA FUCK FOPT FG
-	pass
+	
+	audioPlayer.stream = hoeSound
+	audioPlayer.play()
+	
 
 func hoe(tileMap: TileMap):
 	var target_position = player_character.position + (player_character.lookDirection * hoeLength)
@@ -117,6 +129,7 @@ func _process(delta):
 	
 	if !is_hoeing && was_hoeing:
 		hoe(fieldMap)
+			
 		
 	highlight(seedMap)
 	
@@ -135,6 +148,9 @@ func interact():
 	if plant != null:
 		# there is a plant in front of us
 		if plant.attempt_pick():
+			audioPlayer.stream = liftSound
+			audioPlayer.play()
+			
 			is_holding_plant = true
 			plant_picked_up.emit(plant)
 			match direction:

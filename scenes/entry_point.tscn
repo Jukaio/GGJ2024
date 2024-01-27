@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c1h6bgnucataf"]
+[gd_scene load_steps=18 format=3 uid="uid://c1h6bgnucataf"]
 
 [ext_resource type="PackedScene" uid="uid://oednu38gbmwd" path="res://prefabs/ground_tile_map.tscn" id="1_15xfq"]
 [ext_resource type="PackedScene" uid="uid://cucwiwl6qyqsg" path="res://prefabs/PlayerCharacter.tscn" id="2_r8nl4"]
@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://dvjn3nwmud4w1" path="res://sounds/Hoe.wav" id="11_ymnet"]
 [ext_resource type="Texture2D" uid="uid://bpg3sjv03n36o" path="res://textures/box.png" id="12_8boy5"]
 [ext_resource type="Script" path="res://scripts/sales_bucket.gd" id="13_8cd8l"]
+[ext_resource type="AudioStream" uid="uid://cls5lt578yk06" path="res://music/Main Theme.wav" id="14_2j6da"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lpgvw"]
 texture = ExtResource("3_0klxi")
@@ -94,9 +95,11 @@ theme_override_colors/font_shadow_color = Color(0.701961, 0.701961, 0.701961, 1)
 text = "Psst..."
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
 stream = ExtResource("11_ymnet")
 
 [node name="SalesBucket" type="Sprite2D" parent="."]
+z_index = 20
 texture_filter = 1
 position = Vector2(-90, 90)
 texture = ExtResource("12_8boy5")
@@ -122,6 +125,9 @@ theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "99$"
 horizontal_alignment = 1
+
+[node name="MusicStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_2j6da")
 
 [connection signal="shop_item_selected" from="ShopKeeperCharacter/PurchaseSlot1" to="PlayerCharacter" method="_on_purchase_slot_1_shop_item_selected"]
 [connection signal="shop_item_selected" from="ShopKeeperCharacter/PurchaseSlot2" to="PlayerCharacter" method="_on_purchase_slot_1_shop_item_selected"]
