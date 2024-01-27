@@ -38,4 +38,5 @@ shape = SubResource("RectangleShape2D_0bjyx")
 
 [node name="MushroomSprite" parent="PickingUpSprite" instance=ExtResource("5_r4y1g")]
 
+[connection signal="plant_picked_up" from="HoeTool" to="." method="_on_hoe_tool_plant_picked_up"]
 [connection signal="area_shape_entered" from="Area2D" to="." method="_on_area_2d_area_shape_entered"]
