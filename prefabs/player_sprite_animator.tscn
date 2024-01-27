@@ -10,7 +10,6 @@ position = Vector2(0, -4)
 script = ExtResource("1_0xbl6")
 
 [node name="IdleDown" type="Sprite2D" parent="."]
-visible = false
 texture = ExtResource("2_h1hwb")
 hframes = 6
 region_enabled = true
@@ -18,7 +17,6 @@ region_rect = Rect2(0, 0, 108, 26)
 script = ExtResource("3_jt3x3")
 
 [node name="IdleUp" type="Sprite2D" parent="."]
-visible = false
 texture = ExtResource("2_h1hwb")
 hframes = 6
 region_enabled = true
@@ -26,7 +24,6 @@ region_rect = Rect2(0, 52, 108, 26)
 script = ExtResource("3_jt3x3")
 
 [node name="IdleLeft" type="Sprite2D" parent="."]
-visible = false
 texture = ExtResource("2_h1hwb")
 flip_h = true
 hframes = 6
@@ -35,7 +32,6 @@ region_rect = Rect2(0, 26, 108, 26)
 script = ExtResource("3_jt3x3")
 
 [node name="IdleRight" type="Sprite2D" parent="."]
-visible = false
 texture = ExtResource("2_h1hwb")
 hframes = 6
 region_enabled = true
@@ -43,7 +39,6 @@ region_rect = Rect2(0, 26, 108, 26)
 script = ExtResource("3_jt3x3")
 
 [node name="MoveDown" type="Sprite2D" parent="."]
-visible = false
 texture = ExtResource("2_h1hwb")
 hframes = 6
 region_enabled = true
@@ -51,7 +46,6 @@ region_rect = Rect2(0, 78, 108, 26)
 script = ExtResource("3_jt3x3")
 
 [node name="MoveUp" type="Sprite2D" parent="."]
-visible = false
 texture = ExtResource("2_h1hwb")
 hframes = 6
 region_enabled = true
@@ -59,7 +53,6 @@ region_rect = Rect2(0, 130, 108, 26)
 script = ExtResource("3_jt3x3")
 
 [node name="MoveLeft" type="Sprite2D" parent="."]
-visible = false
 texture = ExtResource("2_h1hwb")
 flip_h = true
 hframes = 6
@@ -68,7 +61,6 @@ region_rect = Rect2(0, 104, 108, 26)
 script = ExtResource("3_jt3x3")
 
 [node name="MoveRight" type="Sprite2D" parent="."]
-visible = false
 texture = ExtResource("2_h1hwb")
 hframes = 6
 region_enabled = true
@@ -76,7 +68,6 @@ region_rect = Rect2(0, 104, 108, 26)
 script = ExtResource("3_jt3x3")
 
 [node name="HoeDown" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(0, 5)
 texture = ExtResource("4_8f8vi")
 hframes = 9
@@ -85,7 +76,6 @@ region_rect = Rect2(0, 0, 216, 32)
 script = ExtResource("3_jt3x3")
 
 [node name="HoeUp" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(0, -3)
 texture = ExtResource("4_8f8vi")
 hframes = 9
@@ -94,7 +84,6 @@ region_rect = Rect2(0, 64, 216, 32)
 script = ExtResource("3_jt3x3")
 
 [node name="HoeLeft" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(-5, -3)
 texture = ExtResource("4_8f8vi")
 flip_h = true
@@ -104,7 +93,6 @@ region_rect = Rect2(0, 32, 216, 32)
 script = ExtResource("3_jt3x3")
 
 [node name="HoeRight" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(5, -3)
 texture = ExtResource("4_8f8vi")
 hframes = 9
@@ -113,40 +101,39 @@ region_rect = Rect2(0, 32, 216, 32)
 script = ExtResource("3_jt3x3")
 
 [node name="LiftIdleDown" type="Sprite2D" parent="."]
-visible = false
 texture = ExtResource("2_h1hwb")
 hframes = 2
 region_enabled = true
 region_rect = Rect2(72, 156, 36, 26)
 script = ExtResource("3_jt3x3")
+frameTime = 0.48
 
 [node name="LiftIdleUp" type="Sprite2D" parent="."]
-visible = false
 texture = ExtResource("2_h1hwb")
 hframes = 2
 region_enabled = true
 region_rect = Rect2(72, 208, 36, 26)
 script = ExtResource("3_jt3x3")
+frameTime = 0.48
 
 [node name="LiftIdleLeft" type="Sprite2D" parent="."]
-visible = false
 texture = ExtResource("2_h1hwb")
 flip_h = true
 hframes = 2
 region_enabled = true
 region_rect = Rect2(72, 182, 36, 26)
 script = ExtResource("3_jt3x3")
+frameTime = 0.48
 
 [node name="LiftIdleRight" type="Sprite2D" parent="."]
-visible = false
 texture = ExtResource("2_h1hwb")
 hframes = 2
 region_enabled = true
 region_rect = Rect2(72, 182, 36, 26)
 script = ExtResource("3_jt3x3")
+frameTime = 0.48
 
 [node name="LiftUpDown" type="Sprite2D" parent="."]
-visible = false
 texture = ExtResource("2_h1hwb")
 hframes = 6
 region_enabled = true
@@ -154,7 +141,6 @@ region_rect = Rect2(0, 156, 108, 26)
 script = ExtResource("3_jt3x3")
 
 [node name="LiftUpUp" type="Sprite2D" parent="."]
-visible = false
 texture = ExtResource("2_h1hwb")
 hframes = 6
 region_enabled = true
@@ -162,7 +148,6 @@ region_rect = Rect2(0, 208, 108, 26)
 script = ExtResource("3_jt3x3")
 
 [node name="LiftUpLeft" type="Sprite2D" parent="."]
-visible = false
 texture = ExtResource("2_h1hwb")
 flip_h = true
 hframes = 6
@@ -171,7 +156,6 @@ region_rect = Rect2(0, 182, 108, 26)
 script = ExtResource("3_jt3x3")
 
 [node name="LiftUpRight" type="Sprite2D" parent="."]
-visible = false
 texture = ExtResource("2_h1hwb")
 hframes = 6
 region_enabled = true
@@ -179,34 +163,30 @@ region_rect = Rect2(0, 182, 108, 26)
 script = ExtResource("3_jt3x3")
 
 [node name="LiftMoveDown" type="Sprite2D" parent="."]
-visible = false
 texture = ExtResource("2_h1hwb")
 hframes = 6
 region_enabled = true
-region_rect = Rect2(0, 78, 108, 26)
+region_rect = Rect2(0, 234, 108, 26)
 script = ExtResource("3_jt3x3")
 
 [node name="LiftMoveUp" type="Sprite2D" parent="."]
-visible = false
 texture = ExtResource("2_h1hwb")
 hframes = 6
 region_enabled = true
-region_rect = Rect2(0, 130, 108, 26)
+region_rect = Rect2(0, 286, 108, 26)
 script = ExtResource("3_jt3x3")
 
 [node name="LiftMoveLeft" type="Sprite2D" parent="."]
-visible = false
 texture = ExtResource("2_h1hwb")
 flip_h = true
 hframes = 6
 region_enabled = true
-region_rect = Rect2(0, 104, 108, 26)
+region_rect = Rect2(0, 260, 108, 26)
 script = ExtResource("3_jt3x3")
 
 [node name="LiftMoveRight" type="Sprite2D" parent="."]
-visible = false
 texture = ExtResource("2_h1hwb")
 hframes = 6
 region_enabled = true
-region_rect = Rect2(0, 104, 108, 26)
+region_rect = Rect2(0, 260, 108, 26)
 script = ExtResource("3_jt3x3")

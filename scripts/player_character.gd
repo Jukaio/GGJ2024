@@ -90,30 +90,23 @@ func _process(delta):
 	if Input.is_action_just_released("down"):
 		PopMovementAction(MoveAction.DOWN)
 		
-	if Input.is_action_just_pressed("interact"):
-		hoeTool.interact()
-		
 	if !animator.IsOneShotDone():
 		return
 	
-		
 	var dir = GetEightAxisDirection(delta) if get_use_eight_way() else GetFourAxisDirection(delta)
-	if dir.is_zero_approx() or movementInput.is_empty():
-		ProcessIdle(delta)
-	else:
-		ProcessMovement(delta, dir)
+	var overwroteAnimation = hoeTool.on_animation_override(delta, dir)
 	
+	if !overwroteAnimation:
+		if dir.is_zero_approx() or movementInput.is_empty():
+			ProcessIdle(delta)
+		else:
+			ProcessMovement(delta, dir)
+		
+	if Input.is_action_just_pressed("interact"):
+		hoeTool.interact()
+
 func ProcessMovement(delta, dir):
-	
-	var tmpLookDirection = lookDirection
-	lookDirection = dir
-	
-	if tmpLookDirection != lookDirection:
-		DirectionArea.position = lookDirection.normalized() * DirectionArea.position
-		isColliding = false
-	
-	if isColliding:
-		return
+	apply_movement(delta, dir)
 	
 	var angle = rad_to_deg(atan2(lookDirection.y, lookDirection.x));
 	if angle > -45.0 && angle < 45.0:
@@ -125,7 +118,19 @@ func ProcessMovement(delta, dir):
 	else:
 		animator.ActivateByName("MoveLeft")
 	
+func apply_movement(delta, dir):
+	var tmpLookDirection = lookDirection
+	lookDirection = dir
+	
+	if tmpLookDirection != lookDirection:
+		DirectionArea.position = lookDirection.normalized() * DirectionArea.position
+		isColliding = false
+	
+	if isColliding:
+		return
+	
 	position += lookDirection * speed * delta
+
 
 func GetFourAxisDirection(delta):
 	var direction = Vector2.ZERO
