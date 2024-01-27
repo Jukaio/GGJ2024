@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dumr5vgy24wbo"]
+[gd_scene load_steps=6 format=3 uid="uid://dumr5vgy24wbo"]
 
 [ext_resource type="Texture2D" uid="uid://xev6rcfkj5ad" path="res://sprites/Env.png" id="1_0w4f2"]
+[ext_resource type="Texture2D" uid="uid://b23f3mwnn6n3y" path="res://sprites/bucket-Sheet.png" id="1_eouho"]
 [ext_resource type="Script" path="res://scripts/sales_bucket.gd" id="2_aax8a"]
 [ext_resource type="Theme" uid="uid://d241x0ek7vt0u" path="res://fonts/theme.tres" id="3_hnf6f"]
 
@@ -10,8 +11,9 @@
 z_index = 20
 texture_filter = 1
 position = Vector2(2.08165e-12, 2.08165e-12)
-texture = ExtResource("1_0w4f2")
-region_enabled = true
+texture = ExtResource("1_eouho")
+hframes = 4
+vframes = 2
 region_rect = Rect2(48, 112, 22, 20)
 script = ExtResource("2_aax8a")
 
@@ -42,6 +44,13 @@ texture = ExtResource("1_0w4f2")
 hframes = 2
 region_enabled = true
 region_rect = Rect2(2.08165e-12, 142, 64, 18)
+
+[node name="BucketShadow" type="Sprite2D" parent="."]
+z_index = -2
+texture = ExtResource("1_eouho")
+hframes = 4
+vframes = 2
+frame = 4
 
 [connection signal="area_shape_entered" from="Area2D" to="." method="_on_area_2d_area_shape_entered"]
 [connection signal="area_shape_exited" from="Area2D" to="." method="_on_area_2d_area_shape_exited"]

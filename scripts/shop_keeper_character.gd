@@ -90,7 +90,6 @@ func process_state_machine(delta):
 				dir = (position - StartPos).normalized()
 				
 				position = position.move_toward(EndPos, delta * Speed)
-				print(dir)
 				animate_movement(dir)
 			else:
 				randomize_inventory()
