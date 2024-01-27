@@ -97,6 +97,7 @@ texture = ExtResource("1_86xew")
 4:3/0/terrains_peering_bit/top_right_corner = 0
 0:0/0 = 0
 0:0/0/terrain_set = 0
+1:0/0 = 0
 
 [resource]
 terrain_set_0/mode = 0

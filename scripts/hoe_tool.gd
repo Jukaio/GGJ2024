@@ -23,7 +23,7 @@ func hoe(tileMap: TileMap):
 	var idx = tileMap.local_to_map(target_position)
 	var current_cell = tileMap.get_cell_atlas_coords(0, idx)
 	
-	tileMap.set_cell(0, idx, 1, Vector2i(0, 0))
+	tileMap.set_cell(0, idx, 0, Vector2i(1, 0))
 	
 	on_hoe(target_position)
 
@@ -51,7 +51,7 @@ func is_valid_to_hoe():
 	idx = seedMap.local_to_map(target_position)
 	var current_seed_cell = seedMap.get_cell_atlas_coords(0, idx)
 	
-	return current_field_cell == Vector2i(4, 0) && current_seed_cell != Vector2i(0, 0)
+	return current_field_cell == Vector2i(4, 0) && current_seed_cell == Vector2i(-1, -1)
 		
 func highlight(tileMap: TileMap):
 	var target_position = player_character.position + (player_character.lookDirection * hoeLength)
@@ -70,12 +70,13 @@ func _process(delta):
 	var was_hoeing = is_hoeing
 	is_hoeing = animator.oneShotAnimationSlot != null
 
+
 	if is_hoeing || seedMap == null || fieldMap == null || !is_valid_to_hoe():
 		highlightNode.visible = false
 		return
 	
 	if !is_hoeing && was_hoeing:
-		hoe(seedMap)
+		hoe(fieldMap)
 		
 	highlight(seedMap)
 	
