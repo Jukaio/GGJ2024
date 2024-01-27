@@ -79,7 +79,8 @@ func PopMovementAction(action: MoveAction):
 func _process(delta):
 	
 	sales_bucket.set_money_sign_animating(PickedUpMushroom.visible)
-	
+	ui.set_money_text(Money)
+
 	# Fix later -> 8 axis
 	# TODO: Nvm, add 8-axis movement -> 50% chance to use 4-axis or 8-axis
 	# TODO: David
