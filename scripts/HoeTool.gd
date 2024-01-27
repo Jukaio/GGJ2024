@@ -6,6 +6,8 @@ extends Node2D
 @export var highlightNode: Node2D
 @export var hoeTime: float = 1.0
 
+signal plant_picked_up(plant)
+
 var player_character: PlayerCharacter
 var is_hoeing: bool = false
 # Called when the node enters the scene tree for the first time.
@@ -24,6 +26,19 @@ func hoe(tileMap: TileMap):
 	tileMap.set_cell(0, idx, 1, Vector2i(0, 0))
 	
 	on_hoe(target_position)
+
+func get_target_plant():
+	var target_position = player_character.position + (player_character.lookDirection * hoeLength)
+	
+	var position_in_grid = player_character.cropsGrid.global_position - target_position
+	var plant = player_character.cropsGrid.get_plant_at_position(position_in_grid)
+	
+	if plant != null:
+		print("mushroom position in grid: " + str(position_in_grid) + " name: " + plant.name)
+		
+		return plant
+	
+	return null
 		
 func is_valid_to_hoe():
 	var seedMap = player_character.seedMap
@@ -64,20 +79,29 @@ func _process(delta):
 		
 	highlight(seedMap)
 	
-	# Move the dirt cell from seed to ground map
-	# Keep seed map 
-	# plant seeds
-	# whenever mushroom destroyed -> remove seed and dirt
-	if Input.is_action_just_pressed("interact"):
-		var direction = player_character.get_look_direction()
-		match direction:
-			PlayerCharacter.MoveAction.RIGHT:
-				animator.PlayByName("HoeRight")
-			PlayerCharacter.MoveAction.LEFT:
-				animator.PlayByName("HoeLeft")
-			PlayerCharacter.MoveAction.UP:
-				animator.PlayByName("HoeUp")
-			PlayerCharacter.MoveAction.DOWN:
-				animator.PlayByName("HoeDown")
-				
-		animator.oneShotAnimationSlot.frameTime = hoeTime / animator.oneShotAnimationSlot.total_frames()
+
+func interact():
+	var animator = player_character.animator
+	var direction = player_character.get_look_direction()
+	
+	var cropsGrid = player_character.cropsGrid
+	
+	var plant = get_target_plant()
+	
+	if plant != null:
+		# there is a plant in front of us
+		if plant.attempt_pick():
+			plant_picked_up.emit(plant)
+	
+	match direction:
+		PlayerCharacter.MoveAction.RIGHT:
+			animator.PlayByName("HoeRight")
+		PlayerCharacter.MoveAction.LEFT:
+			animator.PlayByName("HoeLeft")
+		PlayerCharacter.MoveAction.UP:
+			animator.PlayByName("HoeUp")
+		PlayerCharacter.MoveAction.DOWN:
+			animator.PlayByName("HoeDown")
+			
+	animator.oneShotAnimationSlot.frameTime = hoeTime / animator.oneShotAnimationSlot.total_frames()
+	
