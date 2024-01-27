@@ -1,5 +1,5 @@
 class_name PlayerCharacter
-extends Node2D
+extends CharacterBody2D
 
 enum MoveAction { DOWN, UP, LEFT, RIGHT }
 
@@ -207,7 +207,8 @@ func apply_movement(delta, dir):
 	if isColliding:
 		return
 	
-	position += lookDirection * speed * delta
+	var move =  lookDirection * speed * delta
+	var collision = move_and_collide(move)
 
 
 func GetFourAxisDirection(delta):
