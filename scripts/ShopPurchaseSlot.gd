@@ -3,11 +3,13 @@ class_name ShopPurchaseSlot extends Sprite2D
 var purchaseSound = preload("res://sounds/purchase.wav")
 
 @onready var priceLabel : Label = $PriceLabel
+@onready var highlight : Sprite2D = $Highlight
 
 @export var Cost : int 
 @export var audioPlayer : AudioStreamPlayer
 
 signal shop_item_selected(shop_item : ShopPurchaseSlot, cost: int)
+signal shop_item_unselected(shop_item : ShopPurchaseSlot, cost: int)
 
 var seedType = -1
 
@@ -41,7 +43,19 @@ func _process(delta):
 func _on_purchase_1_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
 	if not visible:
 		return
+		
+	highlight.visible = false
 	
 	if area.get_parent() is PlayerCharacter:
 		shop_item_selected.emit(self, Cost)
 	
+
+
+func _on_purchase_1_area_shape_exited(area_rid, area, area_shape_index, local_shape_index):
+	if not visible:
+		return
+	
+	highlight.visible = false
+	
+	if area.get_parent() is PlayerCharacter:
+		shop_item_unselected.emit(self, Cost)
