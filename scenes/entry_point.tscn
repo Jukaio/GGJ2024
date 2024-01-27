@@ -43,10 +43,10 @@ script = ExtResource("5_ggryu")
 
 [node name="ShopKeeperCharacter" type="Node2D" parent="."]
 z_index = 10
-position = Vector2(-284, -100)
+position = Vector2(-284, -64)
 script = ExtResource("6_8lmio")
-StartPos = Vector2(-250, -100)
-EndPos = Vector2(-150, -100)
+StartPos = Vector2(-250, -64)
+EndPos = Vector2(-150, -64)
 Speed = 30.0
 TimeForOpenShop = 5.0
 TimeForClosedShop = 5.0
@@ -120,10 +120,10 @@ stream = ExtResource("11_ymnet")
 [node name="SalesBucket" type="Sprite2D" parent="."]
 z_index = 20
 texture_filter = 1
-position = Vector2(-90, 90)
+position = Vector2(-108, 36)
 texture = ExtResource("14_llhv5")
 region_enabled = true
-region_rect = Rect2(64, 80, 16, 16)
+region_rect = Rect2(48, 112, 22, 20)
 script = ExtResource("13_8cd8l")
 
 [node name="Area2D" type="Area2D" parent="SalesBucket"]
@@ -149,6 +149,7 @@ horizontal_alignment = 1
 
 [node name="MusicStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_2j6da")
+autoplay = true
 
 [connection signal="shop_item_selected" from="ShopKeeperCharacter/PurchaseSlot1" to="PlayerCharacter" method="_on_purchase_slot_1_shop_item_selected"]
 [connection signal="shop_item_selected" from="ShopKeeperCharacter/PurchaseSlot2" to="PlayerCharacter" method="_on_purchase_slot_1_shop_item_selected"]
