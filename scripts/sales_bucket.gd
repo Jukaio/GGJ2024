@@ -16,8 +16,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	for player in players_in_range:
-		if player.hoeTool.is_holding_plant && player.hoeTool.was_interact_pressed_this_frame:
-			player.hoeTool.is_holding_plant = false
+		if player.PickedUpMushroom && player.hoeTool.was_interact_pressed_this_frame:
+			player.PickedUpMushroom.visible = false
 			add_item(100)
 
 func add_item(money_value: int):

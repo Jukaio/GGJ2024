@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cubybm7hb7w03" path="res://prefabs/mushroom_sprite.tscn" id="5_r4y1g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0bjyx"]
-size = Vector2(10, 18)
+size = Vector2(26, 24)
 
 [node name="PlayerCharacter" type="Node2D"]
 script = ExtResource("1_47rnw")
@@ -21,12 +21,13 @@ hoeTime = 0.75
 position = Vector2(17, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, 1)
+position = Vector2(-17, 0)
 shape = SubResource("RectangleShape2D_0bjyx")
 
 [node name="PickingUpSprite" type="Node2D" parent="."]
 position = Vector2(0, -4)
 
 [node name="MushroomSprite" parent="PickingUpSprite" instance=ExtResource("5_r4y1g")]
+position = Vector2(-8, -23)
 
 [connection signal="area_shape_entered" from="Area2D" to="." method="_on_area_2d_area_shape_entered"]

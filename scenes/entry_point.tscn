@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://oednu38gbmwd" path="res://prefabs/ground_tile_map.tscn" id="1_15xfq"]
 [ext_resource type="PackedScene" uid="uid://cucwiwl6qyqsg" path="res://prefabs/PlayerCharacter.tscn" id="2_r8nl4"]
 [ext_resource type="Texture2D" uid="uid://csnficd1k2yb1" path="res://sprites/Mushroom.png" id="3_0klxi"]
-[ext_resource type="PackedScene" uid="uid://c1w0mc6qu256h" path="res://scenes/ui_canvas_layer.tscn" id="4_gk132"]
+[ext_resource type="PackedScene" uid="uid://d22g6rpmpao2e" path="res://scenes/ui_canvas_layer.tscn" id="4_gk132"]
 [ext_resource type="Script" path="res://scripts/crops_grid.gd" id="5_ggryu"]
 [ext_resource type="Script" path="res://scripts/shop_keeper_character.gd" id="6_8lmio"]
 [ext_resource type="PackedScene" uid="uid://bjssjw418p1ic" path="res://prefabs/player_sprite_animator.tscn" id="7_c5o5o"]

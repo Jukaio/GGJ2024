@@ -14,7 +14,7 @@ var audioPlayer : AudioStreamPlayer = null
 
 signal plant_picked_up(plant)
 
-var is_holding_plant: bool = false
+#var is_holding_plant: bool = false
 var was_interact_pressed_this_frame: bool = false
 
 var player_character: PlayerCharacter
@@ -79,7 +79,7 @@ func highlight(tileMap: TileMap):
 
 
 func on_animation_override(delta, inputDir):
-	if !is_holding_plant:
+	if !player_character.PickedUpMushroom.visible:
 		return false
 	
 	var is_moving = inputDir.length_squared() > 0.0
@@ -141,7 +141,7 @@ func interact():
 	
 	var plant = get_target_plant()
 	
-	if is_holding_plant: 
+	if player_character.PickedUpMushroom.visible: 
 		return
 	
 	var direction = player_character.get_look_direction()
@@ -151,7 +151,9 @@ func interact():
 			audioPlayer.stream = liftSound
 			audioPlayer.play()
 			
-			is_holding_plant = true
+			player_character.PickedUpMushroom.visible = true
+			player_character.PickedUpMushroom.frame = plant.frame
+			
 			plant_picked_up.emit(plant)
 			match direction:
 				PlayerCharacter.MoveAction.RIGHT:
