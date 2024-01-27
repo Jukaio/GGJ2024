@@ -11,8 +11,7 @@ size = Vector2(10, 18)
 [node name="PlayerCharacter" type="Node2D"]
 script = ExtResource("1_47rnw")
 
-[node name="PlayerSpriteAnimator" parent="." instance=ExtResource("2_x0r5y")]
-position = Vector2(0, -8)
+[node name="SpriteAnimator" parent="." instance=ExtResource("2_x0r5y")]
 
 [node name="HoeTool" parent="." instance=ExtResource("3_u86vp")]
 hoeTime = 0.75
