@@ -14,7 +14,7 @@ script = ExtResource("1_47rnw")
 [node name="SpriteAnimator" parent="." instance=ExtResource("2_x0r5y")]
 
 [node name="HoeTool" parent="." instance=ExtResource("3_u86vp")]
-hoeTime = 0.75
+hoeTime = 0.65
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(17, 0)

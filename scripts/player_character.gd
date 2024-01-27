@@ -207,6 +207,7 @@ func _on_purchase_slot_1_shop_item_selected(shop_item, cost):
 	print("slot 1 purchase, cost: " + str(cost))
 	
 	if cost <= Money:
-		Money -= cost
-		shop_item.purchased()
-		ui.add_item(shop_item.frame, 1)
+		if !ui.is_full():
+			Money -= cost
+			shop_item.purchased()
+			ui.add_item(shop_item.frame, 1)

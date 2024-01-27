@@ -29,9 +29,7 @@ func _ready():
 	
 
 func on_hoe(at: Vector2):
-	
-	audioPlayer.stream = hoeSound
-	audioPlayer.play()
+	pass
 	
 
 func hoe(tileMap: TileMap):
@@ -115,6 +113,10 @@ func on_animation_override(delta, inputDir):
 func _process(delta):
 	was_interact_pressed_this_frame = Input.is_action_just_pressed("interact")
 
+	if player_character.PickedUpMushroom.visible:
+		highlightNode.visible = false
+		return
+
 	var seedMap = player_character.seedMap
 	var fieldMap = player_character.fieldMap
 	var animator = player_character.animator
@@ -181,5 +183,8 @@ func interact():
 		PlayerCharacter.MoveAction.DOWN:
 			animator.PlayByName("HoeDown")
 			
+	audioPlayer.stream = hoeSound
+	audioPlayer.play()
+	
 	animator.oneShotAnimationSlot.frameTime = hoeTime / animator.oneShotAnimationSlot.total_frames()
 	
