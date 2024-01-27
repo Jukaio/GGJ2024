@@ -121,7 +121,8 @@ func _process(delta):
 	
 	# now means is_interacting!!
 	var was_hoeing = is_hoeing
-	is_hoeing = animator.oneShotAnimationSlot != null
+	is_hoeing = animator.oneShotAnimationSlot != null && animator.oneShotAnimationSlot.name.contains("Hoe")
+
 
 	if is_hoeing || seedMap == null || fieldMap == null || !is_valid_to_hoe():
 		highlightNode.visible = false
