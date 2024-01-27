@@ -12,7 +12,7 @@ enum MoveAction { DOWN, UP, LEFT, RIGHT }
 @export var fieldMap: TileMap
 @export var cropsGrid: CropsGrid
 @export var seedMap: TileMap
-
+@export var ui: UI
 
 var lookDirection: Vector2 = Vector2.DOWN
 
@@ -200,7 +200,6 @@ func _on_area_2d_area_shape_entered(area_rid, area, area_shape_index, local_shap
 
 func _on_hoe_tool_plant_picked_up(plant):
 	print("player picked up plant: " + plant.name)
-	
 	PickedUpMushroom.visible = true
 
 
@@ -210,4 +209,4 @@ func _on_purchase_slot_1_shop_item_selected(shop_item, cost):
 	if cost <= Money:
 		Money -= cost
 		shop_item.purchased()
-		# add into inventory here
+		ui.add_item(shop_item.frame, 1)

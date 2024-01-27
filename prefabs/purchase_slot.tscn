@@ -1,21 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://ds03x1hp3883r"]
+[gd_scene load_steps=5 format=3 uid="uid://ds03x1hp3883r"]
 
-[ext_resource type="Texture2D" uid="uid://csnficd1k2yb1" path="res://sprites/Mushroom.png" id="1_p6o2a"]
+[ext_resource type="Texture2D" uid="uid://dygh2vf2flars" path="res://sprites/Mushroom_Inventory.png" id="1_txwgd"]
 [ext_resource type="Script" path="res://scripts/ShopPurchaseSlot.gd" id="2_jt55c"]
-[ext_resource type="PackedScene" uid="uid://cubybm7hb7w03" path="res://prefabs/mushroom_sprite.tscn" id="3_i7q3w"]
 [ext_resource type="Theme" uid="uid://d241x0ek7vt0u" path="res://fonts/theme.tres" id="4_1wfa6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1wjnk"]
 
 [node name="PurchaseSlot" type="Sprite2D"]
 position = Vector2(-32, 24)
-texture = ExtResource("1_p6o2a")
+texture = ExtResource("1_txwgd")
 hframes = 4
-vframes = 6
-frame = 7
+vframes = 5
 script = ExtResource("2_jt55c")
-
-[node name="MushroomSprite" parent="." instance=ExtResource("3_i7q3w")]
 
 [node name="Purchase1" type="Area2D" parent="."]
 

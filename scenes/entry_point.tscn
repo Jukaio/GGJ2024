@@ -36,7 +36,7 @@ y_sort_enabled = true
 
 [node name="GroundTileMap" parent="." instance=ExtResource("1_15xfq")]
 
-[node name="PlayerCharacter" parent="." node_paths=PackedStringArray("fieldMap", "cropsGrid", "seedMap") instance=ExtResource("2_r8nl4")]
+[node name="PlayerCharacter" parent="." node_paths=PackedStringArray("fieldMap", "cropsGrid", "seedMap", "ui") instance=ExtResource("2_r8nl4")]
 z_index = 10
 texture_filter = 1
 Money = 2000
@@ -44,6 +44,7 @@ speed = 60.0
 fieldMap = NodePath("../GroundTileMap")
 cropsGrid = NodePath("../CropsGrid")
 seedMap = NodePath("../SeedTileMap")
+ui = NodePath("../UICanvasLayer")
 
 [node name="SeedTileMap" type="TileMap" parent="."]
 z_index = 1

@@ -3,7 +3,6 @@ class_name ShopPurchaseSlot extends Sprite2D
 var purchaseSound = preload("res://sounds/purchase.wav")
 
 @onready var priceLabel : Label = $PriceLabel
-@onready var shopItemPlant : Plant = $MushroomSprite
 
 @export var Cost : int 
 @export var audioPlayer : AudioStreamPlayer
@@ -17,7 +16,7 @@ func purchased():
 		audioPlayer.play()
 
 func set_shop_item(mushroomTypeStartIndex: int, cost: int):
-	shopItemPlant.MushroomTypeStartIndex = mushroomTypeStartIndex
+	self.frame = mushroomTypeStartIndex * hframes
 	Cost = cost
 	visible = true
 	
