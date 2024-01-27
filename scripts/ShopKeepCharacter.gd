@@ -45,8 +45,6 @@ func process_state_machine(delta):
 				dir = Vector2.DOWN
 		
 		ShopKeeperState.SHOP_OPEN:
-			print("shop is open")
-			
 			process_idle(Vector2.DOWN, delta)
 			
 			if timeElapsed > TimeForOpenShop:
