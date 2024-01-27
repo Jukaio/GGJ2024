@@ -24,6 +24,8 @@ var isColliding = false
 
 var movementInput: Array[MoveAction]
 
+var selectedShopItems: Array[ShopPurchaseSlot]
+
 var animator: SpriteAnimator
 var hoeTool: HoeTool
 # Called when the node enters the scene tree for the first time.
@@ -116,6 +118,37 @@ func _process(delta):
 		
 	if Input.is_action_just_pressed("interact"):
 		hoeTool.interact()
+		
+	process_purchase(delta)
+		
+
+func process_purchase(delta):	
+	var closest: ShopPurchaseSlot = null
+	var delta_distance = 133737.0
+	for item in selectedShopItems:
+		if not item.visible:
+			continue
+			
+		item.highlight.visible = false
+		var distance = global_position.distance_to(item.global_position)
+		if distance < delta_distance:
+			delta_distance = distance
+			closest = item
+	
+	if closest == null:
+		return	
+	
+	closest.highlight.visible = true
+	
+	if not Input.is_action_just_pressed("interact"):
+		return
+	
+
+	if closest.Cost <= Money:
+		if !ui.is_full():
+			Money -= closest.Cost
+			closest.purchased()
+			ui.add_item(closest.frame, 1)
 
 func ProcessMovement(delta, dir):
 	apply_movement(delta, dir)
@@ -224,22 +257,23 @@ func ProcessIdle(delta):
 
 func _on_area_2d_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
 	#isColliding = true
-	
-	
-	
 	pass
 
 
 func _on_hoe_tool_plant_picked_up(plant):
+	# Probably unused
 	print("player picked up plant: " + plant.name)
 	PickedUpMushroom.visible = true
+	pass
+
 
 
 func _on_purchase_slot_1_shop_item_selected(shop_item: ShopPurchaseSlot, cost):
 	print("slot 1 purchase, cost: " + str(cost))
 	
-	if cost <= Money:
-		if !ui.is_full():
-			Money -= cost
-			shop_item.purchased()
-			ui.add_item(shop_item.frame, 1)
+	if selectedShopItems.find(shop_item) == -1:
+		selectedShopItems.append(shop_item)
+
+
+func _on_purchase_slot_1_shop_item_unselected(shop_item: ShopPurchaseSlot, cost):
+	selectedShopItems.erase(shop_item)

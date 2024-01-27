@@ -1,10 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://ds03x1hp3883r"]
+[gd_scene load_steps=6 format=3 uid="uid://ds03x1hp3883r"]
 
 [ext_resource type="Texture2D" uid="uid://dygh2vf2flars" path="res://sprites/Mushroom_Inventory.png" id="1_txwgd"]
 [ext_resource type="Script" path="res://scripts/ShopPurchaseSlot.gd" id="2_jt55c"]
 [ext_resource type="Theme" uid="uid://d241x0ek7vt0u" path="res://fonts/theme.tres" id="4_1wfa6"]
+[ext_resource type="Texture2D" uid="uid://1e8q8j1i1lfx" path="res://sprites/Tileset.png" id="4_5jj74"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1wjnk"]
+size = Vector2(30, 40)
 
 [node name="PurchaseSlot" type="Sprite2D"]
 position = Vector2(-32, 24)
@@ -33,5 +35,12 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "999"
 horizontal_alignment = 1
 
+[node name="Highlight" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("4_5jj74")
+hframes = 5
+vframes = 8
+
 [connection signal="area_entered" from="Purchase1" to="." method="_on_purchase_1_area_entered"]
 [connection signal="area_shape_entered" from="Purchase1" to="." method="_on_purchase_1_area_shape_entered"]
+[connection signal="area_shape_exited" from="Purchase1" to="." method="_on_purchase_1_area_shape_exited"]

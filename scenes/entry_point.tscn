@@ -47,7 +47,7 @@ script = ExtResource("6_8lmio")
 StartPos = Vector2(-250, -64)
 EndPos = Vector2(-150, -64)
 Speed = 30.0
-TimeForOpenShop = 5.0
+TimeForOpenShop = 15.0
 TimeForClosedShop = 5.0
 ChanceType1 = 50
 ChanceType2 = 25
@@ -126,5 +126,8 @@ stream = ExtResource("14_2j6da")
 autoplay = true
 
 [connection signal="shop_item_selected" from="ShopKeeperCharacter/PurchaseSlot1" to="PlayerCharacter" method="_on_purchase_slot_1_shop_item_selected"]
+[connection signal="shop_item_unselected" from="ShopKeeperCharacter/PurchaseSlot1" to="PlayerCharacter" method="_on_purchase_slot_1_shop_item_unselected"]
 [connection signal="shop_item_selected" from="ShopKeeperCharacter/PurchaseSlot2" to="PlayerCharacter" method="_on_purchase_slot_1_shop_item_selected"]
+[connection signal="shop_item_unselected" from="ShopKeeperCharacter/PurchaseSlot2" to="PlayerCharacter" method="_on_purchase_slot_1_shop_item_unselected"]
 [connection signal="shop_item_selected" from="ShopKeeperCharacter/PurchaseSlot3" to="PlayerCharacter" method="_on_purchase_slot_1_shop_item_selected"]
+[connection signal="shop_item_unselected" from="ShopKeeperCharacter/PurchaseSlot3" to="PlayerCharacter" method="_on_purchase_slot_1_shop_item_unselected"]
