@@ -1,12 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cucwiwl6qyqsg"]
+[gd_scene load_steps=8 format=3 uid="uid://cucwiwl6qyqsg"]
 
 [ext_resource type="Script" path="res://scripts/PlayerCharacter.gd" id="1_h7gas"]
 [ext_resource type="Script" path="res://scripts/SpriteAnimator.gd" id="2_xyurh"]
-[ext_resource type="Texture2D" uid="uid://boueebttcqtnl" path="res://sprites/Player-Sheet.png" id="3_tu5an"]
+[ext_resource type="Texture2D" uid="uid://dogafvlhpasm4" path="res://sprites/Player-Sheet.png" id="3_tu5an"]
 [ext_resource type="Script" path="res://scripts/SpriteAnimation.gd" id="4_ui6xa"]
 [ext_resource type="Script" path="res://scripts/HoeTool.gd" id="6_pa2yi"]
 [ext_resource type="Texture2D" uid="uid://csnficd1k2yb1" path="res://sprites/Mushroom.png" id="8_vh3lx"]
-[ext_resource type="PackedScene" uid="uid://cubybm7hb7w03" path="res://prefabs/mushroom_sprite.tscn" id="9_umaha"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0bjyx"]
 size = Vector2(10, 18)
@@ -124,10 +123,4 @@ position = Vector2(17, 0)
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_0bjyx")
 
-[node name="PickingUpSprite" type="Node2D" parent="."]
-position = Vector2(-1, -16)
-
-[node name="MushroomSprite" parent="PickingUpSprite" instance=ExtResource("9_umaha")]
-
-[connection signal="plant_picked_up" from="HoeTool" to="." method="_on_hoe_tool_plant_picked_up"]
 [connection signal="area_shape_entered" from="Area2D" to="." method="_on_area_2d_area_shape_entered"]
