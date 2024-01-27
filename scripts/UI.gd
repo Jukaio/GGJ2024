@@ -37,38 +37,42 @@ func add_item(item : int, count : int):
 	
 	inventory.append(Vector2i(item, count))
 	
+func try_remove_equipped_item():
+	return inventory.pop_front()
+	
 func get_equipped_item():
 	return inventory.front()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	add_item(2, 2)
-	add_item(2, 2)
-	add_item(2, 2)
-	add_item(6, 2)
-	add_item(8, 2)
-	add_item(9, 2)
-	add_item(10, 2)
 	pass # Replace with function body.
 
 func redraw():
-	print("redraw")
 	for i in range(hotbar_slots.size()):
-		var item = inventory[i]
-		if item == null:
-			hotbar_slots[i].frame = 0
+		if i < inventory.size():
+			hotbar_slots[i].visible = true
+			hotbar_slots[i].frame = inventory[i].x
 		else:
-			hotbar_slots[i].frame = item.x
+			hotbar_slots[i].visible = false
 			
 	pass
 
+
+var last = 3
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Input.is_action_just_pressed("inv_prev"):
 		rotl()
 	if Input.is_action_just_pressed("inv_next"):
 		rotr()
-	
+		
+	if Input.is_action_just_pressed("Start"):
+		add_item(last, 1)
+		last = (last + 1) % 10
+		
+	if Input.is_action_just_pressed("left"):
+		try_remove_equipped_item()
+ 	
 	var new_state = hash(inventory)
 	if new_state != hState:
 		redraw()

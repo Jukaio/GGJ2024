@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c1h6bgnucataf"]
+[gd_scene load_steps=20 format=3 uid="uid://c1h6bgnucataf"]
 
 [ext_resource type="PackedScene" uid="uid://oednu38gbmwd" path="res://prefabs/ground_tile_map.tscn" id="1_15xfq"]
 [ext_resource type="PackedScene" uid="uid://cucwiwl6qyqsg" path="res://prefabs/PlayerCharacter.tscn" id="2_r8nl4"]
@@ -6,12 +6,14 @@
 [ext_resource type="PackedScene" uid="uid://d22g6rpmpao2e" path="res://scenes/ui_canvas_layer.tscn" id="4_gk132"]
 [ext_resource type="Script" path="res://scripts/crops_grid.gd" id="5_ggryu"]
 [ext_resource type="Script" path="res://scripts/shop_keeper_character.gd" id="6_8lmio"]
-[ext_resource type="PackedScene" uid="uid://bjssjw418p1ic" path="res://prefabs/player_sprite_animator.tscn" id="7_c5o5o"]
 [ext_resource type="PackedScene" uid="uid://ds03x1hp3883r" path="res://prefabs/purchase_slot.tscn" id="8_ma02f"]
 [ext_resource type="Texture2D" uid="uid://bn0vxmmg2f4uu" path="res://graphics/ui/speechbubble.png" id="9_d2fsl"]
+[ext_resource type="Script" path="res://scripts/sprite_animator.gd" id="11_70h21"]
 [ext_resource type="Theme" uid="uid://d241x0ek7vt0u" path="res://fonts/theme.tres" id="11_irulp"]
 [ext_resource type="AudioStream" uid="uid://dvjn3nwmud4w1" path="res://sounds/Hoe.wav" id="11_ymnet"]
+[ext_resource type="Texture2D" uid="uid://cumhvrhbn565q" path="res://sprites/shopkeeper_spritesheet.png" id="12_3tnbu"]
 [ext_resource type="Texture2D" uid="uid://bpg3sjv03n36o" path="res://textures/box.png" id="12_8boy5"]
+[ext_resource type="Script" path="res://scripts/sprite_animation.gd" id="12_ovdr6"]
 [ext_resource type="Script" path="res://scripts/sales_bucket.gd" id="13_8cd8l"]
 [ext_resource type="AudioStream" uid="uid://cls5lt578yk06" path="res://music/Main Theme.wav" id="14_2j6da"]
 
@@ -67,8 +69,6 @@ Speed = 30.0
 TimeForOpenShop = 5.0
 TimeForClosedShop = 5.0
 
-[node name="SpriteAnimator" parent="ShopKeeperCharacter" instance=ExtResource("7_c5o5o")]
-
 [node name="PurchaseSlot1" parent="ShopKeeperCharacter" node_paths=PackedStringArray("audioPlayer") instance=ExtResource("8_ma02f")]
 audioPlayer = NodePath("../../AudioStreamPlayer")
 
@@ -93,6 +93,31 @@ theme = ExtResource("11_irulp")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0.701961, 0.701961, 0.701961, 1)
 text = "Psst..."
+
+[node name="ShopKeepSpriteAnimator" type="Node2D" parent="ShopKeeperCharacter"]
+script = ExtResource("11_70h21")
+
+[node name="Idle" type="Sprite2D" parent="ShopKeeperCharacter/ShopKeepSpriteAnimator"]
+texture = ExtResource("12_3tnbu")
+hframes = 4
+region_enabled = true
+region_rect = Rect2(2.08165e-12, 2.08165e-12, 72, 31)
+script = ExtResource("12_ovdr6")
+
+[node name="WalkLeft" type="Sprite2D" parent="ShopKeeperCharacter/ShopKeepSpriteAnimator"]
+texture = ExtResource("12_3tnbu")
+flip_h = true
+hframes = 4
+region_enabled = true
+region_rect = Rect2(2.08165e-12, 32, 72, 31)
+script = ExtResource("12_ovdr6")
+
+[node name="WalkRight" type="Sprite2D" parent="ShopKeeperCharacter/ShopKeepSpriteAnimator"]
+texture = ExtResource("12_3tnbu")
+hframes = 4
+region_enabled = true
+region_rect = Rect2(2.08165e-12, 32, 72, 31)
+script = ExtResource("12_ovdr6")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true

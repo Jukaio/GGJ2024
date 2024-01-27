@@ -11,7 +11,7 @@ class_name ShopKeeperCharacter extends Node2D
 @onready var shopSlot3 : ShopPurchaseSlot = $PurchaseSlot3
 @onready var speechBubble : Sprite2D = $SpeechBubbleSprite2D
 
-@onready var animator : SpriteAnimator = $SpriteAnimator
+@onready var animator : SpriteAnimator = $ShopKeepSpriteAnimator
 
 enum ShopKeeperState { ENTERING, SHOP_OPEN, EXITING, SHOP_CLOSED }
 
@@ -51,7 +51,7 @@ func process_state_machine(delta):
 				dir = (position - StartPos).normalized()
 				
 				position = position.move_toward(EndPos, delta * Speed)
-				
+				print(dir)
 				animate_movement(dir)
 			else:
 				position = EndPos
@@ -103,26 +103,13 @@ func process_state_machine(delta):
 				
 	
 func process_idle(dir, delta):
-	var angle = rad_to_deg(atan2(dir.y, dir.x));
-	if angle > -45.0 && angle < 45.0:
-		animator.ActivateByName("IdleRight")
-	elif angle >= 45.0 && angle < 135.0:
-		animator.ActivateByName("IdleDown") 
-	elif angle <= -45.0 && angle > -135.0:
-		animator.ActivateByName("IdleUp")
-	else:
-		animator.ActivateByName("IdleLeft")
-		
-
+	animator.ActivateByName("Idle")
+	
 
 func animate_movement(dir: Vector2):
 	var angle = rad_to_deg(atan2(dir.y, dir.x));
 	if angle > -45.0 && angle < 45.0:
-		animator.ActivateByName("MoveRight")
-	elif angle >= 45.0 && angle < 135.0:
-		animator.ActivateByName("MoveDown") 
-	elif angle <= -45.0 && angle > -135.0:
-		animator.ActivateByName("MoveUp")
+		animator.ActivateByName("WalkRight")
 	else:
-		animator.ActivateByName("MoveLeft")
+		animator.ActivateByName("WalkLeft") 
 	

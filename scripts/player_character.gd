@@ -49,7 +49,7 @@ func get_use_eight_way():
 	return g_use_eight_way
 
 func _ready():
-	animator = get_node("PlayerSpriteAnimator")
+	animator = get_node("SpriteAnimator")
 	hoeTool = get_node("HoeTool")
 	PickedUpMushroom.visible = false
 
