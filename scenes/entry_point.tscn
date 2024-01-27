@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c1h6bgnucataf"]
+[gd_scene load_steps=16 format=3 uid="uid://c1h6bgnucataf"]
 
 [ext_resource type="PackedScene" uid="uid://oednu38gbmwd" path="res://prefabs/ground_tile_map.tscn" id="1_15xfq"]
 [ext_resource type="PackedScene" uid="uid://cucwiwl6qyqsg" path="res://prefabs/PlayerCharacter.tscn" id="2_r8nl4"]
@@ -12,18 +12,16 @@
 [ext_resource type="AudioStream" uid="uid://dvjn3nwmud4w1" path="res://sounds/Hoe.wav" id="11_ymnet"]
 [ext_resource type="Texture2D" uid="uid://cumhvrhbn565q" path="res://sprites/shopkeeper_spritesheet.png" id="12_3tnbu"]
 [ext_resource type="Script" path="res://scripts/sprite_animation.gd" id="12_ovdr6"]
-[ext_resource type="Script" path="res://scripts/sales_bucket.gd" id="13_8cd8l"]
 [ext_resource type="AudioStream" uid="uid://cls5lt578yk06" path="res://music/Main Theme.wav" id="14_2j6da"]
 [ext_resource type="Texture2D" uid="uid://xev6rcfkj5ad" path="res://sprites/Env.png" id="14_llhv5"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4nqrk"]
+[ext_resource type="PackedScene" uid="uid://dumr5vgy24wbo" path="res://prefabs/sales_bucket.tscn" id="14_p1psj"]
 
 [node name="EntryPoint" type="Node2D"]
 y_sort_enabled = true
 
 [node name="GroundTileMap" parent="." instance=ExtResource("1_15xfq")]
 
-[node name="PlayerCharacter" parent="." node_paths=PackedStringArray("fieldMap", "cropsGrid", "ui") instance=ExtResource("2_r8nl4")]
+[node name="PlayerCharacter" parent="." node_paths=PackedStringArray("fieldMap", "cropsGrid", "ui", "sales_bucket") instance=ExtResource("2_r8nl4")]
 z_index = 10
 texture_filter = 1
 Money = 2000
@@ -31,6 +29,7 @@ speed = 60.0
 fieldMap = NodePath("../GroundTileMap")
 cropsGrid = NodePath("../CropsGrid")
 ui = NodePath("../UICanvasLayer")
+sales_bucket = NodePath("../SalesBucket")
 
 [node name="MainCamera2D" type="Camera2D" parent="."]
 position = Vector2(2.08165e-12, 2.08165e-12)
@@ -117,35 +116,9 @@ region_rect = Rect2(48, 86, 16, 10)
 unique_name_in_owner = true
 stream = ExtResource("11_ymnet")
 
-[node name="SalesBucket" type="Sprite2D" parent="."]
-z_index = 20
-texture_filter = 1
-position = Vector2(-108, 36)
-texture = ExtResource("14_llhv5")
-region_enabled = true
-region_rect = Rect2(48, 112, 22, 20)
-script = ExtResource("13_8cd8l")
-
-[node name="Area2D" type="Area2D" parent="SalesBucket"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SalesBucket/Area2D"]
-shape = SubResource("RectangleShape2D_4nqrk")
-
-[node name="MoneyEarnedLabel" type="Label" parent="SalesBucket"]
-z_index = 100
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -28.0
-offset_top = -21.0
-offset_right = 12.0
-offset_bottom = 2.0
-grow_horizontal = 2
-theme = ExtResource("11_irulp")
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-text = "99$"
-horizontal_alignment = 1
+[node name="SalesBucket" parent="." instance=ExtResource("14_p1psj")]
+position = Vector2(-87, 34)
+time_for_money_animation = 1
 
 [node name="MusicStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_2j6da")
@@ -157,5 +130,3 @@ autoplay = true
 [connection signal="shop_item_unselected" from="ShopKeeperCharacter/PurchaseSlot2" to="PlayerCharacter" method="_on_purchase_slot_1_shop_item_unselected"]
 [connection signal="shop_item_selected" from="ShopKeeperCharacter/PurchaseSlot3" to="PlayerCharacter" method="_on_purchase_slot_1_shop_item_selected"]
 [connection signal="shop_item_unselected" from="ShopKeeperCharacter/PurchaseSlot3" to="PlayerCharacter" method="_on_purchase_slot_1_shop_item_unselected"]
-[connection signal="area_shape_entered" from="SalesBucket/Area2D" to="SalesBucket" method="_on_area_2d_area_shape_entered"]
-[connection signal="area_shape_exited" from="SalesBucket/Area2D" to="SalesBucket" method="_on_area_2d_area_shape_exited"]

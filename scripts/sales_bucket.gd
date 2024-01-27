@@ -1,20 +1,45 @@
 class_name SalesBucket extends Sprite2D
 
 @onready var moneyLabel : Label = $MoneyEarnedLabel
+@onready var money_sign : Sprite2D = $MoneySign
 
+@export var time_for_money_animation : int
 @export var players_in_range: Array[PlayerCharacter]
 
 var labelStartPosition = Vector2.ZERO
 
+var money_sign_animating = false
+
+var time_elapsed = 0.0
+
+
+func set_money_sign_animating(animating: bool):
+	money_sign_animating = animating
+	
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	set_money_sign_animating(true)
 	moneyLabel.visible = false
 	
 	labelStartPosition = moneyLabel.position
 
+func flip_money_sign():
+	if money_sign.frame == 0:
+		money_sign.frame = 1
+	else:
+		money_sign.frame = 0
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	time_elapsed += delta
+	
+	if money_sign_animating:
+		if time_elapsed > time_for_money_animation:
+			flip_money_sign()
+			time_elapsed = 0
+	
 	for player in players_in_range:
 		if player.PickedUpMushroom && player.hoeTool.was_interact_pressed_this_frame:
 			player.PickedUpMushroom.visible = false
