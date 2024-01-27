@@ -15,6 +15,7 @@ var audioPlayer : AudioStreamPlayer = null
 signal plant_picked_up(plant)
 
 var is_holding_plant: bool = false
+var was_interact_pressed_this_frame: bool = false
 
 var player_character: PlayerCharacter
 var is_hoeing: bool = false
@@ -112,6 +113,8 @@ func on_animation_override(delta, inputDir):
 			
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	was_interact_pressed_this_frame = Input.is_action_just_pressed("interact")
+
 	var seedMap = player_character.seedMap
 	var fieldMap = player_character.fieldMap
 	var animator = player_character.animator
