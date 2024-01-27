@@ -7,12 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://b3xgilsgrdjk" path="res://textures/runAnimation.png" id="5_jgofv"]
 [ext_resource type="Texture2D" uid="uid://7nrcve7uje1m" path="res://textures/hideAnimation.png" id="6_k6vkf"]
 [ext_resource type="Script" path="res://scripts/HoeTool.gd" id="6_pa2yi"]
-<<<<<<< HEAD
 [ext_resource type="Texture2D" uid="uid://1e8q8j1i1lfx" path="res://sprites/Tileset.png" id="7_or57d"]
 [ext_resource type="PackedScene" uid="uid://cubybm7hb7w03" path="res://prefabs/mushroom_sprite.tscn" id="9_umaha"]
-=======
-[ext_resource type="Texture2D" uid="uid://csnficd1k2yb1" path="res://sprites/Mushroom.png" id="8_vh3lx"]
->>>>>>> 129649d370bcc799f14be79adaf7df1818ccbc9e
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0bjyx"]
 size = Vector2(10, 18)
@@ -21,7 +17,7 @@ size = Vector2(10, 18)
 script = ExtResource("1_h7gas")
 
 [node name="SpriteAnimator" type="Node2D" parent="."]
-position = Vector2(0, -4)
+position = Vector2(0, -8)
 script = ExtResource("2_xyurh")
 
 [node name="IdleDown" type="Sprite2D" parent="SpriteAnimator"]
@@ -117,7 +113,7 @@ z_index = -1
 
 [node name="Sprite2D" type="Sprite2D" parent="HoeTool/Highlight"]
 z_index = -1
-texture = ExtResource("8_vh3lx")
+texture = ExtResource("7_or57d")
 region_enabled = true
 region_rect = Rect2(16, 0, 16, 16)
 

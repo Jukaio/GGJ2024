@@ -1,7 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://c1h6bgnucataf"]
 
 [ext_resource type="PackedScene" uid="uid://oednu38gbmwd" path="res://prefabs/ground_tile_map.tscn" id="1_3jk2w"]
-[ext_resource type="PackedScene" uid="uid://cubybm7hb7w03" path="res://prefabs/mushroom_sprite.tscn" id="2_0qnjt"]
 [ext_resource type="Texture2D" uid="uid://csnficd1k2yb1" path="res://sprites/Mushroom.png" id="2_dqxue"]
 [ext_resource type="PackedScene" uid="uid://cucwiwl6qyqsg" path="res://prefabs/PlayerCharacter.tscn" id="2_ejxp2"]
 [ext_resource type="Script" path="res://scripts/UI.gd" id="4_5vutq"]
@@ -29,7 +28,6 @@ Label/fonts/font = ExtResource("4_vwj4e")
 y_sort_enabled = true
 
 [node name="GroundTileMap" parent="." instance=ExtResource("1_3jk2w")]
-
 
 [node name="PlayerCharacter" parent="." node_paths=PackedStringArray("fieldMap", "cropsGrid") instance=ExtResource("2_ejxp2")]
 z_index = 10
