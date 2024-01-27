@@ -9,13 +9,14 @@ class_name ShopKeeperCharacter extends Node2D
 @onready var shopSlot1 : ShopPurchaseSlot = $PurchaseSlot1
 @onready var shopSlot2 : ShopPurchaseSlot = $PurchaseSlot2
 @onready var shopSlot3 : ShopPurchaseSlot = $PurchaseSlot3
-
+@onready var speechBubble : Sprite2D = $SpeechBubbleSprite2D
 
 @onready var animator : SpriteAnimator = $SpriteAnimator
 
 enum ShopKeeperState { ENTERING, SHOP_OPEN, EXITING, SHOP_CLOSED }
 
 var timeElapsed = 0.0
+var hideBubbleTimer = 0.0
 
 var state : ShopKeeperState = ShopKeeperState.SHOP_CLOSED
 
@@ -29,9 +30,8 @@ func _ready():
 	shopSlot1.visible = false
 	shopSlot2.visible = false
 	shopSlot3.visible = false
-
 	
-	pass # Replace with function body.
+	speechBubble.visible = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -62,10 +62,19 @@ func process_state_machine(delta):
 				shopSlot1.visible = true
 				shopSlot2.visible = true
 				shopSlot3.visible = true
+				
+				speechBubble.visible = true
+				
+				hideBubbleTimer = 0
 		
 		ShopKeeperState.SHOP_OPEN:
 			process_idle(Vector2.DOWN, delta)
 			
+			hideBubbleTimer += delta
+			
+			if hideBubbleTimer > 1.0:
+				speechBubble.visible = false
+				
 			if timeElapsed > TimeForOpenShop:
 				state = ShopKeeperState.EXITING
 				timeElapsed = 0

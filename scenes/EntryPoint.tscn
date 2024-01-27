@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c1h6bgnucataf"]
+[gd_scene load_steps=13 format=3 uid="uid://c1h6bgnucataf"]
 
 [ext_resource type="PackedScene" uid="uid://oednu38gbmwd" path="res://prefabs/ground_tile_map.tscn" id="1_3jk2w"]
 [ext_resource type="Texture2D" uid="uid://csnficd1k2yb1" path="res://sprites/Mushroom.png" id="2_dqxue"]
@@ -7,7 +7,9 @@
 [ext_resource type="Script" path="res://scripts/CropsGrid.gd" id="7_ha7gq"]
 [ext_resource type="Script" path="res://scripts/ShopKeepCharacter.gd" id="8_sxq4o"]
 [ext_resource type="PackedScene" uid="uid://boqqccurcgfef" path="res://prefabs/ShopKeeperSpriteAnimator.tscn" id="8_wd16a"]
+[ext_resource type="Texture2D" uid="uid://bn0vxmmg2f4uu" path="res://graphics/ui/speechbubble.png" id="9_d2fsl"]
 [ext_resource type="PackedScene" uid="uid://ds03x1hp3883r" path="res://prefabs/purchase_slot.tscn" id="10_ugskk"]
+[ext_resource type="Theme" uid="uid://d241x0ek7vt0u" path="res://fonts/theme.tres" id="11_irulp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lpgvw"]
 texture = ExtResource("2_dqxue")
@@ -67,6 +69,20 @@ position = Vector2(0, 24)
 
 [node name="PurchaseSlot3" parent="ShopKeeperCharacter" instance=ExtResource("10_ugskk")]
 position = Vector2(31, 24)
+
+[node name="SpeechBubbleSprite2D" type="Sprite2D" parent="ShopKeeperCharacter"]
+position = Vector2(11, -28)
+texture = ExtResource("9_d2fsl")
+
+[node name="Label" type="Label" parent="ShopKeeperCharacter/SpeechBubbleSprite2D"]
+offset_left = -11.0
+offset_top = -10.0
+offset_right = 29.0
+offset_bottom = 13.0
+theme = ExtResource("11_irulp")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.701961, 0.701961, 0.701961, 1)
+text = "Psst..."
 
 [connection signal="shop_item_selected" from="ShopKeeperCharacter/PurchaseSlot1" to="PlayerCharacter" method="_on_purchase_slot_1_shop_item_selected"]
 [connection signal="shop_item_selected" from="ShopKeeperCharacter/PurchaseSlot2" to="PlayerCharacter" method="_on_purchase_slot_1_shop_item_selected"]
