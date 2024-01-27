@@ -1,12 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://c1w0mc6qu256h"]
+[gd_scene load_steps=6 format=3 uid="uid://d22g6rpmpao2e"]
 
 [ext_resource type="Script" path="res://scripts/UI.gd" id="1_83ydr"]
 [ext_resource type="Texture2D" uid="uid://b844hqqnsenbc" path="res://textures/buttons free.png" id="2_hv1n6"]
 [ext_resource type="Texture2D" uid="uid://ckaavsdn2d5qe" path="res://textures/base free.png" id="4_4nijn"]
 [ext_resource type="Texture2D" uid="uid://ci0nemkkasqiu" path="res://textures/gui_free.png" id="4_sucp4"]
+[ext_resource type="Texture2D" uid="uid://dygh2vf2flars" path="res://sprites/Mushroom_Inventory.png" id="5_pqwk4"]
 
-[node name="UICanvasLayer" type="CanvasLayer"]
+[node name="UICanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("hotbar_slots")]
 script = ExtResource("1_83ydr")
+hotbar_slots = [NodePath("AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Right/MarginContainer/NinePatchRect/NinePatchRect2/Sprite2D"), NodePath("AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Right/MarginContainer/NinePatchRect/NinePatchRect3/Sprite2D"), NodePath("AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Right/MarginContainer/NinePatchRect/NinePatchRect/Sprite2D")]
 
 [node name="MainMenu" type="AspectRatioContainer" parent="."]
 visible = false
@@ -131,6 +133,14 @@ patch_margin_top = 4
 patch_margin_right = 4
 patch_margin_bottom = 4
 
+[node name="Sprite2D" type="Sprite2D" parent="AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Right/MarginContainer/NinePatchRect/NinePatchRect"]
+position = Vector2(20, 20)
+scale = Vector2(2, 2)
+texture = ExtResource("5_pqwk4")
+hframes = 4
+vframes = 5
+frame = 4
+
 [node name="NinePatchRect3" type="NinePatchRect" parent="AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Right/MarginContainer/NinePatchRect"]
 layout_mode = 0
 offset_left = 98.0
@@ -144,6 +154,14 @@ patch_margin_top = 4
 patch_margin_right = 4
 patch_margin_bottom = 4
 
+[node name="Sprite2D" type="Sprite2D" parent="AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Right/MarginContainer/NinePatchRect/NinePatchRect3"]
+position = Vector2(20, 20)
+scale = Vector2(2, 2)
+texture = ExtResource("5_pqwk4")
+hframes = 4
+vframes = 5
+frame = 2
+
 [node name="NinePatchRect2" type="NinePatchRect" parent="AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Right/MarginContainer/NinePatchRect"]
 layout_mode = 0
 offset_left = 56.0
@@ -156,6 +174,14 @@ patch_margin_left = 4
 patch_margin_top = 4
 patch_margin_right = 4
 patch_margin_bottom = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Right/MarginContainer/NinePatchRect/NinePatchRect2"]
+position = Vector2(24, 24.0003)
+scale = Vector2(2, 2)
+texture = ExtResource("5_pqwk4")
+hframes = 4
+vframes = 5
+frame = 10
 
 [node name="Bottom Half" type="MarginContainer" parent="AspectRatioContainer/VBoxContainer"]
 layout_mode = 2
