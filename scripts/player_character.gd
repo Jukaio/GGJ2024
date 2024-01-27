@@ -143,9 +143,10 @@ func process_purchase(delta):
 	if not Input.is_action_just_pressed("interact"):
 		return
 	
+	
 
 	if closest.Cost <= Money:
-		if !ui.is_full():
+		if !ui.is_full() || ui.contains(closest.frame):
 			Money -= closest.Cost
 			closest.purchased()
 			ui.add_item(closest.frame, 1)

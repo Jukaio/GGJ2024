@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d22g6rpmpao2e"]
+[gd_scene load_steps=8 format=3 uid="uid://d22g6rpmpao2e"]
 
 [ext_resource type="Script" path="res://scripts/UI.gd" id="1_83ydr"]
 [ext_resource type="Texture2D" uid="uid://b844hqqnsenbc" path="res://textures/buttons free.png" id="2_hv1n6"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ci0nemkkasqiu" path="res://textures/gui_free.png" id="4_sucp4"]
 [ext_resource type="Texture2D" uid="uid://dygh2vf2flars" path="res://sprites/Mushroom_Inventory.png" id="5_pqwk4"]
 [ext_resource type="FontFile" uid="uid://cyescrgav85ig" path="res://fonts/AsepriteFont.ttf" id="5_yrnwt"]
+[ext_resource type="Script" path="res://scenes/Sprite2DWithCounter.gd" id="7_7qf6i"]
 
 [node name="UICanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("money_text", "hotbar_slots")]
 script = ExtResource("1_83ydr")
@@ -175,13 +176,45 @@ patch_margin_top = 4
 patch_margin_right = 4
 patch_margin_bottom = 4
 
-[node name="Sprite2D" type="Sprite2D" parent="AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Right/MarginContainer/Panel/NinePatchRect"]
+[node name="Sprite2D" type="Sprite2D" parent="AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Right/MarginContainer/Panel/NinePatchRect" node_paths=PackedStringArray("counter_label")]
 position = Vector2(20, 20)
 scale = Vector2(2, 2)
 texture = ExtResource("5_pqwk4")
 hframes = 5
 vframes = 5
 frame = 6
+script = ExtResource("7_7qf6i")
+counter_label = NodePath("../Counter/TextCounter")
+
+[node name="Counter" type="NinePatchRect" parent="AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Right/MarginContainer/Panel/NinePatchRect"]
+z_index = -1
+offset_left = 9.0
+offset_top = 30.0
+offset_right = 33.0
+offset_bottom = 54.0
+texture = ExtResource("4_4nijn")
+region_rect = Rect2(59, 107, 26, 28)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="TextCounter" type="Label" parent="AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Right/MarginContainer/Panel/NinePatchRect/Counter"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 6.0
+offset_right = -1.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_yrnwt")
+text = "x0
+"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="NinePatchRect3" type="NinePatchRect" parent="AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Right/MarginContainer/Panel"]
 layout_mode = 0
@@ -195,19 +228,52 @@ patch_margin_top = 4
 patch_margin_right = 4
 patch_margin_bottom = 4
 
-[node name="Sprite2D" type="Sprite2D" parent="AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Right/MarginContainer/Panel/NinePatchRect3"]
+[node name="Sprite2D" type="Sprite2D" parent="AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Right/MarginContainer/Panel/NinePatchRect3" node_paths=PackedStringArray("counter_label")]
 position = Vector2(20, 20)
 scale = Vector2(2, 2)
 texture = ExtResource("5_pqwk4")
 hframes = 5
 vframes = 5
 frame = 2
+script = ExtResource("7_7qf6i")
+counter_label = NodePath("../Counter/TextCounter")
+
+[node name="Counter" type="NinePatchRect" parent="AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Right/MarginContainer/Panel/NinePatchRect3"]
+z_index = -1
+layout_mode = 0
+offset_left = 9.0
+offset_top = 30.0
+offset_right = 33.0
+offset_bottom = 54.0
+texture = ExtResource("4_4nijn")
+region_rect = Rect2(59, 107, 26, 28)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="TextCounter" type="Label" parent="AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Right/MarginContainer/Panel/NinePatchRect3/Counter"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 6.0
+offset_right = -1.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_yrnwt")
+text = "x0
+"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="NinePatchRect2" type="NinePatchRect" parent="AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Right/MarginContainer/Panel"]
 layout_mode = 0
-offset_left = 79.0
+offset_left = 80.0
 offset_top = 8.0
-offset_right = 127.0
+offset_right = 128.0
 offset_bottom = 56.0
 texture = ExtResource("4_sucp4")
 region_rect = Rect2(9, 9, 30, 30)
@@ -216,13 +282,45 @@ patch_margin_top = 4
 patch_margin_right = 4
 patch_margin_bottom = 4
 
-[node name="Sprite2D" type="Sprite2D" parent="AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Right/MarginContainer/Panel/NinePatchRect2"]
+[node name="Sprite2D" type="Sprite2D" parent="AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Right/MarginContainer/Panel/NinePatchRect2" node_paths=PackedStringArray("counter_label")]
 position = Vector2(24, 24.0003)
 scale = Vector2(2, 2)
 texture = ExtResource("5_pqwk4")
 hframes = 5
 vframes = 5
 frame = 10
+script = ExtResource("7_7qf6i")
+counter_label = NodePath("../Counter/TextCounter")
+
+[node name="Counter" type="NinePatchRect" parent="AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Right/MarginContainer/Panel/NinePatchRect2"]
+z_index = -1
+offset_left = 12.0
+offset_top = 38.0
+offset_right = 36.0
+offset_bottom = 62.0
+texture = ExtResource("4_4nijn")
+region_rect = Rect2(59, 59, 26, 28)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="TextCounter" type="Label" parent="AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Right/MarginContainer/Panel/NinePatchRect2/Counter"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 6.0
+offset_right = -1.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_yrnwt")
+text = "x0
+"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Bottom Half" type="MarginContainer" parent="AspectRatioContainer/VBoxContainer"]
 layout_mode = 2

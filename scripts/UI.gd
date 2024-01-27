@@ -3,7 +3,7 @@ class_name UI extends CanvasLayer
 @onready var MainMenuUI : Control = $MainMenu
 @export var money_text : RichTextLabel
 
-@export var hotbar_slots:Array[Sprite2D]
+@export var hotbar_slots:Array[Sprite2DWithCounter]
 
 var inventory:Array[Vector2i]
 
@@ -44,6 +44,12 @@ func is_full():
 	assert(inventory.size() <= 3, "Too full")
 	return inventory.size() == 3
 	
+func contains(item: int):
+	for inv_item in inventory:
+		if inv_item.x == item:
+			return true
+	return false
+	
 func add_item(item : int, count : int):
 	for inv_item in inventory:
 		if inv_item.x == item:
@@ -68,6 +74,7 @@ func redraw():
 		if i < inventory.size():
 			hotbar_slots[i].visible = true
 			hotbar_slots[i].frame = inventory[i].x
+			hotbar_slots[i].set_count(inventory[i].y)
 		else:
 			hotbar_slots[i].visible = false
 
@@ -81,9 +88,9 @@ func set_money_text(value : int):
 
 func _process(delta):
 	if Input.is_action_just_pressed("inv_prev"):
-		rotl()
-	if Input.is_action_just_pressed("inv_next"):
 		rotr()
+	if Input.is_action_just_pressed("inv_next"):
+		rotl()
 		
 	var new_state = hash(inventory)
 	if new_state != hState:

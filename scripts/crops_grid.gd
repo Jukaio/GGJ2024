@@ -31,7 +31,7 @@ func get_plant_at_position(vec: Vector2):
 	
 	if gx >= 0 && gy >= 0 && gx < NumCols && gy < NumRows:
 		return plant_data[gy][gx]
-		
+
 	return null
 
 func _ready():
@@ -44,6 +44,7 @@ func _ready():
 			add_child(newobj)
 			newobj.visible = false
 			newobj.TimeForStateIncrease = grow_time
+
 			newobj.set_growth_state(0)
 			newobj.position = Vector2(WidthPixels * col, HeightPixels * row)
 			plant_data[row].append(newobj)
