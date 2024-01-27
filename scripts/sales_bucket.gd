@@ -2,6 +2,7 @@ class_name SalesBucket extends Sprite2D
 
 @onready var moneyLabel : Label = $MoneyEarnedLabel
 @onready var money_sign : Sprite2D = $MoneySign
+@onready var bucket_shadow : Sprite2D = $BucketShadow
 
 @export var time_for_money_animation : int
 @export var players_in_range: Array[PlayerCharacter]
@@ -12,9 +13,32 @@ var money_sign_animating = false
 
 var time_elapsed = 0.0
 
+var animating_bucket = false
+var animation_time = 0.0
+var frame_time = 0.1
+
+func animate_bucket(delta):
+
+	if not animating_bucket:
+		return
+		
+	animation_time += delta
+	var currentFrame = animation_time / frame_time;
+	frame = int(currentFrame) % 4
+	bucket_shadow.frame = frame + 4
+	
+	if frame_time * 4 < animation_time:
+		animating_bucket = false
+		frame = 0
+		bucket_shadow.frame = 4
+
+func set_bucket_animating(animating: bool):
+	animating_bucket = animating
+	animation_time = 0
 
 func set_money_sign_animating(animating: bool):
 	money_sign_animating = animating
+	time_elapsed = 0
 	
 
 # Called when the node enters the scene tree for the first time.
@@ -35,6 +59,8 @@ func flip_money_sign():
 func _process(delta):
 	time_elapsed += delta
 	
+	animate_bucket(delta)
+	
 	if money_sign_animating:
 		if time_elapsed > time_for_money_animation:
 			flip_money_sign()
@@ -46,6 +72,9 @@ func _process(delta):
 			add_item(100)
 
 func add_item(money_value: int):
+	
+	set_bucket_animating(true)
+	
 	moneyLabel.visible = true
 	
 	moneyLabel.position = labelStartPosition

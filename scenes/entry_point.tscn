@@ -117,6 +117,7 @@ unique_name_in_owner = true
 stream = ExtResource("11_ymnet")
 
 [node name="SalesBucket" parent="." instance=ExtResource("14_p1psj")]
+z_index = 10
 position = Vector2(-87, 34)
 time_for_money_animation = 1
 

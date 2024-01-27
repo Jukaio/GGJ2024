@@ -55,10 +55,8 @@ func get_target_plant() -> Plant:
 	
 	var position_in_grid = target_position - player_character.cropsGrid.global_position
 	var plant = player_character.cropsGrid.get_plant_at_position(position_in_grid)
-	print(position_in_grid)
+	
 	if plant != null:
-		print("mushroom position in grid: " + str(position_in_grid) + " name: " + plant.name)
-		
 		return plant
 	
 	return null
