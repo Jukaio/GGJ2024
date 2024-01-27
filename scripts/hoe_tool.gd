@@ -10,6 +10,7 @@ var audioPlayer : AudioStreamPlayer = null
 @export var hoeLength: float = 8.0
 @export var highlightNode: Node2D
 @export var hoeTime: float = 1.0
+@export var seedTime: float = 1.0
 @export var liftUpTime: float = 0.5
 
 signal plant_picked_up(plant)
@@ -19,6 +20,7 @@ var was_interact_pressed_this_frame: bool = false
 
 var player_character: PlayerCharacter
 var is_hoeing: bool = false
+var is_seeding: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	player_character = get_parent() as PlayerCharacter
@@ -40,6 +42,13 @@ func hoe(tileMap: TileMap):
 	tileMap.set_cell(0, idx, 0, Vector2i(1, 0))
 	
 	on_hoe(target_position)
+
+func seed_field(crops_field: CropsGrid, seedType: int):
+	var plant = get_target_plant()
+	plant.MushroomTypeStartIndex = seedType
+	plant.set_growth_state(0)
+	plant.visible = true
+	
 
 func get_target_plant():
 	var target_position = player_character.global_position + (player_character.lookDirection * hoeLength)
@@ -65,7 +74,24 @@ func is_valid_to_hoe():
 	idx = seedMap.local_to_map(target_position)
 	var current_seed_cell = seedMap.get_cell_atlas_coords(0, idx)
 	
-	return current_field_cell == Vector2i(4, 0) && current_seed_cell == Vector2i(-1, -1)
+	var plant = get_target_plant()
+	
+	return current_field_cell == Vector2i(4, 0) && current_seed_cell == Vector2i(-1, -1) && plant != null
+	
+func is_valid_to_seed():
+	var seedMap = player_character.seedMap
+	var fieldMap = player_character.fieldMap
+	
+	var target_position = player_character.position + (player_character.lookDirection * hoeLength)
+	var idx = fieldMap.local_to_map(target_position)
+	var current_field_cell = fieldMap.get_cell_atlas_coords(0, idx)
+	
+	idx = seedMap.local_to_map(target_position)
+	var current_seed_cell = seedMap.get_cell_atlas_coords(0, idx)
+	
+	var plant = get_target_plant()
+	
+	return current_field_cell == Vector2i(1, 0) && current_seed_cell == Vector2i(-1, -1) && plant != null && !plant.visible
 		
 func highlight(tileMap: TileMap):
 	var target_position = player_character.position + (player_character.lookDirection * hoeLength)
@@ -113,25 +139,31 @@ func on_animation_override(delta, inputDir):
 func _process(delta):
 	was_interact_pressed_this_frame = Input.is_action_just_pressed("interact")
 
-	if player_character.PickedUpMushroom.visible:
+	var seedMap = player_character.seedMap
+	var fieldMap = player_character.fieldMap
+	var crops_field = player_character.cropsGrid
+	if player_character.PickedUpMushroom.visible || seedMap == null || fieldMap == null:
 		highlightNode.visible = false
 		return
 
-	var seedMap = player_character.seedMap
-	var fieldMap = player_character.fieldMap
 	var animator = player_character.animator
 	
 	# now means is_interacting!!
 	var was_hoeing = is_hoeing
 	is_hoeing = animator.oneShotAnimationSlot != null && animator.oneShotAnimationSlot.name.contains("Hoe")
 
+	var was_seeding = is_seeding
+	is_seeding = animator.oneShotAnimationSlot != null && animator.oneShotAnimationSlot.name.contains("Seed")
 
-	if is_hoeing || seedMap == null || fieldMap == null || !is_valid_to_hoe():
+	if (is_hoeing || !is_valid_to_hoe()) && (is_hoeing || !is_valid_to_seed()):
 		highlightNode.visible = false
 		return
 	
 	if !is_hoeing && was_hoeing:
 		hoe(fieldMap)
+		
+	if !is_seeding && was_seeding:
+		seed_field(crops_field, 0)
 			
 		
 	highlight(seedMap)
@@ -171,6 +203,19 @@ func interact():
 			return
 	
 	if !is_valid_to_hoe():
+		if is_valid_to_seed():
+			match direction:
+				PlayerCharacter.MoveAction.RIGHT:
+					animator.PlayByName("SeedRight")
+				PlayerCharacter.MoveAction.LEFT:
+					animator.PlayByName("SeedLeft")
+				PlayerCharacter.MoveAction.UP:
+					animator.PlayByName("SeedUp")
+				PlayerCharacter.MoveAction.DOWN:
+					animator.PlayByName("SeedDown")
+			
+			animator.oneShotAnimationSlot.frameTime = seedTime / animator.oneShotAnimationSlot.total_frames()
+			return
 		return
 	
 	match direction:
