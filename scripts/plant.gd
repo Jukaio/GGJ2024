@@ -3,6 +3,7 @@ class_name Plant extends Sprite2D
 @export var GrowthState : int
 @export var TimeForStateIncrease : float
 @export var MushroomTypeStartIndex : int
+@export var EnabledCollider : bool
 
 @onready var Collider : CollisionShape2D = $Area2D/CollisionShape2D
 
@@ -28,6 +29,14 @@ func inc_growth_state():
 func pick():
 	queue_free()
 
+func attempt_pick():
+	visible = false
+	
+	if GrowthState < 3:
+		return false
+	
+	return true
+
 
 func get_growth_state():
 	return GrowthState
@@ -35,6 +44,8 @@ func get_growth_state():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_growth_state(GrowthState)
+	Collider.disabled = not EnabledCollider
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

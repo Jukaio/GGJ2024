@@ -1,14 +1,17 @@
 class_name PlayerCharacter
-
 extends Node2D
 
 enum MoveAction { DOWN, UP, LEFT, RIGHT }
 
 @onready var Collider : CollisionShape2D = $Area2D/CollisionShape2D
 @onready var DirectionArea : Area2D = $Area2D
+@onready var PickedUpMushroom : Plant = $PickingUpSprite/MushroomSprite
 
 @export var speed: float = 90.0
 @export var fieldMap: TileMap
+@export var cropsGrid: CropsGrid
+
+var collidedMushroom = null
 
 var lookDirection: Vector2 = Vector2.DOWN
 
@@ -47,6 +50,8 @@ func get_use_eight_way():
 func _ready():
 	animator = get_node("SpriteAnimator")
 	hoeTool = get_node("HoeTool")
+	PickedUpMushroom.visible = false
+
 
 func PushMovementAction(action: MoveAction):
 	if movementInput.find(action) == -1:
@@ -83,6 +88,12 @@ func _process(delta):
 		PopMovementAction(MoveAction.UP)
 	if Input.is_action_just_released("down"):
 		PopMovementAction(MoveAction.DOWN)
+		
+	if Input.is_action_just_pressed("interact"):
+		var result = hoeTool.interact()
+		
+		if result == 1:
+			HoeTool
 		
 	if !animator.IsOneShotDone():
 		return
@@ -122,6 +133,7 @@ func ProcessMovement(delta, dir):
 func GetFourAxisDirection(delta):
 	var direction = Vector2.ZERO
 	var moveAction = movementInput.back()
+
 	match moveAction:
 		MoveAction.LEFT:
 			direction += Vector2.LEFT
@@ -174,7 +186,16 @@ func ProcessIdle(delta):
 
 
 func _on_area_2d_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
-	print("collision with shape")
-	isColliding = true
+	#if area.get_parent() is Plant:
+	#	collidedMushroom = area.get_parent() as Plant
 	
-	pass # Replace with function body.
+	isColliding = true
+
+
+
+func _on_hoe_tool_plant_picked_up(plant):
+	
+	print("player picked up plant: " + plant.name)
+	
+	PickedUpMushroom.visible = true
+	

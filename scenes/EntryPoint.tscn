@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://c1h6bgnucataf"]
 
 [ext_resource type="PackedScene" uid="uid://oednu38gbmwd" path="res://prefabs/ground_tile_map.tscn" id="1_3jk2w"]
-[ext_resource type="PackedScene" uid="uid://cubybm7hb7w03" path="res://prefabs/mushroom_sprite.tscn" id="2_0qnjt"]
 [ext_resource type="PackedScene" uid="uid://cucwiwl6qyqsg" path="res://prefabs/PlayerCharacter.tscn" id="2_ejxp2"]
 [ext_resource type="Script" path="res://scripts/UI.gd" id="4_5vutq"]
 [ext_resource type="FontFile" uid="uid://cyescrgav85ig" path="res://fonts/AsepriteFont.ttf" id="4_vwj4e"]
 [ext_resource type="Texture2D" uid="uid://44r1ndryegis" path="res://graphics/ui/frame1.png" id="4_x5krr"]
+[ext_resource type="Script" path="res://scripts/CropsGrid.gd" id="7_ha7gq"]
 
 [sub_resource type="Theme" id="Theme_0kubg"]
 default_font_size = 64
@@ -16,30 +16,17 @@ y_sort_enabled = true
 
 [node name="GroundTileMap" parent="." instance=ExtResource("1_3jk2w")]
 
-[node name="MushroomSprite" parent="." instance=ExtResource("2_0qnjt")]
-position = Vector2(38, -51)
-GrowthState = 0
-TimeForStateIncrease = 1.0
-
-[node name="MushroomSprite2" parent="." instance=ExtResource("2_0qnjt")]
-position = Vector2(57, -51)
-GrowthState = 0
-TimeForStateIncrease = 1.0
-
-[node name="MushroomSprite3" parent="." instance=ExtResource("2_0qnjt")]
-position = Vector2(77, -51)
-GrowthState = 0
-TimeForStateIncrease = 1.0
-
-[node name="PlayerCharacter" parent="." node_paths=PackedStringArray("fieldMap") instance=ExtResource("2_ejxp2")]
+[node name="PlayerCharacter" parent="." node_paths=PackedStringArray("fieldMap", "cropsGrid") instance=ExtResource("2_ejxp2")]
 z_index = 10
 texture_filter = 1
 fieldMap = NodePath("../GroundTileMap")
+cropsGrid = NodePath("../CropsGrid")
 
 [node name="MainCamera2D" type="Camera2D" parent="."]
 position = Vector2(2.08165e-12, 2.08165e-12)
 
 [node name="UICanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 script = ExtResource("4_5vutq")
 
 [node name="MainMenu" type="Control" parent="UICanvasLayer"]
@@ -51,6 +38,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PanelNinePatchRect" type="NinePatchRect" parent="UICanvasLayer/MainMenu"]
+layout_mode = 0
 offset_left = 39.0
 offset_top = 21.0
 offset_right = 444.0
@@ -80,6 +68,7 @@ theme_override_colors/font_shadow_color = Color(0.462745, 0.462745, 0.462745, 1)
 text = "Datadriven Mushrooms"
 
 [node name="StartNinePatchRect" type="NinePatchRect" parent="UICanvasLayer/MainMenu"]
+layout_mode = 0
 offset_left = 102.0
 offset_top = 101.0
 offset_right = 393.0
@@ -106,3 +95,7 @@ theme_override_colors/font_shadow_color = Color(0.462745, 0.462745, 0.462745, 1)
 theme_override_font_sizes/font_size = 32
 text = "Press Enter to start"
 horizontal_alignment = 1
+
+[node name="CropsGrid" type="Node2D" parent="."]
+position = Vector2(40, -40)
+script = ExtResource("7_ha7gq")
