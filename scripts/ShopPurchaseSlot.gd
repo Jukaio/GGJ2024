@@ -1,6 +1,6 @@
 class_name ShopPurchaseSlot extends Sprite2D
 
-var purchaseSound = preload("res://sounds/Hoe.wav")
+var purchaseSound = preload("res://sounds/purchase.wav")
 
 @onready var priceLabel : Label = $PriceLabel
 @onready var shopItemPlant : Plant = $MushroomSprite
@@ -21,16 +21,10 @@ func set_shop_item(mushroomTypeStartIndex: int, cost: int):
 	Cost = cost
 	visible = true
 	
-	audioPlayer
-	
 	priceLabel.text = str(cost)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	audioPlayer.stream = purchaseSound
-	
-	print("playing sound")
-	
 	pass # Replace with function body.
 
 

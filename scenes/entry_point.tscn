@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c1h6bgnucataf"]
+[gd_scene load_steps=17 format=3 uid="uid://c1h6bgnucataf"]
 
 [ext_resource type="PackedScene" uid="uid://oednu38gbmwd" path="res://prefabs/ground_tile_map.tscn" id="1_15xfq"]
 [ext_resource type="PackedScene" uid="uid://cucwiwl6qyqsg" path="res://prefabs/PlayerCharacter.tscn" id="2_r8nl4"]
@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://bn0vxmmg2f4uu" path="res://graphics/ui/speechbubble.png" id="9_d2fsl"]
 [ext_resource type="Theme" uid="uid://d241x0ek7vt0u" path="res://fonts/theme.tres" id="11_irulp"]
 [ext_resource type="AudioStream" uid="uid://dvjn3nwmud4w1" path="res://sounds/Hoe.wav" id="11_ymnet"]
+[ext_resource type="Texture2D" uid="uid://bpg3sjv03n36o" path="res://textures/box.png" id="12_8boy5"]
+[ext_resource type="Script" path="res://scripts/sales_bucket.gd" id="13_8cd8l"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lpgvw"]
 texture = ExtResource("3_0klxi")
@@ -24,6 +26,8 @@ texture = ExtResource("3_0klxi")
 [sub_resource type="TileSet" id="TileSet_wp1i0"]
 sources/1 = SubResource("TileSetAtlasSource_lpgvw")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4nqrk"]
+
 [node name="EntryPoint" type="Node2D"]
 y_sort_enabled = true
 
@@ -32,8 +36,8 @@ y_sort_enabled = true
 [node name="PlayerCharacter" parent="." node_paths=PackedStringArray("fieldMap", "cropsGrid", "seedMap") instance=ExtResource("2_r8nl4")]
 z_index = 10
 texture_filter = 1
-speed = 60.0
 Money = 2000
+speed = 60.0
 fieldMap = NodePath("../GroundTileMap")
 cropsGrid = NodePath("../CropsGrid")
 seedMap = NodePath("../SeedTileMap")
@@ -90,8 +94,38 @@ theme_override_colors/font_shadow_color = Color(0.701961, 0.701961, 0.701961, 1)
 text = "Psst..."
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
 stream = ExtResource("11_ymnet")
+
+[node name="SalesBucket" type="Sprite2D" parent="."]
+z_index = 20
+texture_filter = 1
+position = Vector2(-90, 90)
+texture = ExtResource("12_8boy5")
+script = ExtResource("13_8cd8l")
+
+[node name="Area2D" type="Area2D" parent="SalesBucket"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SalesBucket/Area2D"]
+shape = SubResource("RectangleShape2D_4nqrk")
+
+[node name="MoneyEarnedLabel" type="Label" parent="SalesBucket"]
+z_index = 100
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -28.0
+offset_top = -21.0
+offset_right = 12.0
+offset_bottom = 2.0
+grow_horizontal = 2
+theme = ExtResource("11_irulp")
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "99$"
+horizontal_alignment = 1
 
 [connection signal="shop_item_selected" from="ShopKeeperCharacter/PurchaseSlot1" to="PlayerCharacter" method="_on_purchase_slot_1_shop_item_selected"]
 [connection signal="shop_item_selected" from="ShopKeeperCharacter/PurchaseSlot2" to="PlayerCharacter" method="_on_purchase_slot_1_shop_item_selected"]
 [connection signal="shop_item_selected" from="ShopKeeperCharacter/PurchaseSlot3" to="PlayerCharacter" method="_on_purchase_slot_1_shop_item_selected"]
+[connection signal="area_shape_entered" from="SalesBucket/Area2D" to="SalesBucket" method="_on_area_2d_area_shape_entered"]

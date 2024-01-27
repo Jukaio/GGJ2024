@@ -99,3 +99,94 @@ hframes = 9
 region_enabled = true
 region_rect = Rect2(0, 32, 216, 32)
 script = ExtResource("3_jt3x3")
+
+[node name="LiftIdleDown" type="Sprite2D" parent="."]
+texture = ExtResource("2_h1hwb")
+hframes = 2
+region_enabled = true
+region_rect = Rect2(72, 156, 36, 26)
+script = ExtResource("3_jt3x3")
+frameTime = 0.48
+
+[node name="LiftIdleUp" type="Sprite2D" parent="."]
+texture = ExtResource("2_h1hwb")
+hframes = 2
+region_enabled = true
+region_rect = Rect2(72, 208, 36, 26)
+script = ExtResource("3_jt3x3")
+frameTime = 0.48
+
+[node name="LiftIdleLeft" type="Sprite2D" parent="."]
+texture = ExtResource("2_h1hwb")
+flip_h = true
+hframes = 2
+region_enabled = true
+region_rect = Rect2(72, 182, 36, 26)
+script = ExtResource("3_jt3x3")
+frameTime = 0.48
+
+[node name="LiftIdleRight" type="Sprite2D" parent="."]
+texture = ExtResource("2_h1hwb")
+hframes = 2
+region_enabled = true
+region_rect = Rect2(72, 182, 36, 26)
+script = ExtResource("3_jt3x3")
+frameTime = 0.48
+
+[node name="LiftUpDown" type="Sprite2D" parent="."]
+texture = ExtResource("2_h1hwb")
+hframes = 6
+region_enabled = true
+region_rect = Rect2(0, 156, 108, 26)
+script = ExtResource("3_jt3x3")
+
+[node name="LiftUpUp" type="Sprite2D" parent="."]
+texture = ExtResource("2_h1hwb")
+hframes = 6
+region_enabled = true
+region_rect = Rect2(0, 208, 108, 26)
+script = ExtResource("3_jt3x3")
+
+[node name="LiftUpLeft" type="Sprite2D" parent="."]
+texture = ExtResource("2_h1hwb")
+flip_h = true
+hframes = 6
+region_enabled = true
+region_rect = Rect2(0, 182, 108, 26)
+script = ExtResource("3_jt3x3")
+
+[node name="LiftUpRight" type="Sprite2D" parent="."]
+texture = ExtResource("2_h1hwb")
+hframes = 6
+region_enabled = true
+region_rect = Rect2(0, 182, 108, 26)
+script = ExtResource("3_jt3x3")
+
+[node name="LiftMoveDown" type="Sprite2D" parent="."]
+texture = ExtResource("2_h1hwb")
+hframes = 6
+region_enabled = true
+region_rect = Rect2(0, 234, 108, 26)
+script = ExtResource("3_jt3x3")
+
+[node name="LiftMoveUp" type="Sprite2D" parent="."]
+texture = ExtResource("2_h1hwb")
+hframes = 6
+region_enabled = true
+region_rect = Rect2(0, 286, 108, 26)
+script = ExtResource("3_jt3x3")
+
+[node name="LiftMoveLeft" type="Sprite2D" parent="."]
+texture = ExtResource("2_h1hwb")
+flip_h = true
+hframes = 6
+region_enabled = true
+region_rect = Rect2(0, 260, 108, 26)
+script = ExtResource("3_jt3x3")
+
+[node name="LiftMoveRight" type="Sprite2D" parent="."]
+texture = ExtResource("2_h1hwb")
+hframes = 6
+region_enabled = true
+region_rect = Rect2(0, 260, 108, 26)
+script = ExtResource("3_jt3x3")
