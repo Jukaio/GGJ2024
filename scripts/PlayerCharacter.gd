@@ -98,7 +98,7 @@ func _process(delta):
 func ProcessMovement(delta, dir):
 	
 	var tmpLookDirection = lookDirection
-	lookDirection = GetFourAxisDirection(delta)
+	lookDirection = dir
 	
 	if tmpLookDirection != lookDirection:
 		DirectionArea.position = lookDirection.normalized() * DirectionArea.position
