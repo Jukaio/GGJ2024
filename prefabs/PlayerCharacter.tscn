@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cucwiwl6qyqsg"]
+[gd_scene load_steps=8 format=3 uid="uid://cucwiwl6qyqsg"]
 
 [ext_resource type="Script" path="res://scripts/player_character.gd" id="1_47rnw"]
 [ext_resource type="PackedScene" uid="uid://bjssjw418p1ic" path="res://prefabs/player_sprite_animator.tscn" id="2_x0r5y"]
@@ -9,7 +9,10 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0bjyx"]
 size = Vector2(26, 24)
 
-[node name="PlayerCharacter" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0olxw"]
+size = Vector2(10, 7)
+
+[node name="PlayerCharacter" type="CharacterBody2D"]
 script = ExtResource("1_47rnw")
 
 [node name="SpriteAnimator" parent="." instance=ExtResource("2_x0r5y")]
@@ -18,6 +21,7 @@ script = ExtResource("1_47rnw")
 hoeTime = 0.65
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 position = Vector2(17, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
@@ -25,6 +29,7 @@ position = Vector2(-17, 0)
 shape = SubResource("RectangleShape2D_0bjyx")
 
 [node name="PickingUpSprite" type="Node2D" parent="."]
+visible = false
 
 [node name="MushroomSprite" parent="PickingUpSprite" instance=ExtResource("5_r4y1g")]
 position = Vector2(-8, -23)
@@ -50,5 +55,6 @@ texture = ExtResource("5_13fjv")
 region_enabled = true
 region_rect = Rect2(64, 102, 16, 10)
 
-[connection signal="plant_picked_up" from="HoeTool" to="." method="_on_hoe_tool_plant_picked_up"]
-[connection signal="area_shape_entered" from="Area2D" to="." method="_on_area_2d_area_shape_entered"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4.5)
+shape = SubResource("RectangleShape2D_0olxw")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c1h6bgnucataf"]
+[gd_scene load_steps=17 format=3 uid="uid://c1h6bgnucataf"]
 
 [ext_resource type="PackedScene" uid="uid://oednu38gbmwd" path="res://prefabs/ground_tile_map.tscn" id="1_15xfq"]
 [ext_resource type="PackedScene" uid="uid://cucwiwl6qyqsg" path="res://prefabs/PlayerCharacter.tscn" id="2_r8nl4"]
@@ -8,13 +8,16 @@
 [ext_resource type="PackedScene" uid="uid://ds03x1hp3883r" path="res://prefabs/purchase_slot.tscn" id="8_ma02f"]
 [ext_resource type="Texture2D" uid="uid://bn0vxmmg2f4uu" path="res://graphics/ui/speechbubble.png" id="9_d2fsl"]
 [ext_resource type="Script" path="res://scripts/sprite_animator.gd" id="11_70h21"]
-[ext_resource type="Theme" uid="uid://d241x0ek7vt0u" path="res://fonts/theme.tres" id="11_irulp"]
+[ext_resource type="Theme" path="res://fonts/theme.tres" id="11_irulp"]
 [ext_resource type="AudioStream" uid="uid://dvjn3nwmud4w1" path="res://sounds/Hoe.wav" id="11_ymnet"]
 [ext_resource type="Texture2D" uid="uid://cumhvrhbn565q" path="res://sprites/shopkeeper_spritesheet.png" id="12_3tnbu"]
 [ext_resource type="Script" path="res://scripts/sprite_animation.gd" id="12_ovdr6"]
 [ext_resource type="AudioStream" uid="uid://cls5lt578yk06" path="res://music/Main Theme.wav" id="14_2j6da"]
 [ext_resource type="Texture2D" uid="uid://xev6rcfkj5ad" path="res://sprites/Env.png" id="14_llhv5"]
 [ext_resource type="PackedScene" uid="uid://dumr5vgy24wbo" path="res://prefabs/sales_bucket.tscn" id="14_p1psj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tk7v1"]
+size = Vector2(48, 35.5)
 
 [node name="EntryPoint" type="Node2D"]
 y_sort_enabled = true
@@ -125,9 +128,17 @@ time_for_money_animation = 1
 stream = ExtResource("14_2j6da")
 autoplay = true
 
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(6, 34, 17, 34, 17, 133, 5, 133, 5, 131, 15, 131, 15, 36, 6, 36)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(-58, -55.25)
+shape = SubResource("RectangleShape2D_tk7v1")
+
 [connection signal="shop_item_selected" from="ShopKeeperCharacter/PurchaseSlot1" to="PlayerCharacter" method="_on_purchase_slot_1_shop_item_selected"]
-[connection signal="shop_item_unselected" from="ShopKeeperCharacter/PurchaseSlot1" to="PlayerCharacter" method="_on_purchase_slot_1_shop_item_unselected"]
 [connection signal="shop_item_selected" from="ShopKeeperCharacter/PurchaseSlot2" to="PlayerCharacter" method="_on_purchase_slot_1_shop_item_selected"]
-[connection signal="shop_item_unselected" from="ShopKeeperCharacter/PurchaseSlot2" to="PlayerCharacter" method="_on_purchase_slot_1_shop_item_unselected"]
 [connection signal="shop_item_selected" from="ShopKeeperCharacter/PurchaseSlot3" to="PlayerCharacter" method="_on_purchase_slot_1_shop_item_selected"]
-[connection signal="shop_item_unselected" from="ShopKeeperCharacter/PurchaseSlot3" to="PlayerCharacter" method="_on_purchase_slot_1_shop_item_unselected"]
