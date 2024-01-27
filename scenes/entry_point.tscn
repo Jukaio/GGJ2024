@@ -83,6 +83,11 @@ EndPos = Vector2(-150, -100)
 Speed = 30.0
 TimeForOpenShop = 5.0
 TimeForClosedShop = 5.0
+ChanceType1 = 50
+ChanceType2 = 25
+ChanceType3 = 12
+ChanceType4 = 8
+ChanceType5 = 5
 
 [node name="PurchaseSlot1" parent="ShopKeeperCharacter" node_paths=PackedStringArray("audioPlayer") instance=ExtResource("8_ma02f")]
 audioPlayer = NodePath("../../AudioStreamPlayer")
