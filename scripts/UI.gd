@@ -28,6 +28,9 @@ func rotr():
 		
 	inventory[0] = temp
 	
+func is_full():
+	assert(inventory.size() <= 3, "Too full")
+	return inventory.size() == 3
 	
 func add_item(item : int, count : int):
 	for inv_item in inventory:
@@ -66,12 +69,12 @@ func _process(delta):
 	if Input.is_action_just_pressed("inv_next"):
 		rotr()
 		
-	if Input.is_action_just_pressed("Start"):
-		add_item(last, 1)
-		last = (last + 1) % 10
+	#if Input.is_action_just_pressed("Start"):
+	#	add_item(last, 1)
+	#	last = (last + 1) % 10
 		
-	if Input.is_action_just_pressed("left"):
-		try_remove_equipped_item()
+	#if Input.is_action_just_pressed("left"):
+	#	try_remove_equipped_item()
  	
 	var new_state = hash(inventory)
 	if new_state != hState:
