@@ -5,6 +5,11 @@ class_name ShopKeeperCharacter extends Node2D
 @export var Speed : float
 @export var TimeForOpenShop : float
 @export var TimeForClosedShop : float
+@export var ChanceType1 : int
+@export var ChanceType2 : int
+@export var ChanceType3 : int
+@export var ChanceType4 : int
+@export var ChanceType5 : int
 
 @onready var shopSlot1 : ShopPurchaseSlot = $PurchaseSlot1
 @onready var shopSlot2 : ShopPurchaseSlot = $PurchaseSlot2
@@ -17,9 +22,41 @@ enum ShopKeeperState { ENTERING, SHOP_OPEN, EXITING, SHOP_CLOSED }
 
 var timeElapsed = 0.0
 var hideBubbleTimer = 0.0
-
+var rng = RandomNumberGenerator.new()
 var state : ShopKeeperState = ShopKeeperState.SHOP_CLOSED
+var sumChance = 0
 
+func randomize_inventory():
+	
+	var slot1 = randomize_slot()
+	var slot2 = randomize_slot()
+	var slot3 = randomize_slot()
+	
+	shopSlot1.set_shop_item(slot1, (slot1+1) * rng.randi_range(5, 10))
+	shopSlot2.set_shop_item(slot2, (slot2+1) * rng.randi_range(5, 10))
+	shopSlot3.set_shop_item(slot3, (slot3+1) * rng.randi_range(5, 10))
+
+func randomize_slot():
+	var rand = rng.randi_range(0, sumChance)
+	
+	if rand < ChanceType1:
+		return 0
+	rand -= ChanceType1
+	
+	if rand < ChanceType2:
+		return 1
+	rand -= ChanceType2
+	
+	if rand < ChanceType3:
+		return 2
+	rand -= ChanceType3
+	
+	if rand < ChanceType4:
+		return 3
+	rand -= ChanceType4
+	
+	return 4
+	
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
@@ -32,6 +69,8 @@ func _ready():
 	shopSlot3.visible = false
 	
 	speechBubble.visible = false
+	
+	sumChance = ChanceType1 +  ChanceType2 + ChanceType3 + ChanceType4 + ChanceType5
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -54,6 +93,8 @@ func process_state_machine(delta):
 				print(dir)
 				animate_movement(dir)
 			else:
+				randomize_inventory()
+				
 				position = EndPos
 				state = ShopKeeperState.SHOP_OPEN
 				timeElapsed = 0
