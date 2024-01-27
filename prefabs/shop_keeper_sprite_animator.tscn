@@ -1,12 +1,12 @@
 [gd_scene load_steps=4 format=3 uid="uid://boqqccurcgfef"]
 
-[ext_resource type="Script" path="res://scripts/SpriteAnimator.gd" id="1_o6m2e"]
+[ext_resource type="Script" path="res://scripts/sprite_animator.gd" id="1_mf0dg"]
 [ext_resource type="Texture2D" uid="uid://dogafvlhpasm4" path="res://sprites/Player-Sheet.png" id="2_wo16d"]
-[ext_resource type="Script" path="res://scripts/SpriteAnimation.gd" id="3_lqbql"]
+[ext_resource type="Script" path="res://scripts/sprite_animation.gd" id="3_lqbql"]
 
 [node name="SpriteAnimator" type="Node2D"]
 position = Vector2(0, -4)
-script = ExtResource("1_o6m2e")
+script = ExtResource("1_mf0dg")
 
 [node name="IdleDown" type="Sprite2D" parent="."]
 texture = ExtResource("2_wo16d")

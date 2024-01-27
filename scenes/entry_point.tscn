@@ -1,18 +1,18 @@
 [gd_scene load_steps=13 format=3 uid="uid://c1h6bgnucataf"]
 
-[ext_resource type="PackedScene" uid="uid://oednu38gbmwd" path="res://prefabs/ground_tile_map.tscn" id="1_3jk2w"]
-[ext_resource type="Texture2D" uid="uid://csnficd1k2yb1" path="res://sprites/Mushroom.png" id="2_dqxue"]
-[ext_resource type="PackedScene" uid="uid://cucwiwl6qyqsg" path="res://prefabs/PlayerCharacter.tscn" id="2_ejxp2"]
-[ext_resource type="PackedScene" path="res://scenes/ui_canvas_layer.tscn" id="4_yu82j"]
-[ext_resource type="Script" path="res://scripts/CropsGrid.gd" id="7_ha7gq"]
-[ext_resource type="Script" path="res://scripts/ShopKeepCharacter.gd" id="8_sxq4o"]
-[ext_resource type="PackedScene" uid="uid://boqqccurcgfef" path="res://prefabs/ShopKeeperSpriteAnimator.tscn" id="8_wd16a"]
+[ext_resource type="PackedScene" uid="uid://oednu38gbmwd" path="res://prefabs/ground_tile_map.tscn" id="1_15xfq"]
+[ext_resource type="PackedScene" uid="uid://cucwiwl6qyqsg" path="res://prefabs/PlayerCharacter.tscn" id="2_r8nl4"]
+[ext_resource type="Texture2D" uid="uid://csnficd1k2yb1" path="res://sprites/Mushroom.png" id="3_0klxi"]
+[ext_resource type="PackedScene" uid="uid://c1w0mc6qu256h" path="res://scenes/ui_canvas_layer.tscn" id="4_gk132"]
+[ext_resource type="Script" path="res://scripts/crops_grid.gd" id="5_ggryu"]
+[ext_resource type="Script" path="res://scripts/shop_keeper_character.gd" id="6_8lmio"]
+[ext_resource type="PackedScene" uid="uid://bjssjw418p1ic" path="res://prefabs/player_sprite_animator.tscn" id="7_c5o5o"]
+[ext_resource type="PackedScene" uid="uid://ds03x1hp3883r" path="res://prefabs/purchase_slot.tscn" id="8_ma02f"]
 [ext_resource type="Texture2D" uid="uid://bn0vxmmg2f4uu" path="res://graphics/ui/speechbubble.png" id="9_d2fsl"]
-[ext_resource type="PackedScene" uid="uid://ds03x1hp3883r" path="res://prefabs/purchase_slot.tscn" id="10_ugskk"]
 [ext_resource type="Theme" uid="uid://d241x0ek7vt0u" path="res://fonts/theme.tres" id="11_irulp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lpgvw"]
-texture = ExtResource("2_dqxue")
+texture = ExtResource("3_0klxi")
 0:0/0 = 0
 1:0/0 = 0
 0:1/0 = 0
@@ -26,9 +26,9 @@ sources/1 = SubResource("TileSetAtlasSource_lpgvw")
 [node name="EntryPoint" type="Node2D"]
 y_sort_enabled = true
 
-[node name="GroundTileMap" parent="." instance=ExtResource("1_3jk2w")]
+[node name="GroundTileMap" parent="." instance=ExtResource("1_15xfq")]
 
-[node name="PlayerCharacter" parent="." node_paths=PackedStringArray("fieldMap", "cropsGrid", "seedMap") instance=ExtResource("2_ejxp2")]
+[node name="PlayerCharacter" parent="." node_paths=PackedStringArray("fieldMap", "cropsGrid", "seedMap") instance=ExtResource("2_r8nl4")]
 z_index = 10
 texture_filter = 1
 Money = 6
@@ -44,30 +44,30 @@ format = 2
 [node name="MainCamera2D" type="Camera2D" parent="."]
 position = Vector2(2.08165e-12, 2.08165e-12)
 
-[node name="UICanvasLayer" parent="." instance=ExtResource("4_yu82j")]
+[node name="UICanvasLayer" parent="." instance=ExtResource("4_gk132")]
 
 [node name="CropsGrid" type="Node2D" parent="."]
 position = Vector2(40, -40)
-script = ExtResource("7_ha7gq")
+script = ExtResource("5_ggryu")
 
 [node name="ShopKeeperCharacter" type="Node2D" parent="."]
 z_index = 10
 position = Vector2(-284, -100)
-script = ExtResource("8_sxq4o")
+script = ExtResource("6_8lmio")
 StartPos = Vector2(-250, -100)
 EndPos = Vector2(-150, -100)
 Speed = 30.0
 TimeForOpenShop = 5.0
 TimeForClosedShop = 5.0
 
-[node name="SpriteAnimator" parent="ShopKeeperCharacter" instance=ExtResource("8_wd16a")]
+[node name="SpriteAnimator" parent="ShopKeeperCharacter" instance=ExtResource("7_c5o5o")]
 
-[node name="PurchaseSlot1" parent="ShopKeeperCharacter" instance=ExtResource("10_ugskk")]
+[node name="PurchaseSlot1" parent="ShopKeeperCharacter" instance=ExtResource("8_ma02f")]
 
-[node name="PurchaseSlot2" parent="ShopKeeperCharacter" instance=ExtResource("10_ugskk")]
+[node name="PurchaseSlot2" parent="ShopKeeperCharacter" instance=ExtResource("8_ma02f")]
 position = Vector2(0, 24)
 
-[node name="PurchaseSlot3" parent="ShopKeeperCharacter" instance=ExtResource("10_ugskk")]
+[node name="PurchaseSlot3" parent="ShopKeeperCharacter" instance=ExtResource("8_ma02f")]
 position = Vector2(31, 24)
 
 [node name="SpeechBubbleSprite2D" type="Sprite2D" parent="ShopKeeperCharacter"]
