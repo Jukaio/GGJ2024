@@ -1,6 +1,7 @@
 class_name UI extends CanvasLayer
 
 @onready var MainMenuUI : Control = $MainMenu
+@export var money_text : RichTextLabel
 
 @export var hotbar_slots:Array[Sprite2D]
 
@@ -9,6 +10,11 @@ var inventory:Array[Vector2i]
 var hState:int
 
 func rotl():
+	if inventory.size() == 2:
+		var temp = inventory[0]
+		inventory[0] = inventory[1]
+		inventory[1] = temp
+	
 	if inventory.size() <= 2:
 		return
 		
@@ -19,8 +25,14 @@ func rotl():
 	inventory[-1] = temp
 	
 func rotr():
+	if inventory.size() == 2:
+		var temp = inventory[0]
+		inventory[0] = inventory[1]
+		inventory[1] = temp
+	
 	if inventory.size() <= 2:
 		return
+	
 		
 	var temp = inventory.back()
 	for i in range(inventory.size()-1, 0, -1):
@@ -58,9 +70,10 @@ func redraw():
 			hotbar_slots[i].frame = inventory[i].x
 		else:
 			hotbar_slots[i].visible = false
-			
-	pass
 
+func set_money_text(value : int):
+	
+	money_text.text = "x%d" % min(value, 9999)
 
 var last = 3
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -70,12 +83,9 @@ func _process(delta):
 	if Input.is_action_just_pressed("inv_next"):
 		rotr()
 		
-	#if Input.is_action_just_pressed("Start"):
-	#	add_item(last, 1)
-	#	last = (last + 1) % 10
-		
-	#if Input.is_action_just_pressed("left"):
-	#	try_remove_equipped_item()
+	if Input.is_action_just_pressed("Start"):
+		set_money_text(last)
+		last = last * 7
  	
 	var new_state = hash(inventory)
 	if new_state != hState:

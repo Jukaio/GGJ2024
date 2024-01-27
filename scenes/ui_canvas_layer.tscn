@@ -1,13 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://d22g6rpmpao2e"]
+[gd_scene load_steps=7 format=3 uid="uid://d22g6rpmpao2e"]
 
 [ext_resource type="Script" path="res://scripts/UI.gd" id="1_83ydr"]
 [ext_resource type="Texture2D" uid="uid://b844hqqnsenbc" path="res://textures/buttons free.png" id="2_hv1n6"]
 [ext_resource type="Texture2D" uid="uid://ckaavsdn2d5qe" path="res://textures/base free.png" id="4_4nijn"]
 [ext_resource type="Texture2D" uid="uid://ci0nemkkasqiu" path="res://textures/gui_free.png" id="4_sucp4"]
 [ext_resource type="Texture2D" uid="uid://dygh2vf2flars" path="res://sprites/Mushroom_Inventory.png" id="5_pqwk4"]
+[ext_resource type="FontFile" uid="uid://cyescrgav85ig" path="res://fonts/AsepriteFont.ttf" id="5_yrnwt"]
 
-[node name="UICanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("hotbar_slots")]
+[node name="UICanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("money_text", "hotbar_slots")]
 script = ExtResource("1_83ydr")
+money_text = NodePath("AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Left/MarginContainer/Panel/MoneyText")
 hotbar_slots = [NodePath("AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Right/MarginContainer/NinePatchRect/NinePatchRect2/Sprite2D"), NodePath("AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Right/MarginContainer/NinePatchRect/NinePatchRect3/Sprite2D"), NodePath("AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Right/MarginContainer/NinePatchRect/NinePatchRect/Sprite2D")]
 
 [node name="MainMenu" type="AspectRatioContainer" parent="."]
@@ -98,6 +100,53 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="MarginContainer" type="MarginContainer" parent="AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Left"]
+layout_mode = 2
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 172
+theme_override_constants/margin_bottom = 100
+
+[node name="Panel2" type="Panel" parent="AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Left/MarginContainer"]
+self_modulate = Color(0, 0, 0, 0)
+layout_mode = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Left/MarginContainer/Panel2"]
+layout_mode = 2
+offset_right = 62.0
+offset_bottom = 24.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("4_4nijn")
+region_rect = Rect2(9, 9, 30, 30)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Left/MarginContainer/Panel2/NinePatchRect"]
+position = Vector2(15, 11.9983)
+texture = ExtResource("5_pqwk4")
+region_enabled = true
+region_rect = Rect2(52, 31, 24, 18)
+
+[node name="Panel" type="Panel" parent="AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Left/MarginContainer"]
+self_modulate = Color(0, 0, 0, 0)
+layout_mode = 2
+
+[node name="MoneyText" type="RichTextLabel" parent="AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Left/MarginContainer/Panel"]
+layout_mode = 2
+offset_left = 29.0
+offset_top = 3.99832
+offset_right = 62.0
+offset_bottom = 33.9983
+theme_override_colors/default_color = Color(0.160784, 0.160784, 0.160784, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 7
+theme_override_fonts/normal_font = ExtResource("5_yrnwt")
+text = "x998
+"
+
 [node name="Top Right" type="MarginContainer" parent="AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -137,7 +186,7 @@ patch_margin_bottom = 4
 position = Vector2(20, 20)
 scale = Vector2(2, 2)
 texture = ExtResource("5_pqwk4")
-hframes = 4
+hframes = 5
 vframes = 5
 frame = 6
 
@@ -158,7 +207,7 @@ patch_margin_bottom = 4
 position = Vector2(20, 20)
 scale = Vector2(2, 2)
 texture = ExtResource("5_pqwk4")
-hframes = 4
+hframes = 5
 vframes = 5
 frame = 2
 
@@ -179,7 +228,7 @@ patch_margin_bottom = 4
 position = Vector2(24, 24.0003)
 scale = Vector2(2, 2)
 texture = ExtResource("5_pqwk4")
-hframes = 4
+hframes = 5
 vframes = 5
 frame = 10
 
