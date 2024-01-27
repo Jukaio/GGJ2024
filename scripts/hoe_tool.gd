@@ -125,8 +125,11 @@ func interact():
 	
 	var plant = get_target_plant()
 	
+	if is_holding_plant: 
+		return
+	
 	var direction = player_character.get_look_direction()
-	if !is_holding_plant && plant != null:
+	if plant != null:
 		# there is a plant in front of us
 		if plant.attempt_pick():
 			is_holding_plant = true
