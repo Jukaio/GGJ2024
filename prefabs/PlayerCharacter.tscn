@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cucwiwl6qyqsg"]
+[gd_scene load_steps=7 format=3 uid="uid://cucwiwl6qyqsg"]
 
 [ext_resource type="Script" path="res://scripts/player_character.gd" id="1_47rnw"]
 [ext_resource type="PackedScene" uid="uid://bjssjw418p1ic" path="res://prefabs/player_sprite_animator.tscn" id="2_x0r5y"]
 [ext_resource type="PackedScene" uid="uid://d4kb2elj223eq" path="res://prefabs/hoe_tool.tscn" id="3_u86vp"]
+[ext_resource type="Texture2D" uid="uid://xev6rcfkj5ad" path="res://sprites/Env.png" id="5_13fjv"]
 [ext_resource type="PackedScene" uid="uid://cubybm7hb7w03" path="res://prefabs/mushroom_sprite.tscn" id="5_r4y1g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0bjyx"]
@@ -24,9 +25,29 @@ position = Vector2(-17, 0)
 shape = SubResource("RectangleShape2D_0bjyx")
 
 [node name="PickingUpSprite" type="Node2D" parent="."]
-position = Vector2(0, -4)
 
 [node name="MushroomSprite" parent="PickingUpSprite" instance=ExtResource("5_r4y1g")]
 position = Vector2(-8, -23)
+
+[node name="Shadow" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, 8)
+texture = ExtResource("5_13fjv")
+region_enabled = true
+region_rect = Rect2(48, 85, 16, 11)
+
+[node name="ShadowLeft" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, 8)
+texture = ExtResource("5_13fjv")
+region_enabled = true
+region_rect = Rect2(48, 102, 16, 10)
+
+[node name="ShadowRight" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, 8)
+texture = ExtResource("5_13fjv")
+region_enabled = true
+region_rect = Rect2(64, 102, 16, 10)
 
 [connection signal="area_shape_entered" from="Area2D" to="." method="_on_area_2d_area_shape_entered"]
