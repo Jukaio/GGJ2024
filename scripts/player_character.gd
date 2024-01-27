@@ -6,6 +6,10 @@ enum MoveAction { DOWN, UP, LEFT, RIGHT }
 @onready var Collider : CollisionShape2D = $Area2D/CollisionShape2D
 @onready var DirectionArea : Area2D = $Area2D
 @onready var PickedUpMushroom : Plant = $PickingUpSprite/MushroomSprite
+@onready var Shadow : Sprite2D = $Shadow
+@onready var ShadowLeft : Sprite2D = $ShadowLeft
+@onready var ShadowRight : Sprite2D = $ShadowRight
+
 
 @export var Money : int
 @export var speed: float = 90.0
@@ -51,6 +55,10 @@ func _ready():
 	animator = get_node("SpriteAnimator")
 	hoeTool = get_node("HoeTool")
 	PickedUpMushroom.visible = false
+	
+	Shadow.visible = true
+	ShadowLeft.visible = false
+	ShadowRight.visible = false
 
 
 func PushMovementAction(action: MoveAction):
@@ -109,13 +117,33 @@ func ProcessMovement(delta, dir):
 	
 	var angle = rad_to_deg(atan2(lookDirection.y, lookDirection.x));
 	if angle > -45.0 && angle < 45.0:
+		Shadow.visible = false
+		ShadowLeft.visible = false
+		ShadowRight.visible = true
+		
 		animator.ActivateByName("MoveRight")
+		
 	elif angle >= 45.0 && angle < 135.0:
-		animator.ActivateByName("MoveDown") 
+		Shadow.visible = true
+		ShadowLeft.visible = false
+		ShadowRight.visible = false
+
+		animator.ActivateByName("MoveDown")
+		
 	elif angle <= -45.0 && angle > -135.0:
+		Shadow.visible = true
+		ShadowLeft.visible = false
+		ShadowRight.visible = false
+
 		animator.ActivateByName("MoveUp")
+		
 	else:
+		Shadow.visible = false
+		ShadowLeft.visible = true
+		ShadowRight.visible = false
+
 		animator.ActivateByName("MoveLeft")
+		
 	
 func apply_movement(delta, dir):
 	var tmpLookDirection = lookDirection
