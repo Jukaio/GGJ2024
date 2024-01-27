@@ -100,6 +100,39 @@ region_enabled = true
 region_rect = Rect2(0, 32, 216, 32)
 script = ExtResource("3_jt3x3")
 
+[node name="SeedDown" type="Sprite2D" parent="."]
+position = Vector2(0, 5)
+texture = ExtResource("4_8f8vi")
+hframes = 9
+region_enabled = true
+region_rect = Rect2(0, 0, 216, 32)
+script = ExtResource("3_jt3x3")
+
+[node name="SeedUp" type="Sprite2D" parent="."]
+position = Vector2(0, -3)
+texture = ExtResource("4_8f8vi")
+hframes = 9
+region_enabled = true
+region_rect = Rect2(0, 64, 216, 32)
+script = ExtResource("3_jt3x3")
+
+[node name="SeedLeft" type="Sprite2D" parent="."]
+position = Vector2(-5, -3)
+texture = ExtResource("4_8f8vi")
+flip_h = true
+hframes = 9
+region_enabled = true
+region_rect = Rect2(0, 32, 216, 32)
+script = ExtResource("3_jt3x3")
+
+[node name="SeedRight" type="Sprite2D" parent="."]
+position = Vector2(5, -3)
+texture = ExtResource("4_8f8vi")
+hframes = 9
+region_enabled = true
+region_rect = Rect2(0, 32, 216, 32)
+script = ExtResource("3_jt3x3")
+
 [node name="LiftIdleDown" type="Sprite2D" parent="."]
 texture = ExtResource("2_h1hwb")
 hframes = 2
