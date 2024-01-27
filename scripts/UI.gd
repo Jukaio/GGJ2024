@@ -71,22 +71,20 @@ func redraw():
 		else:
 			hotbar_slots[i].visible = false
 
-func set_money_text(value : int):
-	
-	money_text.text = "x%d" % min(value, 9999)
+var g_last_money : int = -123
 
-var last = 3
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+func set_money_text(value : int):
+	if g_last_money != value:
+		money_text.text = "x%d" % min(value, 9999)
+		g_last_money = value
+		
+
 func _process(delta):
 	if Input.is_action_just_pressed("inv_prev"):
 		rotl()
 	if Input.is_action_just_pressed("inv_next"):
 		rotr()
 		
-	if Input.is_action_just_pressed("Start"):
-		set_money_text(last)
-		last = last * 7
- 	
 	var new_state = hash(inventory)
 	if new_state != hState:
 		redraw()
