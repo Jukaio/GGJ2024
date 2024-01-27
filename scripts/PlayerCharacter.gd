@@ -22,8 +22,8 @@ var hoeTool: HoeTool
 # Called when the node enters the scene tree for the first time.
 
 static var g_use_eight_way : bool = false
-static var g_use_eight_way_inited : bool = false
-static var g_always_random : bool = true
+static var g_use_eight_way_inited : bool = true
+static var g_always_random : bool = false
 
 func get_use_eight_way():
 	if g_use_eight_way_inited:
@@ -103,7 +103,6 @@ func ProcessMovement(delta, dir):
 	if tmpLookDirection != lookDirection:
 		DirectionArea.position = lookDirection.normalized() * DirectionArea.position
 		isColliding = false
-	# TODO: implement eight-axis 
 	
 	if isColliding:
 		return
@@ -122,6 +121,9 @@ func ProcessMovement(delta, dir):
 
 func GetFourAxisDirection(delta):
 	var direction = Vector2.ZERO
+	if movementInput.is_empty():
+		return direction
+	
 	var moveAction = movementInput.back()
 	match moveAction:
 		MoveAction.LEFT:

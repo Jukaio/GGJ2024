@@ -1,11 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://cucwiwl6qyqsg"]
+[gd_scene load_steps=8 format=3 uid="uid://cucwiwl6qyqsg"]
 
 [ext_resource type="Script" path="res://scripts/PlayerCharacter.gd" id="1_h7gas"]
 [ext_resource type="Script" path="res://scripts/SpriteAnimator.gd" id="2_xyurh"]
-[ext_resource type="Texture2D" uid="uid://cir8aen0d318c" path="res://textures/idleAnimation.png" id="3_wj8x4"]
+[ext_resource type="Texture2D" uid="uid://6hpd83nspwvi" path="res://sprites/Player-Sheet.png" id="3_tu5an"]
 [ext_resource type="Script" path="res://scripts/SpriteAnimation.gd" id="4_ui6xa"]
-[ext_resource type="Texture2D" uid="uid://b3xgilsgrdjk" path="res://textures/runAnimation.png" id="5_jgofv"]
-[ext_resource type="Texture2D" uid="uid://7nrcve7uje1m" path="res://textures/hideAnimation.png" id="6_k6vkf"]
 [ext_resource type="Script" path="res://scripts/HoeTool.gd" id="6_pa2yi"]
 [ext_resource type="Texture2D" uid="uid://csnficd1k2yb1" path="res://sprites/Mushroom.png" id="8_vh3lx"]
 
@@ -20,87 +18,89 @@ position = Vector2(0, -4)
 script = ExtResource("2_xyurh")
 
 [node name="IdleDown" type="Sprite2D" parent="SpriteAnimator"]
-texture = ExtResource("3_wj8x4")
-hframes = 4
+texture = ExtResource("3_tu5an")
+hframes = 6
 region_enabled = true
 region_rect = Rect2(0, 0, 96, 24)
 script = ExtResource("4_ui6xa")
 
 [node name="IdleUp" type="Sprite2D" parent="SpriteAnimator"]
-texture = ExtResource("3_wj8x4")
-hframes = 4
-region_enabled = true
-region_rect = Rect2(0, 24, 96, 24)
-script = ExtResource("4_ui6xa")
-
-[node name="IdleLeft" type="Sprite2D" parent="SpriteAnimator"]
-texture = ExtResource("3_wj8x4")
-hframes = 4
+texture = ExtResource("3_tu5an")
+hframes = 6
 region_enabled = true
 region_rect = Rect2(0, 48, 96, 24)
 script = ExtResource("4_ui6xa")
 
+[node name="IdleLeft" type="Sprite2D" parent="SpriteAnimator"]
+texture = ExtResource("3_tu5an")
+flip_h = true
+hframes = 6
+region_enabled = true
+region_rect = Rect2(0, 24, 96, 24)
+script = ExtResource("4_ui6xa")
+
 [node name="IdleRight" type="Sprite2D" parent="SpriteAnimator"]
-texture = ExtResource("3_wj8x4")
-hframes = 4
+texture = ExtResource("3_tu5an")
+hframes = 6
+region_enabled = true
+region_rect = Rect2(0, 24, 96, 24)
+script = ExtResource("4_ui6xa")
+
+[node name="MoveDown" type="Sprite2D" parent="SpriteAnimator"]
+texture = ExtResource("3_tu5an")
+hframes = 6
 region_enabled = true
 region_rect = Rect2(0, 72, 96, 24)
 script = ExtResource("4_ui6xa")
 
-[node name="MoveDown" type="Sprite2D" parent="SpriteAnimator"]
-texture = ExtResource("5_jgofv")
-hframes = 6
-region_enabled = true
-region_rect = Rect2(0, 0, 144, 24)
-script = ExtResource("4_ui6xa")
-
 [node name="MoveUp" type="Sprite2D" parent="SpriteAnimator"]
-texture = ExtResource("5_jgofv")
+texture = ExtResource("3_tu5an")
 hframes = 6
 region_enabled = true
-region_rect = Rect2(0, 24, 144, 24)
+region_rect = Rect2(0, 120, 96, 24)
 script = ExtResource("4_ui6xa")
 
 [node name="MoveLeft" type="Sprite2D" parent="SpriteAnimator"]
-texture = ExtResource("5_jgofv")
+texture = ExtResource("3_tu5an")
+flip_h = true
 hframes = 6
 region_enabled = true
-region_rect = Rect2(0, 48, 144, 24)
+region_rect = Rect2(0, 96, 96, 24)
 script = ExtResource("4_ui6xa")
 
 [node name="MoveRight" type="Sprite2D" parent="SpriteAnimator"]
-texture = ExtResource("5_jgofv")
+texture = ExtResource("3_tu5an")
 hframes = 6
 region_enabled = true
-region_rect = Rect2(0, 72, 144, 24)
+region_rect = Rect2(0, 96, 96, 24)
 script = ExtResource("4_ui6xa")
 
 [node name="HoeDown" type="Sprite2D" parent="SpriteAnimator"]
-texture = ExtResource("6_k6vkf")
-hframes = 10
+texture = ExtResource("3_tu5an")
+hframes = 6
 region_enabled = true
-region_rect = Rect2(0, 0, 240, 24)
+region_rect = Rect2(0, 0, 96, 24)
 script = ExtResource("4_ui6xa")
 
 [node name="HoeUp" type="Sprite2D" parent="SpriteAnimator"]
-texture = ExtResource("6_k6vkf")
-hframes = 10
+texture = ExtResource("3_tu5an")
+hframes = 6
 region_enabled = true
-region_rect = Rect2(0, 24, 240, 24)
+region_rect = Rect2(0, 24, 96, 24)
 script = ExtResource("4_ui6xa")
 
 [node name="HoeLeft" type="Sprite2D" parent="SpriteAnimator"]
-texture = ExtResource("6_k6vkf")
-hframes = 10
+texture = ExtResource("3_tu5an")
+hframes = 6
 region_enabled = true
-region_rect = Rect2(0, 48, 240, 24)
+region_rect = Rect2(0, 48, 96, 24)
 script = ExtResource("4_ui6xa")
 
 [node name="HoeRight" type="Sprite2D" parent="SpriteAnimator"]
-texture = ExtResource("6_k6vkf")
-hframes = 10
+texture = ExtResource("3_tu5an")
+hframes = 6
 region_enabled = true
-region_rect = Rect2(0, 72, 240, 24)
+region_rect = Rect2(0, 72, 96, 24)
 script = ExtResource("4_ui6xa")
 
 [node name="HoeTool" type="Node2D" parent="." node_paths=PackedStringArray("highlightNode")]

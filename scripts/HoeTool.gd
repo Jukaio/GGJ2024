@@ -36,7 +36,7 @@ func is_valid_to_hoe():
 	idx = seedMap.local_to_map(target_position)
 	var current_seed_cell = seedMap.get_cell_atlas_coords(0, idx)
 	
-	return current_field_cell ==  Vector2i(4, 0) && current_seed_cell != Vector2i(0, 0)
+	return current_field_cell == Vector2i(4, 0) && current_seed_cell != Vector2i(0, 0)
 		
 func highlight(tileMap: TileMap):
 	var target_position = player_character.position + (player_character.lookDirection * hoeLength)
@@ -64,7 +64,10 @@ func _process(delta):
 		
 	highlight(seedMap)
 	
-	
+	# Move the dirt cell from seed to ground map
+	# Keep seed map 
+	# plant seeds
+	# whenever mushroom destroyed -> remove seed and dirt
 	if Input.is_action_just_pressed("interact"):
 		var direction = player_character.get_look_direction()
 		match direction:
