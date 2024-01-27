@@ -1,0 +1,124 @@
+[gd_scene load_steps=4 format=3 uid="uid://d22g6rpmpao2e"]
+
+[ext_resource type="Script" path="res://scripts/UI.gd" id="1_83ydr"]
+[ext_resource type="Texture2D" uid="uid://b844hqqnsenbc" path="res://textures/buttons free.png" id="2_hv1n6"]
+[ext_resource type="Texture2D" uid="uid://ckaavsdn2d5qe" path="res://textures/base free.png" id="4_4nijn"]
+
+[node name="UICanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_83ydr")
+
+[node name="MainMenu" type="AspectRatioContainer" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 192
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 192
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Game Name" type="NinePatchRect" parent="MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_hv1n6")
+region_rect = Rect2(3, 2, 42, 28)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="Label" type="Label" parent="MainMenu/MarginContainer/VBoxContainer/Game Name"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Data-Driven Mushrooms"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Start Game" type="NinePatchRect" parent="MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_hv1n6")
+region_rect = Rect2(3, 2, 42, 28)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="Label" type="Label" parent="MainMenu/MarginContainer/VBoxContainer/Start Game"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press ENTER to start"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AspectRatioContainer"]
+layout_mode = 2
+
+[node name="Top Half" type="MarginContainer" parent="AspectRatioContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="AspectRatioContainer/VBoxContainer/Top Half"]
+layout_mode = 2
+
+[node name="Top Left" type="MarginContainer" parent="AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Top Right" type="MarginContainer" parent="AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Right"]
+layout_mode = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 64
+
+[node name="NinePatchRect" type="NinePatchRect" parent="AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Right/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("4_4nijn")
+region_rect = Rect2(9, 9, 30, 30)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="Bottom Half" type="MarginContainer" parent="AspectRatioContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
