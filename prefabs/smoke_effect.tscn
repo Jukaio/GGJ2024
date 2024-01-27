@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfi7bw6fxgiia"]
+
+[ext_resource type="Texture2D" uid="uid://c53svcq73wyi7" path="res://sprites/smoke.png" id="1_yxbg8"]
+[ext_resource type="Script" path="res://scripts/sprite_animation.gd" id="2_m62xo"]
+
+[node name="SmokeEffect" type="Sprite2D"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+texture = ExtResource("1_yxbg8")
+hframes = 6
+script = ExtResource("2_m62xo")

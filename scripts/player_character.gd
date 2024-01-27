@@ -17,6 +17,7 @@ enum MoveAction { DOWN, UP, LEFT, RIGHT }
 @export var cropsGrid: CropsGrid
 @export var ui: UI
 @export var sales_bucket: SalesBucket
+@export var SmokeEffect : SpriteAnimation
 
 var lookDirection: Vector2 = Vector2.DOWN
 
@@ -33,6 +34,8 @@ var hoeTool: HoeTool
 static var g_use_eight_way : bool = false
 static var g_use_eight_way_inited : bool = true
 static var g_always_random : bool = false
+
+var smoke_cooldown = 0.0
 
 func get_use_eight_way():
 	if g_use_eight_way_inited:
@@ -55,6 +58,8 @@ func get_use_eight_way():
 	return g_use_eight_way
 
 func _ready():
+	SmokeEffect.visible = false
+	SmokeEffect.set_one_shot(true)
 	animator = get_node("SpriteAnimator")
 	hoeTool = get_node("HoeTool")
 	PickedUpMushroom.visible = false
@@ -79,6 +84,8 @@ func PopMovementAction(action: MoveAction):
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
+	smoke_cooldown += delta
 	
 	sales_bucket.set_money_sign_animating(PickedUpMushroom.visible)
 	ui.set_money_text(Money)
@@ -181,6 +188,12 @@ func ProcessMovement(delta, dir):
 		ShadowRight.visible = false
 
 		animator.ActivateByName("MoveLeft")
+		
+	if smoke_cooldown > 2.0:
+		SmokeEffect.global_position = global_position
+		SmokeEffect.visible = true
+		SmokeEffect.Reset()
+		smoke_cooldown = 0.0
 		
 	
 func apply_movement(delta, dir):
