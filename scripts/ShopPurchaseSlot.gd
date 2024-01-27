@@ -21,16 +21,10 @@ func set_shop_item(mushroomTypeStartIndex: int, cost: int):
 	Cost = cost
 	visible = true
 	
-	audioPlayer
-	
 	priceLabel.text = str(cost)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	audioPlayer.stream = purchaseSound
-	
-	print("playing sound")
-	
 	pass # Replace with function body.
 
 

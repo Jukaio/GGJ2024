@@ -94,9 +94,11 @@ theme_override_colors/font_shadow_color = Color(0.701961, 0.701961, 0.701961, 1)
 text = "Psst..."
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
 stream = ExtResource("11_ymnet")
 
 [node name="SalesBucket" type="Sprite2D" parent="."]
+z_index = 20
 texture_filter = 1
 position = Vector2(-90, 90)
 texture = ExtResource("12_8boy5")
