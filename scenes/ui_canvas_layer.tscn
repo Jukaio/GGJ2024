@@ -139,7 +139,7 @@ scale = Vector2(2, 2)
 texture = ExtResource("5_pqwk4")
 hframes = 4
 vframes = 5
-frame = 4
+frame = 6
 
 [node name="NinePatchRect3" type="NinePatchRect" parent="AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Right/MarginContainer/NinePatchRect"]
 layout_mode = 0
