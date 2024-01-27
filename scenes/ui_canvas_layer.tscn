@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://d22g6rpmpao2e"]
+[gd_scene load_steps=5 format=3 uid="uid://d22g6rpmpao2e"]
 
 [ext_resource type="Script" path="res://scripts/UI.gd" id="1_83ydr"]
 [ext_resource type="Texture2D" uid="uid://b844hqqnsenbc" path="res://textures/buttons free.png" id="2_hv1n6"]
 [ext_resource type="Texture2D" uid="uid://ckaavsdn2d5qe" path="res://textures/base free.png" id="4_4nijn"]
+[ext_resource type="Texture2D" uid="uid://ci0nemkkasqiu" path="res://textures/gui_free.png" id="4_sucp4"]
 
 [node name="UICanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_83ydr")
@@ -14,13 +15,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+ratio = 1.7778
 
 [node name="MarginContainer" type="MarginContainer" parent="MainMenu"]
 layout_mode = 2
-theme_override_constants/margin_left = 64
-theme_override_constants/margin_top = 192
-theme_override_constants/margin_right = 64
-theme_override_constants/margin_bottom = 192
+theme_override_constants/margin_left = 96
+theme_override_constants/margin_top = 88
+theme_override_constants/margin_right = 96
+theme_override_constants/margin_bottom = 88
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/MarginContainer"]
 layout_mode = 2
@@ -74,6 +76,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+ratio = 1.7778
 
 [node name="VBoxContainer" type="VBoxContainer" parent="AspectRatioContainer"]
 layout_mode = 2
@@ -109,6 +112,45 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource("4_4nijn")
+region_rect = Rect2(9, 9, 30, 30)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Right/MarginContainer/NinePatchRect"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 1.99832
+offset_right = 62.0
+offset_bottom = 41.9983
+texture = ExtResource("4_sucp4")
+region_rect = Rect2(9, 57, 30, 30)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="NinePatchRect3" type="NinePatchRect" parent="AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Right/MarginContainer/NinePatchRect"]
+layout_mode = 0
+offset_left = 98.0
+offset_top = 1.99832
+offset_right = 138.0
+offset_bottom = 41.9983
+texture = ExtResource("4_sucp4")
+region_rect = Rect2(9, 57, 30, 30)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Right/MarginContainer/NinePatchRect"]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 9.998
+offset_right = 104.0
+offset_bottom = 57.998
+texture = ExtResource("4_sucp4")
 region_rect = Rect2(9, 9, 30, 30)
 patch_margin_left = 4
 patch_margin_top = 4
