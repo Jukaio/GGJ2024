@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://ds03x1hp3883r"]
+
+[ext_resource type="Texture2D" uid="uid://csnficd1k2yb1" path="res://sprites/Mushroom.png" id="1_p6o2a"]
+[ext_resource type="Script" path="res://scripts/ShopPurchaseSlot.gd" id="2_jt55c"]
+[ext_resource type="PackedScene" uid="uid://cubybm7hb7w03" path="res://prefabs/mushroom_sprite.tscn" id="3_i7q3w"]
+[ext_resource type="Theme" uid="uid://d241x0ek7vt0u" path="res://fonts/theme.tres" id="4_1wfa6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1wjnk"]
+
+[node name="PurchaseSlot" type="Sprite2D"]
+position = Vector2(-32, 24)
+texture = ExtResource("1_p6o2a")
+hframes = 4
+vframes = 6
+frame = 7
+script = ExtResource("2_jt55c")
+
+[node name="MushroomSprite" parent="." instance=ExtResource("3_i7q3w")]
+
+[node name="Purchase1" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Purchase1"]
+shape = SubResource("RectangleShape2D_1wjnk")
+
+[node name="PriceLabel" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -27.0
+offset_top = 7.0
+offset_right = 13.0
+offset_bottom = 30.0
+grow_horizontal = 2
+theme = ExtResource("4_1wfa6")
+text = "999"
+horizontal_alignment = 1
+
+[connection signal="area_entered" from="Purchase1" to="." method="_on_purchase_1_area_entered"]
+[connection signal="area_shape_entered" from="Purchase1" to="." method="_on_purchase_1_area_shape_entered"]
