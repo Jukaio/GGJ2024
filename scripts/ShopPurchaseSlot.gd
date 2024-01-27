@@ -11,8 +11,8 @@ signal shop_item_selected(shop_item : ShopPurchaseSlot, cost: int)
 
 var seedType = -1
 
-func get_seed_type():
-	return seedType / hframes
+func get_seed_type() -> int:
+	return self.frame / hframes
 	
 func purchased():
 	visible = false

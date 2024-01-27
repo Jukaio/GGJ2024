@@ -230,11 +230,11 @@ func _on_hoe_tool_plant_picked_up(plant):
 	PickedUpMushroom.visible = true
 
 
-func _on_purchase_slot_1_shop_item_selected(shop_item, cost):
+func _on_purchase_slot_1_shop_item_selected(shop_item: ShopPurchaseSlot, cost):
 	print("slot 1 purchase, cost: " + str(cost))
 	
 	if cost <= Money:
 		if !ui.is_full():
 			Money -= cost
 			shop_item.purchased()
-			ui.add_item(shop_item.get_seed_type(), 1)
+			ui.add_item(shop_item.frame, 1)

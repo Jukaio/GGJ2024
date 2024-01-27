@@ -7,11 +7,12 @@ class_name Plant extends Sprite2D
 
 @onready var Collider : CollisionShape2D = $Area2D/CollisionShape2D
 
+
 var timer = 0.0
 
 func set_growth_state(state: int):
 	
-	self.frame = (MushroomTypeStartIndex * 4) + state
+	self.frame = (MushroomTypeStartIndex * hframes) + state
 	
 	if GrowthState == 0:
 		Collider.disabled = true
