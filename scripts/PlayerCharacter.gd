@@ -47,7 +47,7 @@ func get_use_eight_way():
 	return g_use_eight_way
 
 func _ready():
-	animator = get_node("SpriteAnimator")
+	animator = get_node("PlayerSpriteAnimator")
 	hoeTool = get_node("HoeTool")
 	PickedUpMushroom.visible = false
 
@@ -89,16 +89,13 @@ func _process(delta):
 		PopMovementAction(MoveAction.DOWN)
 		
 	if Input.is_action_just_pressed("interact"):
-		var result = hoeTool.interact()
-		
-		if result == 1:
-			HoeTool
+		hoeTool.interact()
 		
 	if !animator.IsOneShotDone():
 		return
 	
 		
-	var dir =  GetEightAxisDirection(delta) if get_use_eight_way() else GetFourAxisDirection(delta)
+	var dir = GetEightAxisDirection(delta) if get_use_eight_way() else GetFourAxisDirection(delta)
 	if dir.is_zero_approx() or movementInput.is_empty():
 		ProcessIdle(delta)
 	else:

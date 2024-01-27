@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c1h6bgnucataf"]
+[gd_scene load_steps=13 format=3 uid="uid://c1h6bgnucataf"]
 
 [ext_resource type="PackedScene" uid="uid://oednu38gbmwd" path="res://prefabs/ground_tile_map.tscn" id="1_3jk2w"]
 [ext_resource type="Texture2D" uid="uid://csnficd1k2yb1" path="res://sprites/Mushroom.png" id="2_dqxue"]
@@ -7,7 +7,8 @@
 [ext_resource type="FontFile" uid="uid://cyescrgav85ig" path="res://fonts/AsepriteFont.ttf" id="4_vwj4e"]
 [ext_resource type="Texture2D" uid="uid://44r1ndryegis" path="res://graphics/ui/frame1.png" id="4_x5krr"]
 [ext_resource type="Script" path="res://scripts/CropsGrid.gd" id="7_ha7gq"]
-[ext_resource type="PackedScene" uid="uid://bjssjw418p1ic" path="res://prefabs/sprite_animator.tscn" id="8_dvj13"]
+[ext_resource type="Script" path="res://scripts/ShopKeepCharacter.gd" id="8_sxq4o"]
+[ext_resource type="PackedScene" uid="uid://boqqccurcgfef" path="res://prefabs/ShopKeeperSpriteAnimator.tscn" id="8_wd16a"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lpgvw"]
 texture = ExtResource("2_dqxue")
@@ -120,7 +121,14 @@ horizontal_alignment = 1
 position = Vector2(40, -40)
 script = ExtResource("7_ha7gq")
 
-[node name="ShopCharacter" type="Node2D" parent="."]
-position = Vector2(-135, -101)
+[node name="ShopKeeperCharacter" type="Node2D" parent="."]
+z_index = 10
+position = Vector2(-258, -100)
+script = ExtResource("8_sxq4o")
+StartPos = Vector2(-250, -100)
+EndPos = Vector2(-200, -100)
+Speed = 10.0
+TimeForOpenShop = 5.0
+TimeForClosedShop = 5.0
 
-[node name="SpriteAnimator" parent="ShopCharacter" instance=ExtResource("8_dvj13")]
+[node name="SpriteAnimator" parent="ShopKeeperCharacter" instance=ExtResource("8_wd16a")]
