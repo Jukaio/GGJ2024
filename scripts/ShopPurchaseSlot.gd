@@ -1,6 +1,6 @@
 class_name ShopPurchaseSlot extends Sprite2D
 
-var purchaseSound = preload("res://sounds/Hoe.wav")
+var purchaseSound = preload("res://sounds/purchase.wav")
 
 @onready var priceLabel : Label = $PriceLabel
 @onready var shopItemPlant : Plant = $MushroomSprite
