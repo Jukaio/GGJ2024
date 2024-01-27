@@ -30,6 +30,9 @@ func pick():
 	queue_free()
 
 func attempt_pick():
+	if visible == false:
+		return false
+		
 	visible = false
 	
 	if GrowthState < 3:

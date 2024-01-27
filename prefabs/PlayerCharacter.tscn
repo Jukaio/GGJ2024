@@ -12,8 +12,10 @@ size = Vector2(10, 18)
 script = ExtResource("1_47rnw")
 
 [node name="PlayerSpriteAnimator" parent="." instance=ExtResource("2_x0r5y")]
+position = Vector2(0, -8)
 
 [node name="HoeTool" parent="." instance=ExtResource("3_u86vp")]
+hoeTime = 0.75
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(17, 0)
@@ -23,6 +25,7 @@ position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_0bjyx")
 
 [node name="PickingUpSprite" type="Node2D" parent="."]
+position = Vector2(0, -4)
 
 [node name="MushroomSprite" parent="PickingUpSprite" instance=ExtResource("5_r4y1g")]
 

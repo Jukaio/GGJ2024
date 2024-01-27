@@ -28,11 +28,11 @@ func hoe(tileMap: TileMap):
 	on_hoe(target_position)
 
 func get_target_plant():
-	var target_position = player_character.position + (player_character.lookDirection * hoeLength)
+	var target_position = player_character.global_position + (player_character.lookDirection * hoeLength)
 	
-	var position_in_grid = player_character.cropsGrid.global_position - target_position
+	var position_in_grid = target_position - player_character.cropsGrid.global_position
 	var plant = player_character.cropsGrid.get_plant_at_position(position_in_grid)
-	
+	print(position_in_grid)
 	if plant != null:
 		print("mushroom position in grid: " + str(position_in_grid) + " name: " + plant.name)
 		
@@ -83,7 +83,6 @@ func _process(delta):
 
 func interact():
 	var animator = player_character.animator
-	var direction = player_character.get_look_direction()
 	
 	var cropsGrid = player_character.cropsGrid
 	
@@ -93,7 +92,12 @@ func interact():
 		# there is a plant in front of us
 		if plant.attempt_pick():
 			plant_picked_up.emit(plant)
+			return
 	
+	if !is_valid_to_hoe():
+		return
+	
+	var direction = player_character.get_look_direction()
 	match direction:
 		PlayerCharacter.MoveAction.RIGHT:
 			animator.PlayByName("HoeRight")

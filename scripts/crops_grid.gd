@@ -21,8 +21,8 @@ func plant_mushroom_at_grid_coord(row: int, col: int):
 	plant_data[row][col].visible = true
 
 func get_plant_at_position(vec: Vector2):
-	var gx = (((int)(vec.x)) / WidthPixels) * -1
-	var gy = (((int)(vec.y)) / HeightPixels) * -1
+	var gx = (((int)(vec.x)) / WidthPixels)
+	var gy = (((int)(vec.y)) / HeightPixels)
 	
 	print("grid_pos: " + str(gx) + ", " + str(gy))
 	
