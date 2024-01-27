@@ -7,10 +7,12 @@ enum MoveAction { DOWN, UP, LEFT, RIGHT }
 @onready var DirectionArea : Area2D = $Area2D
 @onready var PickedUpMushroom : Plant = $PickingUpSprite/MushroomSprite
 
+@export var Money : int
 @export var speed: float = 90.0
 @export var fieldMap: TileMap
 @export var cropsGrid: CropsGrid
 @export var seedMap: TileMap
+
 
 var lookDirection: Vector2 = Vector2.DOWN
 
@@ -184,12 +186,15 @@ func ProcessIdle(delta):
 
 
 func _on_area_2d_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
-	isColliding = true
+	#isColliding = true
+	pass
 
 
 func _on_hoe_tool_plant_picked_up(plant):
-	
 	print("player picked up plant: " + plant.name)
 	
 	PickedUpMushroom.visible = true
-	
+
+
+func _on_purchase_slot_1_shop_item_selected(plant, cost):
+	print("slot 1 purchase, cost: " + str(cost))
