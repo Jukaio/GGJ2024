@@ -50,4 +50,5 @@ texture = ExtResource("5_13fjv")
 region_enabled = true
 region_rect = Rect2(64, 102, 16, 10)
 
+[connection signal="plant_picked_up" from="HoeTool" to="." method="_on_hoe_tool_plant_picked_up"]
 [connection signal="area_shape_entered" from="Area2D" to="." method="_on_area_2d_area_shape_entered"]

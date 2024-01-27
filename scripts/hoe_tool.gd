@@ -43,14 +43,14 @@ func hoe(tileMap: TileMap):
 	
 	on_hoe(target_position)
 
-func seed_field(crops_field: CropsGrid, seedType: int):
+func seed_field(crops_field: CropsGrid, frameId: int):
 	var plant = get_target_plant()
-	plant.MushroomTypeStartIndex = seedType
+	plant.MushroomTypeStartIndex = frameId / plant.hframes
 	plant.set_growth_state(0)
 	plant.visible = true
 	
 
-func get_target_plant():
+func get_target_plant() -> Plant:
 	var target_position = player_character.global_position + (player_character.lookDirection * hoeLength)
 	
 	var position_in_grid = target_position - player_character.cropsGrid.global_position
@@ -72,11 +72,15 @@ func is_valid_to_hoe():
 	
 	var plant = get_target_plant()
 	
-	return current_field_cell == Vector2i(4, 0) && plant != null
+	return (current_field_cell == Vector2i(4, 0) && plant != null) || (current_field_cell == Vector2i(1, 0) && plant != null && plant.visible)
 	
 func is_valid_to_seed():
 	var equipped_item = player_character.ui.get_equipped_item()
 	if equipped_item == null:
+		return false
+	
+	# if hoe
+	if equipped_item.x == 3:
 		return false
 	
 	var fieldMap = player_character.fieldMap
@@ -150,7 +154,7 @@ func _process(delta):
 	var was_seeding = is_seeding
 	is_seeding = animator.oneShotAnimationSlot != null && animator.oneShotAnimationSlot.name.contains("Seed")
 
-	if (is_hoeing || !is_valid_to_hoe()) && (is_hoeing || !is_valid_to_seed()):
+	if (is_hoeing || !is_valid_to_hoe()) && (is_seeding || !is_valid_to_seed()):
 		highlightNode.visible = false
 		return
 	
@@ -159,8 +163,8 @@ func _process(delta):
 		
 	if !is_seeding && was_seeding:
 		var equipped_item = player_character.ui.get_equipped_item()
-		var id = equipped_item.x
-		seed_field(crops_field, id)
+		var frame = equipped_item.x
+		seed_field(crops_field, frame)
 		player_character.ui.try_remove_equipped_item()
 			
 		
@@ -186,6 +190,8 @@ func interact():
 			
 			player_character.PickedUpMushroom.visible = true
 			player_character.PickedUpMushroom.frame = plant.frame
+			player_character.PickedUpMushroom.MushroomTypeStartIndex = plant.MushroomTypeStartIndex
+			player_character.PickedUpMushroom.set_growth_state(plant.GrowthState)
 			
 			plant_picked_up.emit(plant)
 			match direction:

@@ -45,7 +45,7 @@ func try_remove_equipped_item():
 	
 
 func get_equipped_item():
-	return inventory.front() 
+	return inventory.front() if inventory.size() > 0 else null 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
