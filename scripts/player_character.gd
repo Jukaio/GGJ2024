@@ -196,5 +196,10 @@ func _on_hoe_tool_plant_picked_up(plant):
 	PickedUpMushroom.visible = true
 
 
-func _on_purchase_slot_1_shop_item_selected(plant, cost):
+func _on_purchase_slot_1_shop_item_selected(shop_item, cost):
 	print("slot 1 purchase, cost: " + str(cost))
+	
+	if cost <= Money:
+		Money -= cost
+		shop_item.purchased()
+		# add into inventory here

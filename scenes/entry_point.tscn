@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c1h6bgnucataf"]
+[gd_scene load_steps=14 format=3 uid="uid://c1h6bgnucataf"]
 
 [ext_resource type="PackedScene" uid="uid://oednu38gbmwd" path="res://prefabs/ground_tile_map.tscn" id="1_15xfq"]
 [ext_resource type="PackedScene" uid="uid://cucwiwl6qyqsg" path="res://prefabs/PlayerCharacter.tscn" id="2_r8nl4"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://ds03x1hp3883r" path="res://prefabs/purchase_slot.tscn" id="8_ma02f"]
 [ext_resource type="Texture2D" uid="uid://bn0vxmmg2f4uu" path="res://graphics/ui/speechbubble.png" id="9_d2fsl"]
 [ext_resource type="Theme" uid="uid://d241x0ek7vt0u" path="res://fonts/theme.tres" id="11_irulp"]
+[ext_resource type="AudioStream" uid="uid://dvjn3nwmud4w1" path="res://sounds/Hoe.wav" id="11_ymnet"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lpgvw"]
 texture = ExtResource("3_0klxi")
@@ -31,7 +32,7 @@ y_sort_enabled = true
 [node name="PlayerCharacter" parent="." node_paths=PackedStringArray("fieldMap", "cropsGrid", "seedMap") instance=ExtResource("2_r8nl4")]
 z_index = 10
 texture_filter = 1
-Money = 6
+Money = 2000
 fieldMap = NodePath("../GroundTileMap")
 cropsGrid = NodePath("../CropsGrid")
 seedMap = NodePath("../SeedTileMap")
@@ -62,13 +63,16 @@ TimeForClosedShop = 5.0
 
 [node name="SpriteAnimator" parent="ShopKeeperCharacter" instance=ExtResource("7_c5o5o")]
 
-[node name="PurchaseSlot1" parent="ShopKeeperCharacter" instance=ExtResource("8_ma02f")]
+[node name="PurchaseSlot1" parent="ShopKeeperCharacter" node_paths=PackedStringArray("audioPlayer") instance=ExtResource("8_ma02f")]
+audioPlayer = NodePath("../../AudioStreamPlayer")
 
-[node name="PurchaseSlot2" parent="ShopKeeperCharacter" instance=ExtResource("8_ma02f")]
+[node name="PurchaseSlot2" parent="ShopKeeperCharacter" node_paths=PackedStringArray("audioPlayer") instance=ExtResource("8_ma02f")]
 position = Vector2(0, 24)
+audioPlayer = NodePath("../../AudioStreamPlayer")
 
-[node name="PurchaseSlot3" parent="ShopKeeperCharacter" instance=ExtResource("8_ma02f")]
+[node name="PurchaseSlot3" parent="ShopKeeperCharacter" node_paths=PackedStringArray("audioPlayer") instance=ExtResource("8_ma02f")]
 position = Vector2(31, 24)
+audioPlayer = NodePath("../../AudioStreamPlayer")
 
 [node name="SpeechBubbleSprite2D" type="Sprite2D" parent="ShopKeeperCharacter"]
 position = Vector2(11, -28)
@@ -83,6 +87,9 @@ theme = ExtResource("11_irulp")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0.701961, 0.701961, 0.701961, 1)
 text = "Psst..."
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_ymnet")
 
 [connection signal="shop_item_selected" from="ShopKeeperCharacter/PurchaseSlot1" to="PlayerCharacter" method="_on_purchase_slot_1_shop_item_selected"]
 [connection signal="shop_item_selected" from="ShopKeeperCharacter/PurchaseSlot2" to="PlayerCharacter" method="_on_purchase_slot_1_shop_item_selected"]
