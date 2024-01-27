@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://dumr5vgy24wbo"]
+
+[ext_resource type="Texture2D" uid="uid://xev6rcfkj5ad" path="res://sprites/Env.png" id="1_0w4f2"]
+[ext_resource type="Script" path="res://scripts/sales_bucket.gd" id="2_aax8a"]
+[ext_resource type="Theme" uid="uid://d241x0ek7vt0u" path="res://fonts/theme.tres" id="3_hnf6f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4nqrk"]
+
+[node name="SalesBucket" type="Sprite2D"]
+z_index = 20
+texture_filter = 1
+position = Vector2(2.08165e-12, 2.08165e-12)
+texture = ExtResource("1_0w4f2")
+region_enabled = true
+region_rect = Rect2(48, 112, 22, 20)
+script = ExtResource("2_aax8a")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_4nqrk")
+
+[node name="MoneyEarnedLabel" type="Label" parent="."]
+z_index = 100
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -28.0
+offset_top = -21.0
+offset_right = 12.0
+offset_bottom = 2.0
+grow_horizontal = 2
+theme = ExtResource("3_hnf6f")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "99$"
+horizontal_alignment = 1
+
+[node name="MoneySign" type="Sprite2D" parent="."]
+position = Vector2(17, 11)
+texture = ExtResource("1_0w4f2")
+hframes = 2
+region_enabled = true
+region_rect = Rect2(2.08165e-12, 142, 64, 18)
+
+[connection signal="area_shape_entered" from="Area2D" to="." method="_on_area_2d_area_shape_entered"]
+[connection signal="area_shape_exited" from="Area2D" to="." method="_on_area_2d_area_shape_exited"]

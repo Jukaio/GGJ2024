@@ -16,6 +16,7 @@ enum MoveAction { DOWN, UP, LEFT, RIGHT }
 @export var fieldMap: TileMap
 @export var cropsGrid: CropsGrid
 @export var ui: UI
+@export var sales_bucket: SalesBucket
 
 var lookDirection: Vector2 = Vector2.DOWN
 
@@ -76,6 +77,9 @@ func PopMovementAction(action: MoveAction):
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
+	sales_bucket.set_money_sign_animating(PickedUpMushroom.visible)
+	
 	# Fix later -> 8 axis
 	# TODO: Nvm, add 8-axis movement -> 50% chance to use 4-axis or 8-axis
 	# TODO: David
