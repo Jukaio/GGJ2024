@@ -11,7 +11,6 @@ enum MoveAction { DOWN, UP, LEFT, RIGHT }
 @export var speed: float = 90.0
 @export var fieldMap: TileMap
 @export var cropsGrid: CropsGrid
-@export var seedMap: TileMap
 @export var ui: UI
 
 var lookDirection: Vector2 = Vector2.DOWN
@@ -210,4 +209,4 @@ func _on_purchase_slot_1_shop_item_selected(shop_item, cost):
 		if !ui.is_full():
 			Money -= cost
 			shop_item.purchased()
-			ui.add_item(shop_item.frame, 1)
+			ui.add_item(shop_item.get_seed_type(), 1)

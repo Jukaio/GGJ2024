@@ -64,34 +64,30 @@ func get_target_plant():
 	return null
 		
 func is_valid_to_hoe():
-	var seedMap = player_character.seedMap
 	var fieldMap = player_character.fieldMap
 	
 	var target_position = player_character.position + (player_character.lookDirection * hoeLength)
 	var idx = fieldMap.local_to_map(target_position)
 	var current_field_cell = fieldMap.get_cell_atlas_coords(0, idx)
 	
-	idx = seedMap.local_to_map(target_position)
-	var current_seed_cell = seedMap.get_cell_atlas_coords(0, idx)
-	
 	var plant = get_target_plant()
 	
-	return current_field_cell == Vector2i(4, 0) && current_seed_cell == Vector2i(-1, -1) && plant != null
+	return current_field_cell == Vector2i(4, 0) && plant != null
 	
 func is_valid_to_seed():
-	var seedMap = player_character.seedMap
+	var equipped_item = player_character.ui.get_equipped_item()
+	if equipped_item == null:
+		return false
+	
 	var fieldMap = player_character.fieldMap
 	
 	var target_position = player_character.position + (player_character.lookDirection * hoeLength)
 	var idx = fieldMap.local_to_map(target_position)
 	var current_field_cell = fieldMap.get_cell_atlas_coords(0, idx)
-	
-	idx = seedMap.local_to_map(target_position)
-	var current_seed_cell = seedMap.get_cell_atlas_coords(0, idx)
-	
+
 	var plant = get_target_plant()
 	
-	return current_field_cell == Vector2i(1, 0) && current_seed_cell == Vector2i(-1, -1) && plant != null && !plant.visible
+	return current_field_cell == Vector2i(1, 0) && plant != null && !plant.visible
 		
 func highlight(tileMap: TileMap):
 	var target_position = player_character.position + (player_character.lookDirection * hoeLength)
@@ -139,10 +135,9 @@ func on_animation_override(delta, inputDir):
 func _process(delta):
 	was_interact_pressed_this_frame = Input.is_action_just_pressed("interact")
 
-	var seedMap = player_character.seedMap
 	var fieldMap = player_character.fieldMap
 	var crops_field = player_character.cropsGrid
-	if player_character.PickedUpMushroom.visible || seedMap == null || fieldMap == null:
+	if player_character.PickedUpMushroom.visible || fieldMap == null:
 		highlightNode.visible = false
 		return
 
@@ -163,10 +158,13 @@ func _process(delta):
 		hoe(fieldMap)
 		
 	if !is_seeding && was_seeding:
-		seed_field(crops_field, 0)
+		var equipped_item = player_character.ui.get_equipped_item()
+		var id = equipped_item.x
+		seed_field(crops_field, id)
+		player_character.ui.try_remove_equipped_item()
 			
 		
-	highlight(seedMap)
+	highlight(fieldMap)
 	
 
 func interact():

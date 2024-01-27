@@ -57,14 +57,17 @@ ChanceType4 = 8
 ChanceType5 = 5
 
 [node name="PurchaseSlot1" parent="ShopKeeperCharacter" node_paths=PackedStringArray("audioPlayer") instance=ExtResource("8_ma02f")]
+Cost = null
 audioPlayer = NodePath("../../AudioStreamPlayer")
 
 [node name="PurchaseSlot2" parent="ShopKeeperCharacter" node_paths=PackedStringArray("audioPlayer") instance=ExtResource("8_ma02f")]
 position = Vector2(0, 24)
+Cost = null
 audioPlayer = NodePath("../../AudioStreamPlayer")
 
 [node name="PurchaseSlot3" parent="ShopKeeperCharacter" node_paths=PackedStringArray("audioPlayer") instance=ExtResource("8_ma02f")]
 position = Vector2(31, 24)
+Cost = null
 audioPlayer = NodePath("../../AudioStreamPlayer")
 
 [node name="SpeechBubbleSprite2D" type="Sprite2D" parent="ShopKeeperCharacter"]

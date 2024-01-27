@@ -43,8 +43,9 @@ func add_item(item : int, count : int):
 func try_remove_equipped_item():
 	return inventory.pop_front()
 	
+
 func get_equipped_item():
-	return inventory.front()
+	return inventory.front() 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

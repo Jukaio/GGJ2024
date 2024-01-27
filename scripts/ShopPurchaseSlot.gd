@@ -9,6 +9,11 @@ var purchaseSound = preload("res://sounds/purchase.wav")
 
 signal shop_item_selected(shop_item : ShopPurchaseSlot, cost: int)
 
+var seedType = -1
+
+func get_seed_type():
+	return seedType / hframes
+	
 func purchased():
 	visible = false
 	if not audioPlayer.is_playing():
@@ -16,6 +21,7 @@ func purchased():
 		audioPlayer.play()
 
 func set_shop_item(mushroomTypeStartIndex: int, cost: int):
+	self.seedType = mushroomTypeStartIndex
 	self.frame = mushroomTypeStartIndex * hframes
 	Cost = cost
 	visible = true
