@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cubybm7hb7w03"]
 
-[ext_resource type="Texture2D" uid="uid://csnficd1k2yb1" path="res://sprites/Mushroom.png" id="1_ujb00"]
+[ext_resource type="Texture2D" uid="uid://deb1moxqsufeh" path="res://sprites/Mushroom-Sheet.png" id="1_n5m2u"]
 [ext_resource type="Script" path="res://scripts/plant.gd" id="2_4rbs3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r7he7"]
@@ -8,9 +8,9 @@ size = Vector2(16, 14)
 
 [node name="MushroomSprite" type="Sprite2D"]
 z_index = 10
-texture = ExtResource("1_ujb00")
+texture = ExtResource("1_n5m2u")
 centered = false
-hframes = 4
+hframes = 8
 vframes = 5
 frame = 11
 script = ExtResource("2_4rbs3")
