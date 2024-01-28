@@ -46,7 +46,7 @@ region_enabled = true
 region_rect = Rect2(2.08165e-12, 142, 64, 18)
 
 [node name="BucketShadow" type="Sprite2D" parent="."]
-z_index = -2
+z_index = -1
 texture = ExtResource("1_eouho")
 hframes = 4
 vframes = 2
