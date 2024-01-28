@@ -54,7 +54,7 @@ sales_bucket = NodePath("../SalesBucket")
 SmokeEffect = NodePath("../SmokeEffect")
 
 [node name="MainCamera2D" type="Camera2D" parent="."]
-position = Vector2(2.08165e-12, 2.08165e-12)
+position = Vector2(0, -32)
 script = ExtResource("4_1b2oq")
 
 [node name="UICanvasLayer" parent="." instance=ExtResource("4_gk132")]
@@ -186,7 +186,7 @@ shape = SubResource("RectangleShape2D_ktdqq")
 [node name="border" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="border"]
-position = Vector2(10.5, 152.5)
+position = Vector2(9, 89)
 shape = SubResource("RectangleShape2D_f5w8u")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="border"]
@@ -194,11 +194,11 @@ position = Vector2(9, -147)
 shape = SubResource("RectangleShape2D_f5w8u")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="border"]
-position = Vector2(-248, -44)
+position = Vector2(-219, -44)
 shape = SubResource("RectangleShape2D_0ls3w")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="border"]
-position = Vector2(249, -44)
+position = Vector2(233, -42)
 shape = SubResource("RectangleShape2D_0ls3w")
 
 [connection signal="shop_item_selected" from="ShopKeeperCharacter/PurchaseSlot1" to="PlayerCharacter" method="_on_purchase_slot_1_shop_item_selected"]

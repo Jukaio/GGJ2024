@@ -125,6 +125,8 @@ func highlight(tileMap: TileMap):
 	highlightNode.global_position.x = ceilf(global_highLight_position.x)
 	highlightNode.global_position.y = ceilf(global_highLight_position.y)
 
+	print(fmod(global_highLight_position.x, 8.0))
+
 
 func on_animation_override(delta, inputDir):
 	if !player_character.PickedUpMushroom.visible:
