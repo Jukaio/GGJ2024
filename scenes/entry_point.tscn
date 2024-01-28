@@ -23,7 +23,7 @@
 size = Vector2(43, 3)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tk7v1"]
-size = Vector2(48, 35.5)
+size = Vector2(60, 35.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ktdqq"]
 size = Vector2(17, 9)
@@ -38,12 +38,18 @@ size = Vector2(20, 412)
 y_sort_enabled = true
 
 [node name="GroundTileMap" parent="." instance=ExtResource("1_15xfq")]
+z_index = 10
+y_sort_enabled = true
+layer_0/z_index = -1
+layer_1/y_sort_enabled = true
+layer_1/y_sort_origin = -4
 
 [node name="SmokeEffect" parent="." instance=ExtResource("2_k7imp")]
 z_index = 9
 
 [node name="PlayerCharacter" parent="." node_paths=PackedStringArray("camera", "fieldMap", "cropsGrid", "ui", "sales_bucket", "SmokeEffect") instance=ExtResource("2_r8nl4")]
 z_index = 10
+y_sort_enabled = true
 texture_filter = 1
 camera = NodePath("../MainCamera2D")
 Money = 100
@@ -61,11 +67,14 @@ script = ExtResource("4_1b2oq")
 [node name="UICanvasLayer" parent="." instance=ExtResource("4_gk132")]
 
 [node name="CropsGrid" type="Node2D" parent="."]
+z_index = 10
+y_sort_enabled = true
 position = Vector2(35, -58)
 script = ExtResource("5_ggryu")
 
 [node name="ShopKeeperCharacter" type="Node2D" parent="."]
 z_index = 10
+y_sort_enabled = true
 position = Vector2(-284, -64)
 script = ExtResource("6_8lmio")
 StartPos = Vector2(-250, -64)
@@ -80,13 +89,16 @@ ChanceType4 = 8
 ChanceType5 = 5
 
 [node name="PurchaseSlot1" parent="ShopKeeperCharacter" node_paths=PackedStringArray("audioPlayer") instance=ExtResource("8_ma02f")]
+y_sort_enabled = true
 audioPlayer = NodePath("../../AudioStreamPlayer")
 
 [node name="PurchaseSlot2" parent="ShopKeeperCharacter" node_paths=PackedStringArray("audioPlayer") instance=ExtResource("8_ma02f")]
+y_sort_enabled = true
 position = Vector2(0, 24)
 audioPlayer = NodePath("../../AudioStreamPlayer")
 
 [node name="PurchaseSlot3" parent="ShopKeeperCharacter" node_paths=PackedStringArray("audioPlayer") instance=ExtResource("8_ma02f")]
+y_sort_enabled = true
 position = Vector2(31, 24)
 audioPlayer = NodePath("../../AudioStreamPlayer")
 
