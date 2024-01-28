@@ -41,9 +41,6 @@ func _process(delta):
 
 
 func _on_purchase_1_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
-	if not visible:
-		return
-		
 	highlight.visible = false
 	
 	if area.get_parent() is PlayerCharacter:
@@ -52,9 +49,6 @@ func _on_purchase_1_area_shape_entered(area_rid, area, area_shape_index, local_s
 
 
 func _on_purchase_1_area_shape_exited(area_rid, area, area_shape_index, local_shape_index):
-	if not visible:
-		return
-	
 	highlight.visible = false
 	
 	if area.get_parent() is PlayerCharacter:
