@@ -3,6 +3,7 @@
 [ext_resource type="TileSet" uid="uid://4feilimrxep2" path="res://prefabs/ground_tileset.tres" id="1_lq2qg"]
 
 [node name="GroundTileMap" type="TileMap"]
+z_index = 5
 position = Vector2(3, -4)
 tile_set = ExtResource("1_lq2qg")
 format = 2

@@ -39,7 +39,6 @@ y_sort_enabled = true
 
 [node name="GroundTileMap" parent="." instance=ExtResource("1_15xfq")]
 z_index = 10
-y_sort_enabled = true
 layer_0/z_index = -1
 layer_1/y_sort_enabled = true
 layer_1/y_sort_origin = -4
