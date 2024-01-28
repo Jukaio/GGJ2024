@@ -41,7 +41,7 @@ func _ready():
 		for col in range(NumRows):
 			var newobj = MushroomPrefab1.instantiate() as Plant
 			add_child(newobj)
-			newobj.visible = true
+			newobj.visible = false
 			newobj.TimeForStateIncrease = grow_time
 
 			newobj.set_growth_state(0)
