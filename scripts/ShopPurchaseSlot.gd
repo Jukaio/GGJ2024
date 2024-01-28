@@ -28,7 +28,7 @@ func set_shop_item(mushroomTypeStartIndex: int, cost: int):
 	Cost = cost
 	visible = true
 	
-	priceLabel.text = str(cost)
+	priceLabel.text = "$%d"%(cost)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

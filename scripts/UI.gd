@@ -103,7 +103,7 @@ var g_last_money : int = -123
 
 func set_money_text(value : int):
 	if g_last_money != value:
-		money_text.text = "x%d" % min(value, 9999)
+		money_text.text = "$%d" % min(value, 9999)
 		g_last_money = value
 
 func _process(delta):
