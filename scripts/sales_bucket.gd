@@ -69,13 +69,15 @@ func _process(delta):
 	for player in players_in_range:
 		if player.PickedUpMushroom && player.PickedUpMushroom.visible && player.hoeTool.was_interact_pressed_this_frame:
 			player.PickedUpMushroom.visible = false
-			add_item(100)
+			add_item(player, 100)
 
-func add_item(money_value: int):
+func add_item(player: PlayerCharacter, money_value: int):
 	
 	set_bucket_animating(true)
 	
 	moneyLabel.visible = true
+	
+	player.Money += money_value
 	
 	moneyLabel.position = labelStartPosition
 	moneyLabel.text = str(money_value) + "$"
