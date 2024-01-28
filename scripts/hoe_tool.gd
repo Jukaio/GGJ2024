@@ -36,7 +36,7 @@ func on_hoe(at: Vector2):
 
 func hoe(tileMap: TileMap):
 	var target_position = player_character.position + (player_character.lookDirection * hoeLength)
-	var idx = tileMap.local_to_map(target_position)
+	var idx = get_target_cell_idx(tileMap)
 	var current_cell = tileMap.get_cell_atlas_coords(0, idx)
 	
 	tileMap.set_cell(0, idx, 0, Vector2i(1, 0))
@@ -64,8 +64,7 @@ func get_target_plant() -> Plant:
 func is_valid_to_hoe():
 	var fieldMap = player_character.fieldMap
 	
-	var target_position = player_character.position + (player_character.lookDirection * hoeLength)
-	var idx = fieldMap.local_to_map(target_position)
+	var idx = get_target_cell_idx(fieldMap)
 	var current_field_cell = fieldMap.get_cell_atlas_coords(0, idx)
 	
 	var plant = get_target_plant()
@@ -82,24 +81,26 @@ func is_valid_to_seed():
 		return false
 	
 	var fieldMap = player_character.fieldMap
-	
-	var target_position = player_character.position + (player_character.lookDirection * hoeLength)
-	var idx = fieldMap.local_to_map(target_position)
+	var idx = get_target_cell_idx(fieldMap)
 	var current_field_cell = fieldMap.get_cell_atlas_coords(0, idx)
 
 	var plant = get_target_plant()
 	
 	return current_field_cell == Vector2i(1, 0) && plant != null && !plant.visible
 		
-func highlight(tileMap: TileMap):
+func get_target_cell_idx(tileMap: TileMap):
 	var target_position = player_character.global_position + (player_character.lookDirection * hoeLength)
+	var local_in_tilemap = tileMap.to_local(target_position)
 	
-	tileMap.to_local(target_position)
+	var idx = tileMap.local_to_map(local_in_tilemap)
+	return idx
+		
+func highlight(tileMap: TileMap):
+	var idx = get_target_cell_idx(tileMap)
+	var highlight_position = tileMap.map_to_local(idx)
 	
-	var idx = tileMap.local_to_map(target_position)
-	var highlightPosition = tileMap.map_to_local(idx)
 	highlightNode.visible = true
-	highlightNode.global_position = highlightPosition
+	highlightNode.global_position = tileMap.to_global(highlight_position)
 
 
 func on_animation_override(delta, inputDir):
