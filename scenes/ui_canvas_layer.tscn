@@ -166,9 +166,10 @@ layout_mode = 2
 
 [node name="NinePatchRect" type="NinePatchRect" parent="AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Right/MarginContainer/Panel"]
 layout_mode = 0
-offset_left = 45.0
-offset_right = 85.0
-offset_bottom = 40.0
+offset_left = 88.0
+offset_top = -0.00167847
+offset_right = 112.0
+offset_bottom = 23.9983
 texture = ExtResource("4_sucp4")
 region_rect = Rect2(9, 57, 30, 30)
 patch_margin_left = 4
@@ -177,8 +178,7 @@ patch_margin_right = 4
 patch_margin_bottom = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Right/MarginContainer/Panel/NinePatchRect" node_paths=PackedStringArray("counter_label")]
-position = Vector2(20, 20)
-scale = Vector2(2, 2)
+position = Vector2(12, 12)
 texture = ExtResource("5_pqwk4")
 hframes = 4
 vframes = 5
@@ -189,10 +189,10 @@ counter_label = NodePath("../Counter/TextCounter")
 [node name="Counter" type="NinePatchRect" parent="AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Right/MarginContainer/Panel/NinePatchRect"]
 z_index = -1
 layout_mode = 0
-offset_left = 9.0
-offset_top = 30.0
-offset_right = 33.0
-offset_bottom = 54.0
+offset_left = 4.0
+offset_top = 20.0
+offset_right = 20.0
+offset_bottom = 36.0
 texture = ExtResource("4_4nijn")
 region_rect = Rect2(59, 107, 26, 28)
 patch_margin_left = 4
@@ -206,9 +206,8 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 3.0
-offset_top = 6.0
 offset_right = -1.0
-offset_bottom = -3.0
+offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("5_yrnwt")
@@ -219,9 +218,10 @@ vertical_alignment = 1
 
 [node name="NinePatchRect3" type="NinePatchRect" parent="AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Right/MarginContainer/Panel"]
 layout_mode = 0
-offset_left = 121.0
-offset_right = 161.0
-offset_bottom = 40.0
+offset_left = 138.0
+offset_top = -0.00167847
+offset_right = 162.0
+offset_bottom = 23.9983
 texture = ExtResource("4_sucp4")
 region_rect = Rect2(9, 57, 30, 30)
 patch_margin_left = 4
@@ -230,8 +230,7 @@ patch_margin_right = 4
 patch_margin_bottom = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Right/MarginContainer/Panel/NinePatchRect3" node_paths=PackedStringArray("counter_label")]
-position = Vector2(20, 20)
-scale = Vector2(2, 2)
+position = Vector2(12, 12)
 texture = ExtResource("5_pqwk4")
 hframes = 4
 vframes = 5
@@ -242,10 +241,10 @@ counter_label = NodePath("../Counter/TextCounter")
 [node name="Counter" type="NinePatchRect" parent="AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Right/MarginContainer/Panel/NinePatchRect3"]
 z_index = -1
 layout_mode = 0
-offset_left = 9.0
-offset_top = 30.0
-offset_right = 33.0
-offset_bottom = 54.0
+offset_left = 4.0
+offset_top = 20.0
+offset_right = 20.0
+offset_bottom = 36.0
 texture = ExtResource("4_4nijn")
 region_rect = Rect2(59, 107, 26, 28)
 patch_margin_left = 4
@@ -259,9 +258,8 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 3.0
-offset_top = 6.0
 offset_right = -1.0
-offset_bottom = -3.0
+offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("5_yrnwt")
@@ -272,10 +270,10 @@ vertical_alignment = 1
 
 [node name="NinePatchRect2" type="NinePatchRect" parent="AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Right/MarginContainer/Panel"]
 layout_mode = 0
-offset_left = 80.0
-offset_top = 8.0
-offset_right = 128.0
-offset_bottom = 56.0
+offset_left = 109.0
+offset_top = 7.99832
+offset_right = 141.0
+offset_bottom = 39.9983
 texture = ExtResource("4_sucp4")
 region_rect = Rect2(9, 9, 30, 30)
 patch_margin_left = 4
@@ -284,8 +282,7 @@ patch_margin_right = 4
 patch_margin_bottom = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Right/MarginContainer/Panel/NinePatchRect2" node_paths=PackedStringArray("counter_label")]
-position = Vector2(24, 24.0003)
-scale = Vector2(2, 2)
+position = Vector2(16, 16)
 texture = ExtResource("5_pqwk4")
 hframes = 4
 vframes = 5
@@ -296,10 +293,10 @@ counter_label = NodePath("../Counter/TextCounter")
 [node name="Counter" type="NinePatchRect" parent="AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Right/MarginContainer/Panel/NinePatchRect2"]
 z_index = -1
 layout_mode = 0
-offset_left = 12.0
-offset_top = 38.0
-offset_right = 36.0
-offset_bottom = 62.0
+offset_left = 6.0
+offset_top = 23.0
+offset_right = 26.0
+offset_bottom = 43.0
 texture = ExtResource("4_4nijn")
 region_rect = Rect2(59, 59, 26, 28)
 patch_margin_left = 4
@@ -313,9 +310,9 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 3.0
-offset_top = 6.0
+offset_top = 4.5
 offset_right = -1.0
-offset_bottom = -3.0
+offset_bottom = -3.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("5_yrnwt")
