@@ -53,9 +53,10 @@ func seed_field(crops_field: CropsGrid, frameId: int):
 
 func get_target_plant() -> Plant:
 	var target_position = player_character.global_position + (player_character.lookDirection * hoeLength)
+	var local_plant_position = player_character.cropsGrid.to_local(target_position) + Vector2(0.0, -6.0)
+	var is_not_in_grid = local_plant_position.x < 0.0 || local_plant_position.y <= 0.0
 	
-	var position_in_grid = target_position - player_character.cropsGrid.global_position
-	var plant = player_character.cropsGrid.get_plant_at_position(position_in_grid)
+	var plant = player_character.cropsGrid.get_plant_at_position(local_plant_position)
 	
 	if plant != null:
 		return plant
@@ -63,9 +64,11 @@ func get_target_plant() -> Plant:
 	return null
 		
 func _draw():
+	# DO NOT RETURN IF YOU WISH TO DEBUG CROPS
+	# PS: This is not in anybody, this is just insane LOL 
 	return
 	var target_position = player_character.global_position + (player_character.lookDirection * hoeLength)
-	var local_plant_position = player_character.cropsGrid.to_local(target_position)
+	var local_plant_position = player_character.cropsGrid.to_local(target_position) + Vector2(0.0, -6.0)
 	var is_not_in_grid = local_plant_position.x < 0.0 || local_plant_position.y <= 0.0
 		
 	var plant = player_character.cropsGrid.get_plant_at_position(local_plant_position)
@@ -196,8 +199,6 @@ func _process(delta):
 
 func interact():
 	var animator = player_character.animator
-	
-	var cropsGrid = player_character.cropsGrid
 	
 	var plant = get_target_plant()
 	
