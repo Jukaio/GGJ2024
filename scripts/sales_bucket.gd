@@ -77,6 +77,8 @@ func _process(delta):
 			var base_value = (player.PickedUpMushroom.MushroomTypeStartIndex + 1)
 			var sales_value = 2 + base_value + (base_value * 2)
 			
+			money_sign.frame = 0
+			
 			add_item(player, sales_value)
 
 func add_item(player: PlayerCharacter, money_value: int):

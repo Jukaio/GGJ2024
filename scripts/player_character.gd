@@ -81,11 +81,19 @@ func PopMovementAction(action: MoveAction):
 		movementInput.remove_at(index);
 		return;
 	push_warning("DOUBLE POP INPUT???!!")
-	
+
+var reduce_money_timer = 0.0
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	
 	smoke_cooldown += delta
+	
+	reduce_money_timer += delta
+	
+	if reduce_money_timer > 3.0:
+		reduce_money_timer = 0.0
+		Money -= 1
 	
 	sales_bucket.set_money_sign_animating(PickedUpMushroom.visible)
 	ui.set_money_text(Money)

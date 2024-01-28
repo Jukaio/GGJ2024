@@ -14,8 +14,6 @@ size = Vector2(10, 7)
 
 [node name="PlayerCharacter" type="CharacterBody2D"]
 script = ExtResource("1_47rnw")
-Money = null
-speed = null
 
 [node name="SpriteAnimator" parent="." instance=ExtResource("2_x0r5y")]
 position = Vector2(0, -10)
