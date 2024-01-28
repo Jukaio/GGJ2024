@@ -69,7 +69,10 @@ func _process(delta):
 	for player in players_in_range:
 		if player.PickedUpMushroom && player.PickedUpMushroom.visible && player.hoeTool.was_interact_pressed_this_frame:
 			player.PickedUpMushroom.visible = false
-			add_item(100)
+			var base_value = (player.PickedUpMushroom.MushroomTypeStartIndex + 1)
+			var sales_value = 2 + base_value + (base_value * 2)
+			
+			add_item(sales_value)
 
 func add_item(money_value: int):
 	

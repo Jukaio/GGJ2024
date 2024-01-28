@@ -32,9 +32,9 @@ func randomize_inventory():
 	var slot2 = randomize_slot()
 	var slot3 = randomize_slot()
 	
-	shopSlot1.set_shop_item(slot1, (slot1+1) * rng.randi_range(5, 10))
-	shopSlot2.set_shop_item(slot2, (slot2+1) * rng.randi_range(5, 10))
-	shopSlot3.set_shop_item(slot3, (slot3+1) * rng.randi_range(5, 10))
+	shopSlot1.set_shop_item(slot1, (slot1+1) * rng.randi_range(1, 2))
+	shopSlot2.set_shop_item(slot2, (slot2+1) * rng.randi_range(1, 2))
+	shopSlot3.set_shop_item(slot3, (slot3+1) * rng.randi_range(1, 2))
 
 func randomize_slot():
 	var rand = rng.randi_range(0, sumChance)
