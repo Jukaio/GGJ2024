@@ -1,0 +1,95 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddfh5t4q8i1js"]
+
+[ext_resource type="Script" path="res://scripts/UI.gd" id="1_j4lnp"]
+[ext_resource type="Texture2D" uid="uid://b844hqqnsenbc" path="res://textures/buttons free.png" id="2_xdh5n"]
+[ext_resource type="Texture2D" uid="uid://cdgh3li1f003" path="res://sprites/main_menu_sheet.png" id="3_w4uqr"]
+
+[node name="UIMainMenuCanvasLayer" type="CanvasLayer" node_paths=PackedStringArray("money_text", "hotbar_slots")]
+script = ExtResource("1_j4lnp")
+money_text = NodePath("")
+hotbar_slots = [NodePath(""), NodePath(""), NodePath("")]
+
+[node name="MainMenu" type="AspectRatioContainer" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+ratio = 1.7778
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 96
+theme_override_constants/margin_top = 88
+theme_override_constants/margin_right = 96
+theme_override_constants/margin_bottom = 88
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Game Name" type="NinePatchRect" parent="MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_xdh5n")
+region_rect = Rect2(3, 2, 42, 28)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="Label" type="Label" parent="MainMenu/MarginContainer/VBoxContainer/Game Name"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Data-Driven Mushrooms"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Start Game" type="NinePatchRect" parent="MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_xdh5n")
+region_rect = Rect2(3, 2, 42, 28)
+patch_margin_left = 4
+patch_margin_top = 4
+patch_margin_right = 4
+patch_margin_bottom = 4
+
+[node name="Label" type="Label" parent="MainMenu/MarginContainer/VBoxContainer/Start Game"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press ENTER to start"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+ratio = 1.7778
+
+[node name="VBoxContainer" type="VBoxContainer" parent="AspectRatioContainer"]
+layout_mode = 2
+
+[node name="Top Half" type="MarginContainer" parent="AspectRatioContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="TextureRect" type="TextureRect" parent="AspectRatioContainer/VBoxContainer/Top Half"]
+layout_mode = 2
+texture = ExtResource("3_w4uqr")

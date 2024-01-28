@@ -6,6 +6,7 @@
 [node name="HoeTool" type="Node2D" node_paths=PackedStringArray("highlightNode")]
 script = ExtResource("1_t5nen")
 highlightNode = NodePath("Highlight")
+seedTime = 0.64
 
 [node name="Highlight" type="Node2D" parent="."]
 z_index = -1

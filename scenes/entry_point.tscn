@@ -32,7 +32,6 @@ z_index = 9
 [node name="PlayerCharacter" parent="." node_paths=PackedStringArray("fieldMap", "cropsGrid", "ui", "sales_bucket", "SmokeEffect") instance=ExtResource("2_r8nl4")]
 z_index = 10
 texture_filter = 1
-Money = 2000
 speed = 60.0
 fieldMap = NodePath("../GroundTileMap")
 cropsGrid = NodePath("../CropsGrid")

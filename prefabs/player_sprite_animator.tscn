@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bjssjw418p1ic"]
+[gd_scene load_steps=6 format=3 uid="uid://bjssjw418p1ic"]
 
 [ext_resource type="Script" path="res://scripts/sprite_animator.gd" id="1_0xbl6"]
 [ext_resource type="Texture2D" uid="uid://dogafvlhpasm4" path="res://sprites/Player-Sheet.png" id="2_h1hwb"]
 [ext_resource type="Script" path="res://scripts/sprite_animation.gd" id="3_jt3x3"]
 [ext_resource type="Texture2D" uid="uid://dknovyheo0aap" path="res://sprites/Hoe-Sheet.png" id="4_8f8vi"]
+[ext_resource type="Texture2D" uid="uid://igcmjraefq1u" path="res://sprites/Seed-Sheet.png" id="5_m2xfu"]
 
 [node name="SpriteAnimator" type="Node2D"]
 position = Vector2(0, -4)
@@ -101,36 +102,32 @@ region_rect = Rect2(0, 32, 168, 32)
 script = ExtResource("3_jt3x3")
 
 [node name="SeedDown" type="Sprite2D" parent="."]
-position = Vector2(0, 5)
-texture = ExtResource("4_8f8vi")
-hframes = 9
+texture = ExtResource("5_m2xfu")
+hframes = 3
 region_enabled = true
-region_rect = Rect2(0, 0, 216, 32)
+region_rect = Rect2(0, 0, 54, 26)
 script = ExtResource("3_jt3x3")
 
 [node name="SeedUp" type="Sprite2D" parent="."]
-position = Vector2(0, -3)
-texture = ExtResource("4_8f8vi")
-hframes = 9
+texture = ExtResource("5_m2xfu")
+hframes = 3
 region_enabled = true
-region_rect = Rect2(0, 64, 216, 32)
+region_rect = Rect2(0, 52, 54, 26)
 script = ExtResource("3_jt3x3")
 
 [node name="SeedLeft" type="Sprite2D" parent="."]
-position = Vector2(-5, -3)
-texture = ExtResource("4_8f8vi")
+texture = ExtResource("5_m2xfu")
 flip_h = true
-hframes = 9
+hframes = 3
 region_enabled = true
-region_rect = Rect2(0, 32, 216, 32)
+region_rect = Rect2(0, 26, 54, 26)
 script = ExtResource("3_jt3x3")
 
 [node name="SeedRight" type="Sprite2D" parent="."]
-position = Vector2(5, -3)
-texture = ExtResource("4_8f8vi")
-hframes = 9
+texture = ExtResource("5_m2xfu")
+hframes = 3
 region_enabled = true
-region_rect = Rect2(0, 32, 216, 32)
+region_rect = Rect2(0, 26, 54, 26)
 script = ExtResource("3_jt3x3")
 
 [node name="LiftIdleDown" type="Sprite2D" parent="."]
