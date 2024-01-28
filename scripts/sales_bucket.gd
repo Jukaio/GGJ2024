@@ -84,6 +84,7 @@ func add_item(player: PlayerCharacter, money_value: int):
 	set_bucket_animating(true)
 	
 	audio_player.stream = dunk_in_bin_sound
+	audio_player.volume_db = 20.0
 	audio_player.play()
 	
 	player.Money += money_value
@@ -98,6 +99,7 @@ func add_item(player: PlayerCharacter, money_value: int):
 
 func show_money_label():
 	audio_player.stream = sell_sound
+	audio_player.volume_db = 0.0
 	audio_player.play()
 	
 	moneyLabel.visible = true
