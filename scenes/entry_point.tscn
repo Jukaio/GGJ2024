@@ -145,5 +145,8 @@ position = Vector2(-58, -55.25)
 shape = SubResource("RectangleShape2D_tk7v1")
 
 [connection signal="shop_item_selected" from="ShopKeeperCharacter/PurchaseSlot1" to="PlayerCharacter" method="_on_purchase_slot_1_shop_item_selected"]
+[connection signal="shop_item_unselected" from="ShopKeeperCharacter/PurchaseSlot1" to="PlayerCharacter" method="_on_purchase_slot_1_shop_item_unselected"]
 [connection signal="shop_item_selected" from="ShopKeeperCharacter/PurchaseSlot2" to="PlayerCharacter" method="_on_purchase_slot_1_shop_item_selected"]
+[connection signal="shop_item_unselected" from="ShopKeeperCharacter/PurchaseSlot2" to="PlayerCharacter" method="_on_purchase_slot_1_shop_item_unselected"]
 [connection signal="shop_item_selected" from="ShopKeeperCharacter/PurchaseSlot3" to="PlayerCharacter" method="_on_purchase_slot_1_shop_item_selected"]
+[connection signal="shop_item_unselected" from="ShopKeeperCharacter/PurchaseSlot3" to="PlayerCharacter" method="_on_purchase_slot_1_shop_item_unselected"]
