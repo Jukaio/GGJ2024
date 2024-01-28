@@ -1,15 +1,16 @@
-[gd_scene load_steps=18 format=3 uid="uid://c1h6bgnucataf"]
+[gd_scene load_steps=19 format=3 uid="uid://c1h6bgnucataf"]
 
 [ext_resource type="PackedScene" uid="uid://oednu38gbmwd" path="res://prefabs/ground_tile_map.tscn" id="1_15xfq"]
-[ext_resource type="PackedScene" uid="uid://bfi7bw6fxgiia" path="res://prefabs/smoke_effect.tscn" id="2_k7imp"]
+[ext_resource type="PackedScene" path="res://prefabs/smoke_effect.tscn" id="2_k7imp"]
 [ext_resource type="PackedScene" uid="uid://cucwiwl6qyqsg" path="res://prefabs/PlayerCharacter.tscn" id="2_r8nl4"]
+[ext_resource type="Script" path="res://scripts/Camera.gd" id="4_1b2oq"]
 [ext_resource type="PackedScene" uid="uid://d22g6rpmpao2e" path="res://scenes/ui_canvas_layer.tscn" id="4_gk132"]
 [ext_resource type="Script" path="res://scripts/crops_grid.gd" id="5_ggryu"]
 [ext_resource type="Script" path="res://scripts/shop_keeper_character.gd" id="6_8lmio"]
 [ext_resource type="PackedScene" uid="uid://ds03x1hp3883r" path="res://prefabs/purchase_slot.tscn" id="8_ma02f"]
 [ext_resource type="Texture2D" uid="uid://bn0vxmmg2f4uu" path="res://graphics/ui/speechbubble.png" id="9_d2fsl"]
 [ext_resource type="Script" path="res://scripts/sprite_animator.gd" id="11_70h21"]
-[ext_resource type="Theme" uid="uid://d241x0ek7vt0u" path="res://fonts/theme.tres" id="11_irulp"]
+[ext_resource type="Theme" path="res://fonts/theme.tres" id="11_irulp"]
 [ext_resource type="AudioStream" uid="uid://dvjn3nwmud4w1" path="res://sounds/Hoe.wav" id="11_ymnet"]
 [ext_resource type="Texture2D" uid="uid://cumhvrhbn565q" path="res://sprites/shopkeeper_spritesheet.png" id="12_3tnbu"]
 [ext_resource type="Script" path="res://scripts/sprite_animation.gd" id="12_ovdr6"]
@@ -41,6 +42,7 @@ SmokeEffect = NodePath("../SmokeEffect")
 
 [node name="MainCamera2D" type="Camera2D" parent="."]
 position = Vector2(2.08165e-12, 2.08165e-12)
+script = ExtResource("4_1b2oq")
 
 [node name="UICanvasLayer" parent="." instance=ExtResource("4_gk132")]
 
