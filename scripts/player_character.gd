@@ -10,7 +10,7 @@ enum MoveAction { DOWN, UP, LEFT, RIGHT }
 @onready var ShadowLeft : Sprite2D = $ShadowLeft
 @onready var ShadowRight : Sprite2D = $ShadowRight
 
-
+@export var camera: FarmCamera
 @export var Money : int
 @export var speed: float = 90.0
 @export var fieldMap: TileMap

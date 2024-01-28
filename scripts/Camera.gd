@@ -1,6 +1,7 @@
+class_name FarmCamera
+
 extends Camera2D
 
-@export var random_strength: float = 5.0
 @export var decay: float = 30.0
 
 var rng = RandomNumberGenerator.new()

@@ -31,14 +31,15 @@ func _ready():
 	
 
 func on_hoe(at: Vector2):
+	player_character.camera.apply_shake(4.0)
 	pass
 	
 
 func hoe(tileMap: TileMap):
-	var target_position = player_character.position + (player_character.lookDirection * hoeLength)
+	var target_position = player_character.global_position + (player_character.lookDirection * hoeLength)
+
 	var idx = get_target_cell_idx(tileMap)
 	var current_cell = tileMap.get_cell_atlas_coords(0, idx)
-	
 	tileMap.set_cell(0, idx, 0, Vector2i(1, 0))
 	
 	on_hoe(target_position)
@@ -60,6 +61,19 @@ func get_target_plant() -> Plant:
 		return plant
 	
 	return null
+		
+func _draw():
+	return
+	var target_position = player_character.global_position + (player_character.lookDirection * hoeLength)
+	var local_plant_position = player_character.cropsGrid.to_local(target_position)
+	var is_not_in_grid = local_plant_position.x < 0.0 || local_plant_position.y <= 0.0
+		
+	var plant = player_character.cropsGrid.get_plant_at_position(local_plant_position)
+	var local_for_drawing = to_local(target_position)
+	draw_circle(local_for_drawing, 4.0, Color.RED)
+	if !is_not_in_grid and plant:
+		local_for_drawing = to_local(plant.global_position)
+		draw_circle(local_for_drawing, 2.0, Color.BLUE)
 		
 func is_valid_to_hoe():
 	var fieldMap = player_character.fieldMap
@@ -141,7 +155,7 @@ func on_animation_override(delta, inputDir):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	was_interact_pressed_this_frame = Input.is_action_just_pressed("interact")
-
+	queue_redraw()
 	var fieldMap = player_character.fieldMap
 	var crops_field = player_character.cropsGrid
 	if player_character.PickedUpMushroom.visible || fieldMap == null:
