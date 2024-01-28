@@ -90,7 +90,7 @@ func add_item(player: PlayerCharacter, money_value: int):
 	player.Money += money_value
 	
 	moneyLabel.position = labelStartPosition
-	moneyLabel.text = str(money_value) + "$"
+	moneyLabel.text = "$%d" % money_value
 	
 	var tween_delay = get_tree().create_tween()
 	
