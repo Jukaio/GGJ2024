@@ -166,12 +166,15 @@ func _process(delta):
 		
 	if !is_seeding && was_seeding:
 		var equipped_item = player_character.ui.get_equipped_item()
+		var removed_count = player_character.ui.remove_item(equipped_item.x, 1)
+		assert(removed_count > 0, "Cannot seed, nothing in inventory")
+		
 		var frame = equipped_item.x
-		equipped_item.y = equipped_item.y - 1
+		
 		seed_field(crops_field, frame)
 		
-		if equipped_item.y == 0:
-			player_character.ui.try_remove_equipped_item()
+		#if (equipped_item.y - removed_count) == 0:
+		#	player_character.ui.try_remove_equipped_item()
 		
 		
 	highlight(fieldMap)

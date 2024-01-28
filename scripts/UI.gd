@@ -55,12 +55,25 @@ func add_item(item : int, count : int):
 		var inv_item = inventory[index]
 		if inv_item.x == item:
 			inv_item.y += count
-			print(inv_item.y)
+
 			inventory[index] = inv_item
 			return
 	
 	inventory.append(Vector2i(item, count))
-	
+
+func remove_item(item : int, count : int) -> int:
+	for index in range(0, inventory.size()):
+		var inv_item = inventory[index]
+		if inv_item.x == item:
+			var removed_count = min(count, inv_item.y)
+			inv_item.y -= removed_count
+
+			inventory[index] = inv_item
+			if inv_item.y == 0:
+				inventory.remove_at(index)
+			return removed_count
+	return 0
+
 func try_remove_equipped_item():
 	return inventory.pop_front()
 	
