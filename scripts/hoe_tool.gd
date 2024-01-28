@@ -42,6 +42,10 @@ func hoe(tileMap: TileMap):
 	var current_cell = tileMap.get_cell_atlas_coords(0, idx)
 	tileMap.set_cell(0, idx, 0, Vector2i(1, 0))
 	
+	var plant = get_target_plant()
+	if plant:
+		plant.visible = false
+	
 	on_hoe(target_position)
 
 func seed_field(crops_field: CropsGrid, frameId: int):
@@ -200,15 +204,32 @@ func _process(delta):
 func interact():
 	var animator = player_character.animator
 	
-	var plant = get_target_plant()
 	
 	if player_character.PickedUpMushroom.visible: 
 		return
 	
 	var direction = player_character.get_look_direction()
+	
+	if !is_valid_to_hoe():
+		if is_valid_to_seed():
+			match direction:
+				PlayerCharacter.MoveAction.RIGHT:
+					animator.PlayByName("SeedRight")
+				PlayerCharacter.MoveAction.LEFT:
+					animator.PlayByName("SeedLeft")
+				PlayerCharacter.MoveAction.UP:
+					animator.PlayByName("SeedUp")
+				PlayerCharacter.MoveAction.DOWN:
+					animator.PlayByName("SeedDown")
+			
+			animator.oneShotAnimationSlot.frameTime = seedTime / animator.oneShotAnimationSlot.total_frames()
+			return
+		return
+	
+	var plant = get_target_plant()
 	if plant != null:
-		# there is a plant in front of us
-		if plant.attempt_pick():
+		# there is a plant in front of usd
+		if plant.can_pick() && plant.attempt_pick():
 			audioPlayer.stream = liftSound
 			audioPlayer.play()
 			
@@ -229,22 +250,6 @@ func interact():
 					animator.PlayByName("LiftUpDown")
 			animator.oneShotAnimationSlot.frameTime = liftUpTime / animator.oneShotAnimationSlot.total_frames()
 			return
-	
-	if !is_valid_to_hoe():
-		if is_valid_to_seed():
-			match direction:
-				PlayerCharacter.MoveAction.RIGHT:
-					animator.PlayByName("SeedRight")
-				PlayerCharacter.MoveAction.LEFT:
-					animator.PlayByName("SeedLeft")
-				PlayerCharacter.MoveAction.UP:
-					animator.PlayByName("SeedUp")
-				PlayerCharacter.MoveAction.DOWN:
-					animator.PlayByName("SeedDown")
-			
-			animator.oneShotAnimationSlot.frameTime = seedTime / animator.oneShotAnimationSlot.total_frames()
-			return
-		return
 	
 	match direction:
 		PlayerCharacter.MoveAction.RIGHT:
