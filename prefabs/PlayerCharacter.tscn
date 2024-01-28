@@ -58,3 +58,5 @@ region_rect = Rect2(64, 102, 16, 10)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1.5)
 shape = SubResource("RectangleShape2D_0olxw")
+
+[connection signal="plant_picked_up" from="HoeTool" to="." method="_on_hoe_tool_plant_picked_up"]

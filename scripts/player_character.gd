@@ -279,7 +279,6 @@ func _on_hoe_tool_plant_picked_up(plant):
 	# Probably unused
 	print("player picked up plant: " + plant.name)
 	PickedUpMushroom.visible = true
-	pass
 
 
 
