@@ -27,8 +27,6 @@ func inc_growth_state():
 		
 	set_growth_state(GrowthState+1)
 
-func pick():
-	queue_free()
 
 func attempt_pick():
 	if visible == false:

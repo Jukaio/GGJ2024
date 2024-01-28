@@ -45,7 +45,7 @@ position = Vector2(2.08165e-12, 2.08165e-12)
 [node name="UICanvasLayer" parent="." instance=ExtResource("4_gk132")]
 
 [node name="CropsGrid" type="Node2D" parent="."]
-position = Vector2(32, -55)
+position = Vector2(35, -58)
 script = ExtResource("5_ggryu")
 
 [node name="ShopKeeperCharacter" type="Node2D" parent="."]
