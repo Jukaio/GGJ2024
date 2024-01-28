@@ -16,6 +16,7 @@ size = Vector2(10, 7)
 script = ExtResource("1_47rnw")
 
 [node name="SpriteAnimator" parent="." instance=ExtResource("2_x0r5y")]
+position = Vector2(0, -10)
 
 [node name="HoeTool" parent="." instance=ExtResource("3_u86vp")]
 hoeTime = 0.65
@@ -36,25 +37,25 @@ position = Vector2(-8, -23)
 
 [node name="Shadow" type="Sprite2D" parent="."]
 z_index = -1
-position = Vector2(0, 8)
+position = Vector2(0, 2)
 texture = ExtResource("5_13fjv")
 region_enabled = true
 region_rect = Rect2(48, 85, 16, 11)
 
 [node name="ShadowLeft" type="Sprite2D" parent="."]
 z_index = -1
-position = Vector2(0, 8)
+position = Vector2(0, 2)
 texture = ExtResource("5_13fjv")
 region_enabled = true
 region_rect = Rect2(48, 102, 16, 10)
 
 [node name="ShadowRight" type="Sprite2D" parent="."]
 z_index = -1
-position = Vector2(0, 8)
+position = Vector2(0, 2)
 texture = ExtResource("5_13fjv")
 region_enabled = true
 region_rect = Rect2(64, 102, 16, 10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 4.5)
+position = Vector2(0, -1.5)
 shape = SubResource("RectangleShape2D_0olxw")
