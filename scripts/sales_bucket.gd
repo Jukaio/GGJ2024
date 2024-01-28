@@ -1,11 +1,15 @@
 class_name SalesBucket extends Sprite2D
 
+var dunk_in_bin_sound = preload("res://sounds/dunk_in_bin.wav")
+var sell_sound = preload("res://sounds/sell.wav")
+
 @onready var moneyLabel : Label = $MoneyEarnedLabel
 @onready var money_sign : Sprite2D = $MoneySign
 @onready var bucket_shadow : Sprite2D = $BucketShadow
 
 @export var time_for_money_animation : int
 @export var players_in_range: Array[PlayerCharacter]
+@export var audio_player : AudioStreamPlayer
 
 var labelStartPosition = Vector2.ZERO
 
@@ -35,10 +39,10 @@ func animate_bucket(delta):
 func set_bucket_animating(animating: bool):
 	animating_bucket = animating
 	animation_time = 0
+	
 
 func set_money_sign_animating(animating: bool):
 	money_sign_animating = animating
-	time_elapsed = 0
 	
 
 # Called when the node enters the scene tree for the first time.
@@ -57,11 +61,12 @@ func flip_money_sign():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	time_elapsed += delta
 	
 	animate_bucket(delta)
 	
 	if money_sign_animating:
+		time_elapsed += delta
+		
 		if time_elapsed > time_for_money_animation:
 			flip_money_sign()
 			time_elapsed = 0
@@ -78,10 +83,22 @@ func add_item(money_value: int):
 	
 	set_bucket_animating(true)
 	
-	moneyLabel.visible = true
+	audio_player.stream = dunk_in_bin_sound
+	audio_player.play()
 	
 	moneyLabel.position = labelStartPosition
 	moneyLabel.text = str(money_value) + "$"
+	
+	var tween_delay = get_tree().create_tween()
+	
+	tween_delay.tween_callback(show_money_label).set_delay(1)
+	
+
+func show_money_label():
+	audio_player.stream = sell_sound
+	audio_player.play()
+	
+	moneyLabel.visible = true
 	
 	var tween = get_tree().create_tween()
 	
