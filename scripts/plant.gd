@@ -55,6 +55,16 @@ func inc_growth_state():
 	set_growth_state(GrowthState+1)
 
 
+func can_pick():
+	if visible == false:
+		return false
+		
+	if GrowthState < 3:
+		return false
+	
+	return true
+
+
 func attempt_pick():
 	if visible == false:
 		return false
