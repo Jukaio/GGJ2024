@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://d22g6rpmpao2e"]
+[gd_scene load_steps=9 format=3 uid="uid://d22g6rpmpao2e"]
 
 [ext_resource type="Script" path="res://scripts/UI.gd" id="1_83ydr"]
 [ext_resource type="Texture2D" uid="uid://b844hqqnsenbc" path="res://textures/buttons free.png" id="2_hv1n6"]
 [ext_resource type="Texture2D" uid="uid://ckaavsdn2d5qe" path="res://textures/base free.png" id="4_4nijn"]
+[ext_resource type="Texture2D" uid="uid://drmpbcho0q5sm" path="res://sprites/bucks.png" id="4_hb78k"]
 [ext_resource type="Texture2D" uid="uid://ci0nemkkasqiu" path="res://textures/gui_free.png" id="4_sucp4"]
 [ext_resource type="Texture2D" uid="uid://dygh2vf2flars" path="res://sprites/Mushroom_Inventory.png" id="5_pqwk4"]
 [ext_resource type="FontFile" uid="uid://cyescrgav85ig" path="res://fonts/AsepriteFont.ttf" id="5_yrnwt"]
@@ -127,8 +128,7 @@ patch_margin_bottom = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Left/MarginContainer/Panel2/NinePatchRect"]
 position = Vector2(15, 11.9983)
-texture = ExtResource("5_pqwk4")
-region_enabled = true
+texture = ExtResource("4_hb78k")
 region_rect = Rect2(52, 31, 24, 18)
 
 [node name="Panel" type="Panel" parent="AspectRatioContainer/VBoxContainer/Top Half/HBoxContainer/Top Left/MarginContainer"]
@@ -180,7 +180,7 @@ patch_margin_bottom = 4
 position = Vector2(20, 20)
 scale = Vector2(2, 2)
 texture = ExtResource("5_pqwk4")
-hframes = 5
+hframes = 4
 vframes = 5
 frame = 6
 script = ExtResource("7_7qf6i")
@@ -233,7 +233,7 @@ patch_margin_bottom = 4
 position = Vector2(20, 20)
 scale = Vector2(2, 2)
 texture = ExtResource("5_pqwk4")
-hframes = 5
+hframes = 4
 vframes = 5
 frame = 2
 script = ExtResource("7_7qf6i")
@@ -287,7 +287,7 @@ patch_margin_bottom = 4
 position = Vector2(24, 24.0003)
 scale = Vector2(2, 2)
 texture = ExtResource("5_pqwk4")
-hframes = 5
+hframes = 4
 vframes = 5
 frame = 10
 script = ExtResource("7_7qf6i")

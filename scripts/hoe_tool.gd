@@ -92,10 +92,12 @@ func is_valid_to_seed():
 	return current_field_cell == Vector2i(1, 0) && plant != null && !plant.visible
 		
 func highlight(tileMap: TileMap):
-	var target_position = player_character.position + (player_character.lookDirection * hoeLength)
+	var target_position = player_character.global_position + (player_character.lookDirection * hoeLength)
+	
+	tileMap.to_local(target_position)
+	
 	var idx = tileMap.local_to_map(target_position)
 	var highlightPosition = tileMap.map_to_local(idx)
-	
 	highlightNode.visible = true
 	highlightNode.global_position = highlightPosition
 

@@ -51,9 +51,12 @@ func contains(item: int):
 	return false
 	
 func add_item(item : int, count : int):
-	for inv_item in inventory:
+	for index in range(0, inventory.size()):
+		var inv_item = inventory[index]
 		if inv_item.x == item:
 			inv_item.y += count
+			print(inv_item.y)
+			inventory[index] = inv_item
 			return
 	
 	inventory.append(Vector2i(item, count))
@@ -77,6 +80,10 @@ func redraw():
 			hotbar_slots[i].set_count(inventory[i].y)
 		else:
 			hotbar_slots[i].visible = false
+		
+		var parent = hotbar_slots[i].counter_label.get_parent() as Control
+		parent.visible = hotbar_slots[i].visible
+
 
 var g_last_money : int = -123
 
@@ -84,7 +91,6 @@ func set_money_text(value : int):
 	if g_last_money != value:
 		money_text.text = "x%d" % min(value, 9999)
 		g_last_money = value
-		
 
 func _process(delta):
 	if Input.is_action_just_pressed("inv_prev"):
