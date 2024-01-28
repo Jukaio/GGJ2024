@@ -21,6 +21,7 @@ position = Vector2(0, -10)
 [node name="HoeTool" parent="." instance=ExtResource("3_u86vp")]
 hoeLength = 16.0
 hoeTime = 0.35
+seedTime = 0.333
 
 [node name="Area2D" type="Area2D" parent="."]
 visible = false
