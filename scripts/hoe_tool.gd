@@ -50,7 +50,7 @@ func hoe(tileMap: TileMap):
 
 func seed_field(crops_field: CropsGrid, frameId: int):
 	var plant = get_target_plant()
-	plant.MushroomTypeStartIndex = frameId / plant.hframes
+	plant.MushroomTypeStartIndex = frameId / 4
 	plant.set_growth_state(0)
 	plant.visible = true
 	
