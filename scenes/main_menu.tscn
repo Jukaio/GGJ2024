@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://45avuh6cpeew"]
+
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_lx2n7"]
+[ext_resource type="Texture2D" uid="uid://cdgh3li1f003" path="res://sprites/main_menu_sheet.png" id="3_axs4t"]
+[ext_resource type="Script" path="res://scripts/sprite_animation.gd" id="12_pdb3x"]
+[ext_resource type="AudioStream" uid="uid://dvjn3nwmud4w1" path="res://sounds/Hoe.wav" id="14_5581m"]
+[ext_resource type="AudioStream" uid="uid://cls5lt578yk06" path="res://music/Main Theme.wav" id="16_415v0"]
+
+[node name="MainMenu" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_lx2n7")
+
+[node name="MainCamera2D" type="Camera2D" parent="."]
+position = Vector2(2.08165e-12, 2.08165e-12)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("14_5581m")
+
+[node name="MusicStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_415v0")
+autoplay = true
+
+[node name="AnimatedMainMenu" type="Sprite2D" parent="."]
+texture = ExtResource("3_axs4t")
+hframes = 8
+script = ExtResource("12_pdb3x")

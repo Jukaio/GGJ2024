@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://c1h6bgnucataf"]
+[gd_scene load_steps=22 format=3 uid="uid://c1h6bgnucataf"]
 
 [ext_resource type="PackedScene" uid="uid://oednu38gbmwd" path="res://prefabs/ground_tile_map.tscn" id="1_15xfq"]
 [ext_resource type="PackedScene" uid="uid://bfi7bw6fxgiia" path="res://prefabs/smoke_effect.tscn" id="2_k7imp"]
@@ -18,8 +18,17 @@
 [ext_resource type="Texture2D" uid="uid://xev6rcfkj5ad" path="res://sprites/Env.png" id="14_llhv5"]
 [ext_resource type="PackedScene" uid="uid://dumr5vgy24wbo" path="res://prefabs/sales_bucket.tscn" id="14_p1psj"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0a3d1"]
+size = Vector2(43, 3)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tk7v1"]
 size = Vector2(48, 35.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f5w8u"]
+size = Vector2(527, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ls3w"]
+size = Vector2(20, 412)
 
 [node name="EntryPoint" type="Node2D"]
 y_sort_enabled = true
@@ -127,10 +136,11 @@ region_rect = Rect2(48, 86, 16, 10)
 unique_name_in_owner = true
 stream = ExtResource("11_ymnet")
 
-[node name="SalesBucket" parent="." instance=ExtResource("14_p1psj")]
+[node name="SalesBucket" parent="." node_paths=PackedStringArray("audio_player") instance=ExtResource("14_p1psj")]
 z_index = 10
 position = Vector2(-87, 34)
 time_for_money_animation = 1
+audio_player = NodePath("../AudioStreamPlayer")
 
 [node name="MusicStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_2j6da")
@@ -141,11 +151,48 @@ autoplay = true
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(6, 34, 17, 34, 17, 133, 5, 133, 5, 131, 15, 131, 15, 36, 6, 36)
 
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-10, -110, 1, -110, 0, -27, -10, -27, -10, -30, -2, -30, -3, -107, -10, -107)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-68.5, -122.5)
+shape = SubResource("RectangleShape2D_0a3d1")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-133, -124)
+shape = SubResource("RectangleShape2D_0a3d1")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-181, 36)
+shape = SubResource("RectangleShape2D_0a3d1")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-181, 138)
+shape = SubResource("RectangleShape2D_0a3d1")
+
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
 position = Vector2(-58, -55.25)
 shape = SubResource("RectangleShape2D_tk7v1")
+
+[node name="border" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="border"]
+position = Vector2(10.5, 152.5)
+shape = SubResource("RectangleShape2D_f5w8u")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="border"]
+position = Vector2(9, -147)
+shape = SubResource("RectangleShape2D_f5w8u")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="border"]
+position = Vector2(-248, -44)
+shape = SubResource("RectangleShape2D_0ls3w")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="border"]
+position = Vector2(249, -44)
+shape = SubResource("RectangleShape2D_0ls3w")
 
 [connection signal="shop_item_selected" from="ShopKeeperCharacter/PurchaseSlot1" to="PlayerCharacter" method="_on_purchase_slot_1_shop_item_selected"]
 [connection signal="shop_item_unselected" from="ShopKeeperCharacter/PurchaseSlot1" to="PlayerCharacter" method="_on_purchase_slot_1_shop_item_unselected"]
