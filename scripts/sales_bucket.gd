@@ -67,7 +67,7 @@ func _process(delta):
 			time_elapsed = 0
 	
 	for player in players_in_range:
-		if player.PickedUpMushroom && player.hoeTool.was_interact_pressed_this_frame:
+		if player.PickedUpMushroom && player.PickedUpMushroom.visible && player.hoeTool.was_interact_pressed_this_frame:
 			player.PickedUpMushroom.visible = false
 			add_item(100)
 

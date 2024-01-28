@@ -19,7 +19,7 @@ script = ExtResource("1_47rnw")
 position = Vector2(0, -10)
 
 [node name="HoeTool" parent="." instance=ExtResource("3_u86vp")]
-hoeTime = 0.65
+hoeTime = 0.35
 
 [node name="Area2D" type="Area2D" parent="."]
 visible = false
@@ -30,7 +30,6 @@ position = Vector2(-17, 0)
 shape = SubResource("RectangleShape2D_0bjyx")
 
 [node name="PickingUpSprite" type="Node2D" parent="."]
-visible = false
 
 [node name="MushroomSprite" parent="PickingUpSprite" instance=ExtResource("5_r4y1g")]
 position = Vector2(-8, -23)
