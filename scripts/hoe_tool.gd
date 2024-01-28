@@ -50,7 +50,7 @@ func hoe(tileMap: TileMap):
 
 func seed_field(crops_field: CropsGrid, frameId: int):
 	var plant = get_target_plant()
-	plant.MushroomTypeStartIndex = frameId / plant.hframes
+	plant.MushroomTypeStartIndex = frameId / 4
 	plant.set_growth_state(0)
 	plant.visible = true
 	
@@ -124,6 +124,8 @@ func highlight(tileMap: TileMap):
 	var global_highLight_position = tileMap.to_global(highlight_position)
 	highlightNode.global_position.x = ceilf(global_highLight_position.x)
 	highlightNode.global_position.y = ceilf(global_highLight_position.y)
+
+	print(fmod(global_highLight_position.x, 8.0))
 
 
 func on_animation_override(delta, inputDir):

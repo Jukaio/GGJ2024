@@ -17,8 +17,8 @@ config/icon="res://icon.svg"
 
 [display]
 
-window/size/viewport_width=480
-window/size/viewport_height=270
+window/size/viewport_width=456
+window/size/viewport_height=224
 window/size/mode=2
 window/stretch/mode="viewport"
 
