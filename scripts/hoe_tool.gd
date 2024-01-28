@@ -77,7 +77,7 @@ func is_valid_to_seed():
 		return false
 	
 	# if hoe
-	if equipped_item.x == 3:
+	if equipped_item.x == 3  || equipped_item.y == 0:
 		return false
 	
 	var fieldMap = player_character.fieldMap
@@ -100,7 +100,9 @@ func highlight(tileMap: TileMap):
 	var highlight_position = tileMap.map_to_local(idx)
 	
 	highlightNode.visible = true
-	highlightNode.global_position = tileMap.to_global(highlight_position)
+	var global_highLight_position = tileMap.to_global(highlight_position)
+	highlightNode.global_position.x = ceilf(global_highLight_position.x)
+	highlightNode.global_position.y = ceilf(global_highLight_position.y)
 
 
 func on_animation_override(delta, inputDir):
@@ -164,10 +166,16 @@ func _process(delta):
 		
 	if !is_seeding && was_seeding:
 		var equipped_item = player_character.ui.get_equipped_item()
+		var removed_count = player_character.ui.remove_item(equipped_item.x, 1)
+		assert(removed_count > 0, "Cannot seed, nothing in inventory")
+		
 		var frame = equipped_item.x
+		
 		seed_field(crops_field, frame)
-		player_character.ui.try_remove_equipped_item()
-			
+		
+		#if (equipped_item.y - removed_count) == 0:
+		#	player_character.ui.try_remove_equipped_item()
+		
 		
 	highlight(fieldMap)
 	
