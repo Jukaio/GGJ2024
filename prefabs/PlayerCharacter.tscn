@@ -34,7 +34,7 @@ shape = SubResource("RectangleShape2D_0bjyx")
 [node name="PickingUpSprite" type="Node2D" parent="."]
 
 [node name="MushroomSprite" parent="PickingUpSprite" instance=ExtResource("5_r4y1g")]
-position = Vector2(-8, -23)
+position = Vector2(-8, -28)
 
 [node name="Shadow" type="Sprite2D" parent="."]
 z_index = -1
